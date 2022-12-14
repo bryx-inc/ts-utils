@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "lib": ["ESNext"],
+    "target": "ES2015",
+    "experimentalDecorators": true,
+    "noEmit": false,
+    "skipLibCheck": true,
+    "declaration": true,
+    "outDir": "dist/"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules/"]
+}
