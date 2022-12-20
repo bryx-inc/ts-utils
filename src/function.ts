@@ -5,13 +5,13 @@
  * This is particularly helpful when the two predicates have two different input types, with the first predicate type-guarding the second.
  *
  * @example
- * type Thing = { empty: false } | { empty: true, data: string }
+ * type Thing = { empty: true } | { empty: false, data: string }
  * type ThingIsFilledGuard = (v: Thing) => v is Thing & { empty: false };
  * const things: Thing[] = [{ empty: true }, { empty: false, data: 'apple' }, { empty: false, data: 'banana' }];
  *
  * // with curried guard
  *
- * const isThingFilledAnd = createCurriedGuardPredicate((v => !v.empty) as ThingIsFilledPredicate);
+ * const isThingFilledAnd = createCurriedGuardPredicate((v => !v.empty) as ThingIsFilledGuard);
  * things.some(isThingFilledAnd((v) => v == 'banana')); // true
  *
  * // without the curred guard

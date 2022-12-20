@@ -1,0 +1,89 @@
+import {
+  derecordify,
+  dropKeys,
+  dropNullValues,
+  objectIsEmpty,
+  selectKeys,
+} from "./object";
+
+function assertNoSideEffects<T extends object, E extends object>(o1: T, o2: E) {
+  expect(o1).not.toEqual(o2);
+  expect(o1).not.toBe(o2);
+}
+
+test("drop null values", () => {
+  const obj = {
+    k1: "something",
+    k2: "nifty",
+    k3: null,
+  };
+
+  const newObj = dropNullValues(obj);
+
+  expect(Object.keys(newObj)).toEqual(["k1", "k2"]);
+  assertNoSideEffects(obj, newObj);
+});
+
+test("drop keys", () => {
+  const obj = {
+    first: "John",
+    last: "Smith",
+    age: 23,
+    state: "NY",
+  };
+
+  const newObj = dropKeys(obj, ["age", "state"]);
+  expect(newObj).toEqual({
+    first: "John",
+    last: "Smith",
+  });
+  assertNoSideEffects(obj, newObj);
+});
+
+test("select keys", () => {
+  const obj = {
+    first: "John",
+    last: "Smith",
+    age: 23,
+    state: "NY",
+  };
+
+  const newObj = selectKeys(obj, ["first", "last"]);
+
+  expect(newObj).toEqual({
+    first: "John",
+    last: "Smith",
+  });
+  assertNoSideEffects(obj, newObj);
+});
+
+test("object is empty", () => {
+  expect(objectIsEmpty(new Object())).toEqual(true);
+  expect(objectIsEmpty({ foo: "bar" })).toEqual(false);
+});
+
+test("derecordify", () => {
+  const ages = {
+    bill: 38,
+    john: 21,
+    adam: 25,
+  };
+
+  const obj = derecordify(ages, { k: "name", v: "age" });
+  expect(obj).toEqual([
+    {
+      name: "bill",
+      age: 38,
+    },
+    {
+      name: "john",
+      age: 21,
+    },
+    {
+      name: "adam",
+      age: 25,
+    },
+  ]);
+
+  assertNoSideEffects(ages, obj);
+});

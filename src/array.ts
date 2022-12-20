@@ -48,42 +48,6 @@ export function moveToIdx<T>(arr: T[], startIdx: number, endIdx: number) {
     return arrCpy;
 }
 
-/**
- * Move some element from some row/col position in a 2D matrix to some other row/col position without leaving empty space in the resulting matrix
- *
- * @param arr The 2D array of elements
- * @param startColIdx The column index of the element to be moved
- * @param startRowIdx The row idnex of the element to be moved
- * @param endColIdx The new column index for the element
- * @param endRowIdx The new row index for the element
- * @returns The updated array
- */
-export function moveToIdx2D<T>(arr: Array<T>[], startColIdx: number, startRowIdx: number, endColIdx: number, endRowIdx: number) {
-    const modified = [...arr];
-    const [moved] = modified[startColIdx].splice(startRowIdx, 1);
-    modified[endColIdx].splice(endRowIdx, 0, moved);
-
-    return modified;
-}
-
-export function moveToNamedIdx2D<T>(
-    space: { [K: string]: T[] },
-    startArrName: keyof typeof space,
-    endArrName: keyof typeof space,
-    startIdx: number,
-    endIdx: number,
-): { [K in keyof typeof space]: T[] } {
-    const modifiedSpace = {} as typeof space;
-    for (const k of Object.keys(space)) {
-        modifiedSpace[k] = [...space[k]];
-    }
-
-    const [moved] = modifiedSpace[startArrName].splice(startIdx, 1);
-    modifiedSpace[endArrName].splice(endIdx, 0, moved);
-
-    return modifiedSpace;
-}
-
 export function arrayIsEmpty(arr: unknown[]) {
     return arr.length == 0;
 }
@@ -179,7 +143,7 @@ export function sliceAround<T>(arr: T[], i: number, v: T): T[] {
     return arr
         .slice(0, i)
         .concat([v])
-        .concat(arr.slice(i + 1));
+        .concat(arr.slice(i));
 }
 
 /**

@@ -79,6 +79,10 @@ export class FormalMaybe<T> {
     return new FormalMaybe<T>(null);
   }
 
+  inner(): Maybe<T> {
+    return this.v;
+  }
+
   isSome() {
     return isSome(this.v);
   }
@@ -109,10 +113,10 @@ export class FormalMaybe<T> {
     return this.v ?? v();
   }
 
-  when<E extends "some">(cond: E, fn: (v: T) => unknown): typeof this;
-  when<E extends "none">(cond: E, fn: () => unknown): typeof this;
+  when<E extends "some">(cond: E, fn: (v: T) => unknown): FormalMaybe<T>;
+  when<E extends "none">(cond: E, fn: () => unknown): FormalMaybe<T>;
 
-  when(cond: 'some' | 'none', fn: Function): typeof this {
+  when(cond: "some" | "none", fn: Function) {
     if (cond == "some" && this.isSome()) fn(this.unwrap());
     if (cond == "none" && this.isNone()) fn();
 
