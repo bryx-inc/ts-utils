@@ -1,5 +1,5 @@
-import { Maybe } from './maybe';
-import { intoMaybe } from './maybe';
+import { Maybe } from "./maybe";
+import { intoMaybe } from "./maybe";
 
 /**
  * Filtered an incoming array of objects by discarding all keys on each object not specifiecd by 'keys'.
@@ -140,10 +140,7 @@ export function isIndexOf(arr: unknown[], i: number): boolean {
  * console.log(arr); // ['one', 'two', 'three']
  */
 export function sliceAround<T>(arr: T[], i: number, v: T): T[] {
-    return arr
-        .slice(0, i)
-        .concat([v])
-        .concat(arr.slice(i));
+    return arr.slice(0, i).concat([v]).concat(arr.slice(i));
 }
 
 /**

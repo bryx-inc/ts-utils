@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useConst } from './useConst';
+import { useState } from "react";
+import { useConst } from "./useConst";
 
 export type UseIndexCallbacks = {
     inc: () => void;
