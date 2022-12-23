@@ -3,6 +3,7 @@
     "lib": ["ESNext"],
     "target": "ES2015",
     "experimentalDecorators": true,
+    "esModuleInterop": true,
     "noEmit": false,
     "skipLibCheck": true,
     "declaration": true,

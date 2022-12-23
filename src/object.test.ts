@@ -1,8 +1,12 @@
 import {
+  castUnsafe,
   derecordify,
   dropKeys,
   dropNullValues,
+  getKeys,
+  getPropertyUnsafe,
   objectIsEmpty,
+  recordify,
   selectKeys,
 } from "./object";
 
@@ -86,4 +90,60 @@ test("derecordify", () => {
   ]);
 
   assertNoSideEffects(ages, obj);
+});
+
+test("recordify", () => {
+  const people = [
+    { first: "john", last: "smith", state: "NY" },
+    { first: "sam", last: "johnson", state: "NY" },
+    { first: "john", last: "appleseed", state: "CO" },
+  ];
+
+  const peopleByState = recordify(people, "state");
+
+  expect(peopleByState).toEqual({
+    NY: [
+      { first: "john", last: "smith", state: "NY" },
+      { first: "sam", last: "johnson", state: "NY" },
+    ],
+    CO: [{ first: "john", last: "appleseed", state: "CO" }],
+  });
+
+  assertNoSideEffects(people, peopleByState);
+});
+
+test("get keys", () => {
+  const obj = {
+    first: "John",
+    last: "Smith",
+    age: 23,
+    state: "NY",
+  };
+
+  const keys = getKeys(obj);
+
+  expect(keys).toEqual(["first", "last", "age", "state"]);
+  assertNoSideEffects(obj, keys);
+});
+
+test("get property unsafe", () => {
+  const obj = {
+    name: "John Smith",
+  };
+
+  const name: string = getPropertyUnsafe(obj, "name");
+  const age: number = getPropertyUnsafe(obj, "age");
+
+  expect(name).toEqual("John Smith");
+  expect(age).toStrictEqual(null);
+});
+
+test("cast unsafe", () => {
+  const people = [
+    { first: "john", last: "smith", state: "NY" },
+    { first: "sam", last: "johnson", state: "NY" },
+    { first: "john", last: "appleseed", state: "CO" },
+  ];
+
+  expect(castUnsafe(people)).toBe(people);
 });
