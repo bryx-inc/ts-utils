@@ -1,24 +1,24 @@
-import { isSome, Maybe } from "./maybe";
+import { Maybe } from "./maybe";
 
 export type StrAddOptions = {
-  treatEmptyStringAsZero?: boolean;
+    treatEmptyStringAsZero?: boolean;
 };
 
 /**
  * Add two string representations of number
  */
 export function strAdd(strs: string[], options?: StrAddOptions): Maybe<string> {
-  const nums = strs.map((s) => {
-    if (s == "" && options?.treatEmptyStringAsZero) return 0;
+    const nums = strs.map((s) => {
+        if (s == "" && options?.treatEmptyStringAsZero) return 0;
 
-    const parsedString = Number.parseFloat(s);
+        const parsedString = Number.parseFloat(s);
 
-    return isNaN(parsedString) ? null : parsedString;
-  });
+        return isNaN(parsedString) ? null : parsedString;
+    });
 
-  return nums.reduce((acc, cur) => acc + cur)?.toString() ?? null;
+    return nums.reduce((acc, cur) => acc + cur)?.toString() ?? null;
 }
 
 export function keyFrom(...strs: (string | number)[]) {
-  return strs.map((e) => e.toString()).join("-");
+    return strs.map((e) => e.toString()).join("-");
 }

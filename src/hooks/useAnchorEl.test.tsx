@@ -4,32 +4,28 @@ import userEvent from "@testing-library/user-event";
 import { useAnchorEl } from "./useAnchorEl";
 
 const TestUseAnchorElComponent = () => {
-  const [anchorEl, setAnchorEl, unsetAnchorEl] = useAnchorEl();
-  const open = !!anchorEl;
+    const [anchorEl, setAnchorEl, unsetAnchorEl] = useAnchorEl();
+    const open = !!anchorEl;
 
-  return (
-    <>
-      <div>open: {`${open}`}</div>
-      <div onClick={(e) => setAnchorEl(e)}>set</div>
-      <div onClick={() => unsetAnchorEl()}>unset</div>
-    </>
-  );
+    return (
+        <>
+            <div>open: {`${open}`}</div>
+            <div onClick={(e) => setAnchorEl(e)}>set</div>
+            <div onClick={() => unsetAnchorEl()}>unset</div>
+        </>
+    );
 };
 
 test("useAnchorEl", async () => {
-  render(<TestUseAnchorElComponent />);
+    render(<TestUseAnchorElComponent />);
 
-  expect(screen.getByText(/open/).textContent).toContain("false");
+    expect(screen.getByText(/open/).textContent).toContain("false");
 
-  userEvent.click(screen.getByText("set"));
+    userEvent.click(screen.getByText("set"));
 
-  await waitFor(() =>
-    expect(screen.getByText(/open/).textContent).toContain("true")
-  );
+    await waitFor(() => expect(screen.getByText(/open/).textContent).toContain("true"));
 
-  userEvent.click(screen.getByText("unset"));
+    userEvent.click(screen.getByText("unset"));
 
-  await waitFor(() =>
-    expect(screen.getByText(/open/).textContent).toContain("false")
-  );
+    await waitFor(() => expect(screen.getByText(/open/).textContent).toContain("false"));
 });

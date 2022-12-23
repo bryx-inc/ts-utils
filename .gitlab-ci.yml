@@ -1,0 +1,81 @@
+cache: &node_modules
+  policy: pull
+  paths: [node_modules/]
+  key:
+    files: [yarn.lock]
+
+default:
+  image: node:16.18.0
+  tags: [k8s]
+
+stages:
+  - setup
+  - typecheck
+  - code quality
+  - test
+  - deploy
+
+##
+
+setup:
+  stage: setup
+  needs: []
+  except: [tags]
+
+  # allow writing to cache
+  cache:
+    <<: *node_modules
+    policy: pull-push
+
+  script: [yarn --frozen-lockfile]
+
+##
+
+typecheck:
+  stage: typecheck
+  needs: [setup]
+  except: [tags]
+
+  script: [yarn typecheck]
+##
+
+eslint:
+  stage: code quality
+  needs: [typecheck]
+  except: [tags]
+
+  script: [yarn lint]
+
+prettier:
+  stage: code quality
+  needs: [typecheck]
+  except: [tags]
+
+  script: [yarn format]
+
+##
+
+jest:
+  stage: test
+  needs: [typecheck]
+  except: [tags]
+
+  script: [yarn test:cov]
+
+##
+
+release:
+  stage: deploy
+  needs: [setup]
+  only: [master]
+  except: [tags]
+
+  script: 
+    - yarn version --minor
+    - git add . 
+    - NPM_TOKEN=${CI_JOB_TOKEN} npm publish
+    - ssh git@$GITLAB_URL
+    - git clone git@gitlab.bryx.com:bryx911/ts-utils ./repo
+    - git remote rm origin && git remote add origin "git@$GITLAB_URL:${CI_PROJECT_PATH}.git"
+    - yarn version --minor --cwd ./repo
+    - git push origin main

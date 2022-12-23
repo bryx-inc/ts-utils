@@ -1,4 +1,4 @@
-import { useConst } from './useConst';
+import { useConst } from "./useConst";
 import { useState } from "react";
 
 export type UseBooleanCallbacks = {
