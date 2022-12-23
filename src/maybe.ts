@@ -116,7 +116,7 @@ export class FormalMaybe<T> {
     when<E extends "some">(cond: E, fn: (v: T) => unknown): FormalMaybe<T>;
     when<E extends "none">(cond: E, fn: () => unknown): FormalMaybe<T>;
 
-    when(cond: "some" | "none", fn: (v?: T) => unknown) {
+    when(cond: "some" | "none", fn: (...v: T[]) => unknown) {
         if (cond == "some" && this.isSome()) fn(this.unwrap());
         if (cond == "none" && this.isNone()) fn();
 
