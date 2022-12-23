@@ -1,5 +1,7 @@
 import { SizedTuple } from "./tuple";
 
+type TypeCheck<Sample, Target> = Sample extends Target ? "pass" : "fail";
+
 test("sized tuple", () => {
   /**
    * the following code block should not throw any type errors
@@ -7,17 +9,14 @@ test("sized tuple", () => {
    */
 
   expect(() => {
-    const _: SizedTuple<6>["length"] extends 6 ? "pass" : never = "pass";
+    const _: TypeCheck<SizedTuple<2>, [unknown, unknown]> = "pass";
   });
 
   expect(() => {
-    const _: SizedTuple<2, "v"> extends readonly ["v", "v"] ? "pass" : never =
-      "pass";
+    const _: TypeCheck<SizedTuple<2, "v">, ["v", "v"]> = "pass";
   });
 
   expect(() => {
-    const _: SizedTuple<3, "x", ["*"]> extends readonly ["x", "x", "*"]
-      ? "pass"
-      : never = "pass";
+    const _: TypeCheck<SizedTuple<3, "x", ["*"]>, ["x", "x", "*"]> = "pass";
   });
 });
