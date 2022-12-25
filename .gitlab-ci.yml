@@ -13,13 +13,13 @@ stages:
   - typecheck
   - code quality
   - test
+  - deploy
 
 ##
 
 setup:
   stage: setup
   needs: []
-  except: [tags]
 
   # allow writing to cache
   cache:
@@ -60,3 +60,15 @@ jest:
   except: [tags]
 
   script: [yarn test:cov]
+
+##
+
+pages:
+  stage: deploy
+  needs: [setup]
+  only: [tags]
+
+  script: [yarn docs]
+  
+  artifacts:
+    paths: [public]

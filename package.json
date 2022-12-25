@@ -6,16 +6,18 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "docs": "typedoc --entryPointStrategy expand --entryPoints src/* --out docs",
+    "prepack": "yarn build",
+    "docs": "typedoc --entryPointStrategy expand --entryPoints src/* --out public",
     "typecheck": "tsc --noEmit",
     "test": "jest",
     "lint": "eslint .",
     "format": "prettier -c src/*",
     "format:fix": "prettier -w src/*",
     "test:cov": "jest --coverage --runInBand",
-    "release:patch": "[ $(git rev-parse --abbrev-ref HEAD) = 'main' ] && yarn version --patch && NPM_TOKEN=$(yarn config get tsutils-authToken) npm publish && git push",
-    "release:minor": "[ $(git rev-parse --abbrev-ref HEAD) = 'main' ] && yarn version --minor && NPM_TOKEN=$(yarn config get tsutils-authToken) npm publish && git push",
-    "release:major": "[ $(git rev-parse --abbrev-ref HEAD) = 'main' ] && yarn version --major && NPM_TOKEN=$(yarn config get tsutils-authToken) npm publish && git push"
+    "release:patch": "[ $(git rev-parse --abbrev-ref HEAD) = 'main' ] && yarn version --patch && yarn deploy",
+    "release:minor": "[ $(git rev-parse --abbrev-ref HEAD) = 'main' ] && yarn version --minor && yarn deploy",
+    "release:major": "[ $(git rev-parse --abbrev-ref HEAD) = 'main' ] && yarn version --major && yarn deploy",
+    "deploy": "NPM_TOKEN=$(yarn config get tsutils-authToken) npm publish && git push origin $(git describe --tags) && git push origin main"
   },
   "main": "dist/",
   "devDependencies": {
@@ -36,13 +38,13 @@
     "react-dom": "^18.2.0",
     "ts-jest": "^29.0.3",
     "ts-node": "^10.9.1",
+    "typedoc": "~0.22.0",
     "typescript": "^4.9.4"
   },
   "publishConfig": {
     "registry": " https://gitlab.bryx.com/api/v4/projects/390/packages/npm/"
   },
   "dependencies": {
-    "react": "^18.2.0",
-    "typedoc": "~0.22.0"
+    "react": "^18.2.0"
   }
 }
