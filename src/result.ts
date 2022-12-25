@@ -104,7 +104,7 @@ export class Result<T, E> {
 
     /**
      * Maps a `Result.Ok(null)` to `null`, otherwise return self.
-     * 
+     *
      * @example
      * ```
      * const res: Result<Maybe<string>, string> = ...;
@@ -123,7 +123,7 @@ export class Result<T, E> {
      * ```
      * const a: Result.Ok(10);
      * const b: Result.Err('foo');
-     * 
+     *
      * console.log(a.and(v => Result.Ok(v * 2))); // Ok(20)
      * console.log(v.and(v => Result.Ok(v * 2))); // Err('foo')
      * ```
@@ -135,14 +135,14 @@ export class Result<T, E> {
 
     /**
      * If `this` is `Ok`, return `this`. Otherwise, return the other given {@link Result}, `res`;
-     * 
+     *
      * @example
      * ```
      * function div(n1: number, n2: number) {
      *  if (n2 == 0) return Result.Err('divide by zero');
-     *  else return Result.Ok(n1 / n2); 
+     *  else return Result.Ok(n1 / n2);
      * }
-     * 
+     *
      * console.log(div(10, 2).or(Result.Ok(0))) // Ok(5)
      * console.log(div(10, 0).or(Result.Ok(0))) // Ok(0)
      * ```
@@ -154,14 +154,14 @@ export class Result<T, E> {
 
     /**
      * Calls and returns the value of `fn` if `this` is `Ok`, otherwise returns `this`;
-     * 
+     *
      * @example
      * ```
      * function div(n1: number, n2: number) {
      *  if (n2 == 0) return Result.Err('divide by zero');
-     *  else return Result.Ok(n1 / n2); 
+     *  else return Result.Ok(n1 / n2);
      * }
-     * 
+     *
      * console.log(div(20, 2).andThen(n => div(n, 2))); // Ok(5)
      * console.log(div(20, 0).andThen(n => div(n, 2))); // Err('divide by zero');
      * ```
@@ -180,7 +180,7 @@ export class Result<T, E> {
      * const err = (v: number) => Result.Err(v);
      *
      * console.log(Result.Ok(2).orElse(square)); // Ok(2)
-     * console.log(Result.Err(2).orElse(square)); // Ok(4)  
+     * console.log(Result.Err(2).orElse(square)); // Ok(4)
      * console.log(Result.Ok(3).orElse(square).orElse(err)) // Ok(9)
      * ```
      */

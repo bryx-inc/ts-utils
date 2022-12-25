@@ -6,7 +6,7 @@ export type StrAddOptions = {
 
 /**
  * Add two numbers as strings together, yeilding a string which is the sum of those numbers.
- * 
+ *
  * @example
  * ```
  * console.log(strAdd('5', '8')); // '13'
