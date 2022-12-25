@@ -17,6 +17,7 @@ export function dropNullValues<T extends object>(obj: T) {
  * Creates a new object from the given object with the specified fields deleted.
  *
  * @example
+ * ```
  * const person = {
  *  first: "John",
  *  last: "Smith",
@@ -27,6 +28,7 @@ export function dropNullValues<T extends object>(obj: T) {
  * const name = dropKeys(person, ['age', 'state']);
  * console.log(name); // { "first": "John", "last": "Smith" }
  * console.log(person); // { "first": "John", "last": "Smith", "age": 23, "state": "NY" }
+ * ```
  */
 export function dropKeys<T extends object, K extends (keyof T)[]>(from: T, keys: K) {
     const o = { ...from }; // clone object
@@ -46,11 +48,12 @@ export function objectIsEmpty<T extends object>(obj: T) {
 }
 
 /**
- * Converts a record-style object to an array with each record key and value mapped to a specified named attribute.
+ * Converts a record-styee object to an array with each record key and value mapped to a specified named attribute.
  *
  * This method is pure.
  *
  * @example
+ * ```
  * const ages = {
  *  'bill': 38,
  *  'john': 21,
@@ -58,6 +61,7 @@ export function objectIsEmpty<T extends object>(obj: T) {
  * };
  *
  * derecordify(ages, { k: 'name', v: 'age' }); // [{ name: 'bill', age: 38 }, { name: 'john', age: 21 }, ...]
+ * ```
  */
 export function derecordify<T extends object, KN extends string, VN extends string>(record: T, opts: { k: KN; v: VN }) {
     return Object.entries(record).map(([k, v]) => ({
@@ -72,6 +76,7 @@ export function derecordify<T extends object, KN extends string, VN extends stri
  * Converts an array of objects into a single, record-style object keyed by the given key attribute.
  *
  * @example
+ * ```
  * const people = [
  *  { first: 'john', last: 'smith', state: 'NY' },
  *  { first: 'sam', last: 'johnson', state: 'NY' },
@@ -90,6 +95,7 @@ export function derecordify<T extends object, KN extends string, VN extends stri
  * //    ],
  * //    ...
  * // }
+ * ```
  */
 export function recordify<T extends object, K extends keyof { [Key in keyof T]-?: T[Key] extends string ? Key : never }>(arr: T[], key: K) {
     return arr.reduce((obj, cur) => {

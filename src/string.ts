@@ -5,7 +5,12 @@ export type StrAddOptions = {
 };
 
 /**
- * Add two string representations of number
+ * Add two numbers as strings together, yeilding a string which is the sum of those numbers.
+ * 
+ * @example
+ * ```
+ * console.log(strAdd('5', '8')); // '13'
+ * ```
  */
 export function strAdd(strs: string[], options?: StrAddOptions): Maybe<string> {
     const nums = strs.map((s) => {

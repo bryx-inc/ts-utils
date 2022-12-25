@@ -5,6 +5,7 @@
  * This is particularly helpful when the two predicates have two different input types, with the first predicate type-guarding the second.
  *
  * @example
+ * ```
  * type Thing = { empty: true } | { empty: false, data: string }
  * type ThingIsFilledGuard = (v: Thing) => v is Thing & { empty: false };
  * const things: Thing[] = [{ empty: true }, { empty: false, data: 'apple' }, { empty: false, data: 'banana' }];
@@ -17,6 +18,7 @@
  * // without the curred guard
  *
  * things.some((v: Thing) => v.empty == false && v.data == 'banana'); // true
+ * ```
  */
 export function createCurriedGuardPredicate<T, E extends T>(basePredicate: (v: T) => v is E) {
     return (predicate: (v: E) => boolean) => ((v) => basePredicate(v) && predicate(v)) as (v: T) => v is E;

@@ -89,7 +89,7 @@ test("formal maybe unwrap", () => {
 
 test("formal maybe unwrap or", () => {
     expect(FormalMaybe.from(filledMaybe).unwrapOr("bar")).toEqual("foo");
-    expect(FormalMaybe.from(emptyMaybe).unwrapOr("bar")).toEqual("bar");
+    expect(FormalMaybe.from<string>(emptyMaybe).unwrapOr("bar")).toEqual("bar");
 });
 
 test("formal maybe unwrap or else", () => {
@@ -101,7 +101,7 @@ test("formal maybe unwrap or else", () => {
 
     expect(filledFn).not.toBeCalled();
     expect(emptyFn).toBeCalledTimes(1);
-    expect(FormalMaybe.from(emptyMaybe).unwrapOrElse(() => "bar")).toEqual("bar");
+    expect(FormalMaybe.from<string>(emptyMaybe).unwrapOrElse(() => "bar")).toEqual("bar");
 });
 
 test("formal maybe when", () => {

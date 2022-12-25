@@ -35,8 +35,10 @@ export function matchMaybe<T, R, E>(
  * This is particularly helpful since `const value ?? throw 'error'` is not valid
  *
  * @example
+ * ```
  * function findSomethingOrDont(): Maybe<string> { ... }
  * const res: string = expectMaybe(findSomethingOrDont(), 'could not find the value!');
+ * ```
  */
 export function expectMaybe<T>(v: Maybe<T>, err: Error | string) {
     return matchMaybe(v, {
