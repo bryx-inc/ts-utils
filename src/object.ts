@@ -36,7 +36,7 @@ export function dropKeys<T extends object, K extends (keyof T)[]>(from: T, keys:
     return o as { [k in Exclude<keyof T, K[number]>]: T[k] };
 }
 
-export function selectKeys<T extends object, K extends (keyof T)[]>(from: T, keys: K) {
+export function selectObjectKeys<T extends object, K extends (keyof T)[]>(from: T, keys: K) {
     const o = new Object() as Pick<T, K[number]>;
     for (const k of keys) o[k] = from[k];
 

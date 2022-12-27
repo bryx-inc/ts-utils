@@ -7,7 +7,7 @@ import {
     getPropertyUnsafe,
     objectIsEmpty,
     recordify,
-    selectKeys,
+    selectObjectKeys,
 } from "./object";
 
 function assertNoSideEffects<T extends object, E extends object>(o1: T, o2: E) {
@@ -52,7 +52,7 @@ test("select keys", () => {
         state: "NY",
     };
 
-    const newObj = selectKeys(obj, ["first", "last"]);
+    const newObj = selectObjectKeys(obj, ["first", "last"]);
 
     expect(newObj).toEqual({
         first: "John",
