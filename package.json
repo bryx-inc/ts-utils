@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "prepack": "yarn build",
+    "prepack": "yarn format && yarn lint && yarn build",
     "docs": "typedoc --entryPointStrategy expand --entryPoints src/* --out public",
     "typecheck": "tsc --noEmit",
     "test": "jest",
