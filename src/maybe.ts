@@ -1,4 +1,5 @@
 export type Maybe<T> = T | null;
+export type Some<T> = T extends Maybe<infer Inner> ? Inner : never;
 
 export function isNone<T>(m: Maybe<T>): m is null {
     return m == null;
