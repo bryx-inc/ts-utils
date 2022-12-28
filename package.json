@@ -19,7 +19,7 @@
     "release:major": "[ $(git rev-parse --abbrev-ref HEAD) = 'main' ] && yarn version --major && yarn deploy",
     "deploy": "NPM_TOKEN=$(yarn config get tsutils-authToken) npm publish && git push origin $(git describe --tags) && git push origin main"
   },
-  "main": "dist/",
+  "main": "dist/index.js",
   "devDependencies": {
     "@compodoc/compodoc": "^1.1.19",
     "@microsoft/api-extractor": "^7.33.7",
