@@ -1,4 +1,4 @@
-import { Maybe } from "./maybe";
+import { isSome, Maybe } from "./maybe";
 
 /**
  * An object which can either be in an `Ok` state, or an `Err` state, with an associated value, `T`
@@ -44,8 +44,8 @@ export class Result<T, E> {
      * ```
      */
     map<J, K>(mapOk: (v: T) => J, mapErr: (v: E) => K): Result<J, K> {
-        if (this.isOk()) return Result.Ok(mapOk(this.ok()));
-        else return Result.Err(mapErr(this.err()));
+        if (this.tuple[0]) return Result.Ok(mapOk(this.tuple[1]));
+        else return Result.Err(mapErr(this.tuple[1]));
     }
 
     /**

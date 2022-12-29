@@ -1,5 +1,5 @@
-import { Maybe } from "./maybe";
-import { intoMaybe } from "./maybe";
+import { Maybe, intoMaybe } from "./maybe";
+import { Result } from "./result";
 
 /**
  * Filtered an incoming array of objects by discarding all keys on each object not specifiecd by 'keys'.
@@ -171,4 +171,51 @@ export function replaceAt<T>(arr: T[], i: number, v: T): T[] {
  */
 export function cloneArr<T>(arr: T[]): T[] {
     return new Array<T>().concat(arr);
+}
+
+export function bailableMap<T, E, R>(
+    arr: T[],
+    mapper: (v: T, bail: (v: R) => { _bail: symbol; v: R }) => E | { _bail: symbol; v: R },
+): Result<E[], R> {
+    const mappedArr = [] as E[];
+    const _bail = Symbol();
+
+    function isBail(v: any): v is { _bail: symbol; v: R } {
+        return v._bail == _bail;
+    }
+
+    for (const v of arr) {
+        const mapped = mapper(v, (v: R) => ({ _bail, v }));
+        if (isBail(mapped)) return Result.Err(mapped.v);
+
+        mappedArr.push(mapped);
+    }
+
+    return Result.Ok(mappedArr);
+}
+
+export function bailableReduce<T, E, R>(
+    arr: T[],
+    reducer: (acc: E, cur: T, bail: (v: R) => { _bail: symbol; v: R }) => E | { _bail: symbol; v: R },
+    initalValue: E,
+): Result<E, R> {
+    const _bail = Symbol();
+
+    function isBail(v: any): v is { _bail: symbol; v: R } {
+        return v._bail == _bail;
+    }
+
+    const _next = (acc: E | { _bail: symbol; v: R }, i: number) => {
+        if (isBail(acc)) return acc;
+        if (i >= arr.length) return acc;
+
+        return _next(
+            reducer(acc, arr[i], (v: R) => ({ _bail, v })),
+            i + 1,
+        );
+    };
+
+    const res = _next(initalValue, 0);
+    if (isBail(res)) return Result.Err(res.v);
+    else return Result.Ok(res);
 }

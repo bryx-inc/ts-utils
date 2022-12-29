@@ -2,7 +2,7 @@ import type { JestConfigWithTsJest } from "ts-jest";
 
 // Config options -- https://jestjs.io/docs/configuration
 const config: JestConfigWithTsJest = {
-  collectCoverageFrom: ["src/**/*.ts", "!src/**/*.test.{ts, tsx}"],
+  collectCoverageFrom: ["src/**/*.ts", "!src/**/*.test.{ts, tsx}", "!src/**/index.ts"],
   coverageDirectory: "coverage",
   coverageReporters: ["html", "text", "text-summary", "cobertura"],
   roots: ["src"],

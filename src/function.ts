@@ -6,9 +6,18 @@
  *
  * @example
  * ```
- * type Thing = { empty: true } | { empty: false, data: string }
- * type ThingIsFilledGuard = (v: Thing) => v is Thing & { empty: false };
- * const things: Thing[] = [{ empty: true }, { empty: false, data: 'apple' }, { empty: false, data: 'banana' }];
+ * type Thing =
+ *  | { empty: true }
+ *  | { empty: false, data: string }
+ *
+ * type ThingIsFilledGuard =
+ *   (v: Thing) => v is Thing & { empty: false };
+ *
+ * const things: Thing[] = [
+ *  { empty: true },
+ *  { empty: false, data: 'apple' },
+ *  { empty: false, data: 'banana' }
+ * ];
  *
  * // with curried guard
  *

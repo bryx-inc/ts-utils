@@ -9,6 +9,7 @@
     "declaration": true,
     "outDir": "dist/",
     "moduleResolution": "node",
+    "strictNullChecks": true,
     "jsx": "react-jsx"
   },
   "include": ["src/**/*"],

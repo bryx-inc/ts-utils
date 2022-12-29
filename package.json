@@ -16,7 +16,7 @@
     "test:cov": "jest --coverage --runInBand",
     "clean:tags": "git tag -d $(git tag -l) && git fetch --tags",
     "release:patch": "[ $(git rev-parse --abbrev-ref HEAD) = 'main' ] && yarn clean:tags && yarn version --patch && yarn deploy",
-    "release:minor": "[ $(git rev-parse --abbrev-ref HEAD) = 'main' ] && yarn clean:tags yarn version --minor && yarn deploy",
+    "release:minor": "[ $(git rev-parse --abbrev-ref HEAD) = 'main' ] && yarn clean:tags && yarn version --minor && yarn deploy",
     "release:major": "[ $(git rev-parse --abbrev-ref HEAD) = 'main' ] && yarn clean:tags && yarn version --major && yarn deploy",
     "deploy": "NPM_TOKEN=$(yarn config get tsutils-authToken) npm publish && git push origin $(git describe --tags) && git push origin main"
   },

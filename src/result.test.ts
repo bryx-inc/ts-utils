@@ -58,7 +58,7 @@ test("Result::map", () => {
 
 test("Result::transpose", () => {
     expect(Result.Ok(null).transpose()).toEqual(null);
-    expect(Result.Ok("foo").transpose().ok()).toEqual("foo");
+    expect(Result.Ok("foo").transpose()?.ok()).toEqual("foo");
     expect(Result.Err(null).transpose()).not.toEqual(null);
 });
 
@@ -138,4 +138,14 @@ test("Result::containsErr", () => {
     expect(Result.Err("fizz").containsErr("buzz")).toEqual(false);
     expect(Result.Err("fizz").containsErr("fizz")).toEqual(true);
     expect(Result.Ok("fizz").containsErr("fizz")).toEqual(false);
+});
+
+test("Result::equals", () => {
+    expect(Result.Ok("foo").equals(Result.Ok("bar"))).toEqual(false);
+    expect(Result.Ok("foo").equals(Result.Ok("foo"))).toEqual(true);
+});
+
+test("Result::toString", () => {
+    expect(`${Result.Ok("foo")}`).toEqual('Ok("foo")');
+    expect(`${Result.Err("foo")}`).toEqual('Err("foo")');
 });

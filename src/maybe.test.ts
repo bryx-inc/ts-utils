@@ -97,7 +97,7 @@ test("formal maybe unwrap or else", () => {
     const emptyFn = jest.fn();
 
     FormalMaybe.from(filledMaybe).unwrapOrElse(filledFn);
-    FormalMaybe.from(emptyMaybe).unwrapOrElse(emptyFn);
+    FormalMaybe.from<string>(emptyMaybe).unwrapOrElse(emptyFn);
 
     expect(filledFn).not.toBeCalled();
     expect(emptyFn).toBeCalledTimes(1);

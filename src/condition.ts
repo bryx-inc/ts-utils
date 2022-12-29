@@ -1,3 +1,21 @@
+/**
+ * Conditionally return a given value.
+ * This is a useful replacement for `when ? something : undefined`.
+ *
+ * @example
+ * ```
+ * function getSx(isRed: boolean) {
+ *  return { fontFamily: 'monospace', backgroundColor: iff(isRed, 'red') }
+ * }
+ *
+ * console.log(getSx(false)); // { fontFamily: 'monospace' }
+ * console.log(getSx(true)); // { fontFamily: 'monospace', backgroundColor: 'red' }
+ * ```
+ *
+ * @param cond The condition to check
+ * @param v The value to return if the `cond` is true
+ * @returns v if `cond` is true, otherwise `undefined`
+ */
 export function iff<T>(cond: boolean | undefined, v: T): T | undefined {
     if (!!cond) return v;
     else return undefined;

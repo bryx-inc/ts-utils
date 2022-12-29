@@ -1,4 +1,5 @@
 export type Maybe<T> = T | null;
+export type NotNull<T> = null extends T ? never : T;
 export type Some<T> = T extends Maybe<infer Inner> ? Inner : never;
 
 export function isNone<T>(m: Maybe<T>): m is null {
@@ -20,6 +21,24 @@ export function intoMaybe<T>(v?: T): Maybe<T> {
     return v ?? null;
 }
 
+/**
+ * Matches a `Maybe<T>` to either "some" (not null) or "none" (null) and runs/returns a code block for
+ * each arm.
+ *
+ * @example
+ * ```
+ * const name: Maybe<{first: string, last: string}> = ...;
+ * const first: string = matchMaybe(name, {
+ *  some: ({ first }) => first,
+ *  none: () => "Joe" // default
+ * });
+ *
+ * ```
+ *
+ * @param v The `Maybe` to match with
+ * @param recipe An object containing a method for `none`, and a method for `some`
+ * @returns The result of the evaluated code arm.
+ */
 export function matchMaybe<T, R, E>(
     v: Maybe<T>,
     recipe: {
@@ -67,56 +86,241 @@ export function withSome<T, E>(v: Maybe<T>, fn: (v: T) => E): Maybe<E> {
 
 // ## //
 
+/**
+ * A formal wrapper class for interacting with possibly `null` values.
+ *
+ * Note: that {@link Maybe<T>} is a type-alias for `T | null`, whereas {@link FormalMaybe<T>} is a runtime-evaluated object proper, containing a {@link Maybe<T>} value.
+ */
 export class FormalMaybe<T> {
     constructor(private v: Maybe<T>) {}
 
-    static from<T>(v: Maybe<T>) {
-        return new FormalMaybe(v);
+    /**
+     * Constructs a {@link FormalMaybe} from a nullish input.
+     *
+     * @example
+     *
+     * ```
+     * const arr = ['apple', 'banana', 'orange', ...]
+     * const fruit = FormalMaybe.from(arr.find(v => v == 'pear'));
+     * ```
+     *
+     * @param v The nullish object to wrap in a {@link FormalMaybe}
+     * @returns The newly constructed {@link FormalMaybe}
+     */
+    static from<T>(v?: Maybe<T>) {
+        return new FormalMaybe(v ?? null);
     }
 
+    /**
+     * Constructs a {@link FormalMaybe} from a non-null input.
+     *
+     * @example
+     * ```
+     * let name: Maybe<string> = FormalMaybe.None();
+     *
+     * function loadName() {
+     *  name = FormalMaybe.Some("tyler");
+     * }
+     *
+     * setTimeout(loadName, 1000);
+     *
+     * while (true) {
+     *  name.when('some', (name) => console.log(name));
+     * }
+     *
+     * ```
+     *
+     * @param v The non-null value wrap in a {@link FormalMaybe}
+     * @returns The newly constructed {@link FormalMaybe}
+     */
     static Some<T>(v: T) {
         return new FormalMaybe(v);
     }
 
+    /**
+     * Constructs an empty {@link FormalMaybe}.
+     *
+     * @example
+     * ```
+     * let name: Maybe<string> = FormalMaybe.None();
+     *
+     * function loadName() {
+     *  name = FormalMaybe.Some("tyler");
+     * }
+     *
+     * setTimeout(loadName, 1000);
+     *
+     * while (true) {
+     *  name.when('some', (name) => console.log(name));
+     * }
+     *
+     * ```
+     *
+     * @returns The empty {@link FormalMaybe}
+     */
     static None<T>() {
         return new FormalMaybe<T>(null);
     }
 
+    /**
+     * Eject the wrapped {@link Maybe} value from the {@link FormalMaybe}.
+     * This is helpful for interop compatability with raw {@link Maybe}-based functions.
+     *
+     * @example
+     * ```
+     * function doSomething(v: Maybe<string>) { ... }
+     * const val: FormalMaybe<string> = (...);
+     *
+     * doSomething(val.inner());
+     * ```
+     */
     inner(): Maybe<T> {
         return this.v;
     }
 
+    /**
+     * Returns `true` if the wrapped {@link Maybe} value is not `null`.
+     * Note: that for control guards that interact with checked value, it is recommended to use {@link FormalMaybe}::{@link when} instead.
+     *
+     * @example
+     * ```
+     * const v: Maybe<string> = (...);
+     *
+     * if (v.isSome()) {
+     *  console.log("the result is not null!");
+     * }
+     * ```
+     *
+     * @returns `true` if the wrapped {@link Maybe} value is not `null`.
+     */
     isSome() {
         return isSome(this.v);
     }
 
+    /**
+     * Returns `true` if the wrapped {@link Maybe} value is `null`.
+     * Note: that for control guards that interact with checked value, it is recommended to use {@link FormalMaybe}::{@link when} instead.
+     *
+     * @example
+     * ```
+     * const v: Maybe<string> = (...);
+     *
+     * if (v.isNone()) {
+     *  console.log("the result is null!");
+     * }
+     * ```
+     *
+     * @returns `true` if the wrapped {@link Maybe} value is `null`.
+     */
     isNone() {
         return isNone(this.v);
     }
 
+    /**
+     * If the {@link FormalMaybe} is `null`, return `null`. Otherwise, return the result given function, invoked with the non-null inner value.
+     *
+     * @example
+     * ```
+     * const v1 = FormalMaybe.Some('foo');
+     * const v2 = FormalMaybe.None<string>();
+     *
+     * const toLen = (s: string) => s.length;
+     *
+     * console.log(v1.isSomeAnd(toLen)); // 3
+     * console.log(v2.isSomeAnd(toLen)); // null
+     * ```
+     *
+     * @param fn
+     * @returns
+     */
     isSomeAnd<E>(fn: (v: T) => Maybe<E>) {
         if (isSome(this.v)) return fn(this.v);
         else return null;
     }
 
+    /**
+     * Returns the inner value as a non-null {@link T}. If the inner value is `null`, throw the given error instead.
+     *
+     * @example
+     * ```
+     * function fetchName(): FormalMaybe<string> { ... }
+     *
+     * console.log(`the name is ${fetchName().expect('failed to fetch name!')}`);
+     * ```
+     *
+     * @param msg The error message to throw if the inner value is `null`.
+     * @returns The non-null inner value
+     */
     expect(msg: string) {
         if (isNone(this.v)) throw msg;
         else return this.v;
     }
 
+    /**
+     * Returns the inner non-null value, throwing a generic error if the inner value is `null`.
+     *
+     * @example
+     * ```
+     * const v = FormalMaybe.Some('foo');
+     * const v2 = FormalMaybe.None();
+     *
+     * console.log(v.unwrap()); // 'foo'
+     * console.log(v2.unwrap()); // ERROR!
+     * ```
+     *
+     * @returns The inner, non-null value.
+     */
     unwrap() {
         return this.expect("Failed to unwrap!");
     }
 
+    /**
+     * Returns the inner non-null value, or the provided value if the inner value is `null`.
+     *
+     * @example
+     * ```
+     * console.log(FormalMaybe.Some("foo").unwrapOr("bar")); // "foo"
+     * console.log(FormalMaybe.None().unwrapOr("bar")); // "bar"
+     * ```
+     *
+     * @param v The default value
+     */
     unwrapOr(v: T) {
         return this.v ?? v;
     }
 
-    unwrapOrElse(v: () => T) {
-        return this.v ?? v();
+    /**
+     * Returns the inner non-null value, or computes it from a given function.
+     *
+     * @example
+     * ```
+     * const k = 10;
+     * console.log(FormalResult.Some(4).unwrapOrElse(() => 2 * k)); // 4
+     * console.log(FormalResult.None().unwrapOrelse(() => 2 * k)); // 20
+     * ```
+     *
+     * @param fn The function to compute the default value from.
+     */
+    unwrapOrElse(fn: () => T) {
+        return this.v ?? fn();
     }
 
+    /**
+     * Conditionally execute a block of code based on the `null` state of the inner value
+     *
+     * @param cond "some" to run the code block when the inner value is not null
+     * @param fn The function to run, called with the non-null inner value
+     * @returns `this`
+     */
     when<E extends "some">(cond: E, fn: (v: T) => unknown): FormalMaybe<T>;
+
+    /**
+     * Conditionally execute a block of code based on the `null` state of the inner value
+     *
+     * @param cond "none" to run the code block when the inner value is null
+     * @param fn The code block to run
+     * @returns `this`
+     */
     when<E extends "none">(cond: E, fn: () => unknown): FormalMaybe<T>;
 
     when(cond: "some" | "none", fn: (...v: T[]) => unknown) {

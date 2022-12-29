@@ -12,6 +12,7 @@ test("Result.strAdd empty string", () => {
     });
 
     expect(res).toStrictEqual("0");
+    expect(strAdd([""])).toEqual(null);
 });
 
 test("Result.strAdd null if not numbers", () => {

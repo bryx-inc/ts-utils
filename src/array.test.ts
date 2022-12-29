@@ -1,5 +1,7 @@
 import {
     arrayIsEmpty,
+    bailableMap,
+    bailableReduce,
     cloneArr,
     findFirstAndReplace,
     interleave,
@@ -131,4 +133,31 @@ test("clone arr", () => {
 
     expect(arr).toEqual(newArr);
     expect(arr).not.toBe(newArr);
+});
+
+test("bailable map", () => {
+    const arr = ["one", "two", "three", "four", "five"];
+    expect(bailableMap(arr, (v) => v.length).ok()).toEqual([3, 3, 5, 4, 4]);
+    expect(
+        bailableMap(arr, (v, bail) => {
+            if (v == "four") return bail(4);
+            else return v.length;
+        }).err(),
+    ).toEqual(4);
+});
+
+test("bailable reduce", () => {
+    const arr = ["one", "two", "three", "four", "five"];
+
+    expect(bailableReduce(arr, (acc, cur) => acc + cur.length, 0).unwrap()).toEqual(19);
+    expect(
+        bailableReduce(
+            arr,
+            (acc, cur, bail) => {
+                if (cur == "three") return bail(5);
+                else return acc + cur.length;
+            },
+            0,
+        ).err(),
+    ).toEqual(5);
 });

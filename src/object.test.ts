@@ -1,3 +1,4 @@
+import { Maybe } from "./maybe";
 import {
     castUnsafe,
     derecordify,
@@ -131,8 +132,8 @@ test("get property unsafe", () => {
         name: "John Smith",
     };
 
-    const name: string = getPropertyUnsafe(obj, "name");
-    const age: number = getPropertyUnsafe(obj, "age");
+    const name: Maybe<string> = getPropertyUnsafe(obj, "name");
+    const age: Maybe<number> = getPropertyUnsafe(obj, "age");
 
     expect(name).toEqual("John Smith");
     expect(age).toStrictEqual(null);
