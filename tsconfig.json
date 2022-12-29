@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "lib": ["ESNext"],
-    "target": "ES2015",
+    "target": "ES5",
     "experimentalDecorators": true,
     "esModuleInterop": true,
     "noEmit": false,
@@ -10,6 +10,7 @@
     "outDir": "dist/",
     "moduleResolution": "node",
     "strictNullChecks": true,
+    "downlevelIteration": true,
     "jsx": "react-jsx"
   },
   "include": ["src/**/*"],
