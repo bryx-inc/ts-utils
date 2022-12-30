@@ -78,8 +78,16 @@ test("formal maybe is none", () => {
 });
 
 test("formal maybe is some and", () => {
-    expect(FormalMaybe.from(filledMaybe).isSomeAnd(() => "bar")).toEqual("bar");
-    expect(FormalMaybe.from(emptyMaybe).isSomeAnd(() => "bar")).toEqual(null);
+    expect(
+        FormalMaybe.from(filledMaybe)
+            .isSomeAnd(() => FormalMaybe.Some("bar"))
+            .inner(),
+    ).toEqual("bar");
+    expect(
+        FormalMaybe.from(emptyMaybe)
+            .isSomeAnd(() => FormalMaybe.Some("bar"))
+            .inner(),
+    ).toEqual(null);
 });
 
 test("formal maybe unwrap", () => {

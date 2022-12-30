@@ -217,7 +217,7 @@ export class FormalMaybe<T> {
     }
 
     /**
-     * If the {@link FormalMaybe} is `null`, return `null`. Otherwise, return the result given function, invoked with the non-null inner value.
+     * If the {@link FormalMaybe} is `null`, return `None`. Otherwise, return the result given function, invoked with the non-null inner value.
      *
      * @example
      * ```
@@ -233,9 +233,9 @@ export class FormalMaybe<T> {
      * @param fn
      * @returns
      */
-    isSomeAnd<E>(fn: (v: T) => Maybe<E>) {
+    isSomeAnd<E>(fn: (v: T) => FormalMaybe<E>) {
         if (isSome(this.v)) return fn(this.v);
-        else return null;
+        else return FormalMaybe.None<E>();
     }
 
     /**
