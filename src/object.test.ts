@@ -4,7 +4,7 @@ import {
     derecordify,
     dropKeys,
     dropNullValues,
-    getKeys,
+    getObjKeys,
     getPropertyUnsafe,
     objectIsEmpty,
     recordify,
@@ -113,7 +113,7 @@ test("recordify", () => {
     assertNoSideEffects(people, peopleByState);
 });
 
-test("get keys", () => {
+test("get obj keys", () => {
     const obj = {
         first: "John",
         last: "Smith",
@@ -121,7 +121,7 @@ test("get keys", () => {
         state: "NY",
     };
 
-    const keys = getKeys(obj);
+    const keys = getObjKeys(obj);
 
     expect(keys).toEqual(["first", "last", "age", "state"]);
     assertNoSideEffects(obj, keys);

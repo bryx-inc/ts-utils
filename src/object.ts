@@ -105,7 +105,7 @@ export function recordify<T extends object, K extends keyof { [Key in keyof T]-?
     }, {} as Record<string, T[]>);
 }
 
-export function getKeys<T extends object>(v: T) {
+export function getObjKeys<T extends object>(v: T) {
     return Object.keys(v) as (keyof T)[];
 }
 
