@@ -1,3 +1,5 @@
+import React from "react";
+
 /**
  * Conditionally return a given value.
  * This is a useful replacement for `when ? something : undefined`.
@@ -50,4 +52,8 @@ export function iff<T>(cond: boolean | undefined, v: T): T | undefined {
 export function expect<T>(assertation: boolean, then: T, err?: Error | string): T {
     if (assertation) return then;
     else throw err ?? `'expect' method found false assertation!`;
+}
+
+export function orFragment(cond: boolean, node: React.ReactElement): React.ReactElement {
+    return cond ? node : React.createElement(React.Fragment);
 }
