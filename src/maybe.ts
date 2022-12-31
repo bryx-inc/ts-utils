@@ -106,7 +106,7 @@ export class FormalMaybe<T> {
      * @param v The nullish object to wrap in a {@link FormalMaybe}
      * @returns The newly constructed {@link FormalMaybe}
      */
-    static from<T>(v?: Maybe<T>) {
+    static from<T>(v?: Maybe<T>): FormalMaybe<T> {
         return new FormalMaybe(v ?? null);
     }
 
