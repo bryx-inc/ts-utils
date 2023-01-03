@@ -12,6 +12,7 @@ Additionally, if you have not already, make sure you have correctly configured y
 
 ```
 $ npm config set -- '//gitlab.bryx.com/api/v4/packages/npm/:_authToken' "<your_token>"
+$ npm config set -- '//gitlab.bryx.com/api/v4/projects/353/packages/npm/:_authToken=' "<your_token>"
 ```
 
 Then, install the package.
