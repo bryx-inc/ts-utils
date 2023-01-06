@@ -57,3 +57,20 @@ export function expect<T>(assertation: boolean, then: T, err?: Error | string): 
 export function orFragment(cond: boolean, node: React.ReactElement): React.ReactElement {
     return cond ? node : React.createElement(React.Fragment);
 }
+
+/**
+ * Return the given value if it is not nullish, otherwise throw the given error. If no error is provided, a generic error will be thrown instead.
+ *
+ * Helpful to support the lack of `(someObject ?: throw "err").someMethod()` syntax.
+ *
+ * @example
+ * ```
+ * const fruits = ["apple", "pear", "banana"];
+ * console.log(orThrow(fruits.find(v => v == "orange"), "could not find 'orange'").toUpperCase()); // throws "could not find 'orange'"
+ * console.log(orThrow(fruits.find(v => v == "pear"), "could not find 'pear'").toUpperCase()); // "PEAR"
+ * ```
+ */
+export function orThrow<T>(v?: T, err?: string): T {
+    if (typeof v == "undefined" || v === null) throw err ?? "orThrow found a nullish value!";
+    else return v;
+}

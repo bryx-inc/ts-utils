@@ -1,5 +1,5 @@
 import React from "react";
-import { iff, expect as condExpect, orFragment } from "./condition";
+import { iff, expect as condExpect, orFragment, orThrow } from "./condition";
 
 test("iff", () => {
     expect(iff(2 + 2 == 5, "foo")).toBeUndefined();
@@ -16,4 +16,13 @@ test("or fragment", () => {
     React.createElement(React.Fragment);
     expect(orFragment(false, React.createElement("div")).type).toEqual(React.Fragment);
     expect(orFragment(true, React.createElement("div")).type).toEqual("div");
+});
+
+test("or throw", () => {
+    expect(() => orThrow(undefined, "value is undefined")).toThrow("value is undefined");
+    expect(() => orThrow(null, "value is undefined")).toThrow("value is undefined");
+    expect(() => orThrow(undefined)).toThrow("orThrow found a nullish value!");
+    expect(() => orThrow(null)).toThrow("orThrow found a nullish value!");
+
+    expect(orThrow("10", "value is undefined")).toEqual("10");
 });
