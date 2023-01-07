@@ -194,9 +194,29 @@ export function bailableMap<T, E, R>(
     return Result.Ok(mappedArr);
 }
 
-export function bailableReduce<T, E, R>(
+/**
+ * Try to fold an array. The supplied reducer function accepts the accumulator, the current value, as well as a `bail` method that,
+ * when called with a given value and returned from the reducer, will halt the fold and make the `tryToFold` method return an error state, with value
+ * of the error being equal to the value that the `bail` method was called with.
+ *
+ * @example
+ * ```
+ * const nums1 = [5, 5, 2];
+ * const nums2 = [5, 5, 0];
+ *
+ * const fn = (acc, n, bail) => (n == 0 ? bail("divide by zero") : acc / n);
+ *
+ * console.log(tryToFold(nums1, fn, 100).ok()); // 2
+ * console.log(tryToFold(nums2, fn, 100).err()); // "divide by zero"
+ * ```
+ *
+ * @typeParam T The inner type of the given array to fold
+ * @typeParam E The success type if the fold doesn't bail early
+ * @typeParam R The fail type if the fold bails early
+ */
+export function tryToFold<T, E, R>(
     arr: T[],
-    reducer: (acc: E, cur: T, bail: (v: R) => { _bail: symbol; v: R }) => E | { _bail: symbol; v: R },
+    fn: (acc: E, cur: T, bail: (v: R) => { _bail: symbol; v: R }) => E | { _bail: symbol; v: R },
     initalValue: E,
 ): Result<E, R> {
     const _bail = Symbol();
@@ -210,7 +230,7 @@ export function bailableReduce<T, E, R>(
         if (i >= arr.length) return acc;
 
         return _next(
-            reducer(acc, arr[i], (v: R) => ({ _bail, v })),
+            fn(acc, arr[i], (v: R) => ({ _bail, v })),
             i + 1,
         );
     };

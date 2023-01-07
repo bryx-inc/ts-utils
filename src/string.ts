@@ -1,5 +1,5 @@
 import { Maybe } from "./maybe";
-import { bailableReduce } from "./array";
+import { tryToFold } from "./array";
 import { Result } from "./result";
 
 export type StrAddOptions = {
@@ -20,7 +20,7 @@ export function strAdd(strs: string[], options?: StrAddOptions): Maybe<string> {
         return parseFloat(s);
     });
 
-    return bailableReduce(
+    return tryToFold(
         nums,
         (acc, cur, bail) => {
             if (isNaN(cur)) return bail(cur + " is NaN");
