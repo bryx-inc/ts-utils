@@ -1,7 +1,6 @@
 import {
     arrayIsEmpty,
     bailableMap,
-    bailableReduce,
     cloneArr,
     findFirstAndReplace,
     interleave,
@@ -12,6 +11,7 @@ import {
     selectKeys,
     sliceAround,
     swapAt,
+    tryToFold,
 } from "./array";
 
 function assertNoSideEffects(baseArr: unknown[], newArr: unknown[]) {
@@ -146,12 +146,12 @@ test("bailable map", () => {
     ).toEqual(4);
 });
 
-test("bailable reduce", () => {
+test("try to fold", () => {
     const arr = ["one", "two", "three", "four", "five"];
 
-    expect(bailableReduce(arr, (acc, cur) => acc + cur.length, 0).unwrap()).toEqual(19);
+    expect(tryToFold(arr, (acc, cur) => acc + cur.length, 0).unwrap()).toEqual(19);
     expect(
-        bailableReduce(
+        tryToFold(
             arr,
             (acc, cur, bail) => {
                 if (cur == "three") return bail(5);
