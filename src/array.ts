@@ -239,3 +239,10 @@ export function tryToFold<T, E, R>(
     if (isBail(res)) return Result.Err(res.v);
     else return Result.Ok(res);
 }
+
+/**
+ * Constructs a new array by
+ */
+export function arrFromFactory<T>(size: number, factory: (idx: number) => T): T[] {
+    return new Array(size).fill(null).map((_, i) => factory(i));
+}

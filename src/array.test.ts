@@ -1,5 +1,6 @@
 import {
     arrayIsEmpty,
+    arrFromFactory,
     bailableMap,
     cloneArr,
     findFirstAndReplace,
@@ -160,4 +161,8 @@ test("try to fold", () => {
             0,
         ).err(),
     ).toEqual(5);
+});
+
+test("arr from factory", () => {
+    expect(arrFromFactory(5, (i) => i)).toEqual([0, 1, 2, 3, 4]);
 });
