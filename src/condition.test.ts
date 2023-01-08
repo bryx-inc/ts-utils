@@ -1,5 +1,5 @@
 import React from "react";
-import { iff, expect as condExpect, orFragment, orThrow } from "./condition";
+import { iff, expect as condExpect, orFragment, orThrow, cond } from "./condition";
 
 test("iff", () => {
     expect(iff(2 + 2 == 5, "foo")).toBeUndefined();
@@ -25,4 +25,11 @@ test("or throw", () => {
     expect(() => orThrow(null)).toThrow("orThrow found a nullish value!");
 
     expect(orThrow("10", "value is undefined")).toEqual("10");
+});
+
+test("cond", () => {
+    expect(cond([1 + 1 == 2, "apple"], [1 + 1 == 2, "banana"])).toEqual("apple");
+    expect(cond([1 + 1 == 1, "apple"], [1 + 1 == 2, "banana"])).toEqual("banana");
+
+    expect(() => cond([1 + 1 == 1, "never"])).toThrow("Failed to match any condition in `cond`");
 });

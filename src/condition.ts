@@ -74,3 +74,33 @@ export function orThrow<T>(v?: T, err?: string): T {
     if (typeof v == "undefined" || v === null) throw err ?? "orThrow found a nullish value!";
     else return v;
 }
+
+/**
+ * Allows for simple control branching. Each instruction supplied is a tuple who's first value,
+ * is a boolean, and who's second value is the value to return if the aformentioned boolean is `true`.
+ *
+ * @example
+ * ```
+ *
+ * type Result = { type: "ok" | "warn" | "err"; msg: string };
+ *
+ * function alert(res: Result) {
+ *   console.log(
+ *       cond(
+ *           [res.type == "ok", `Good news: ${res.msg}`],
+ *           [res.type == "warn", `Quick Heads Up: ${res.msg}`],
+ *           [res.type == "err", `Oh No!: ${res.msg}`],
+ *       ),
+ *   );
+ * }
+ *
+ * alert({ msg: 'everything is good', type: 'ok' }) // Good news: everything is good'
+ * alert({ msg: 'some stuff is down', type: 'warn' }) // Quick Heads Up: some stuff is down
+ * alert({ msg: 'the world is on fire', type: 'err' }) // Oh No!: the world is on fire
+ * ```
+ */
+export function cond<T>(...instrs: [when: boolean, then: T][]): T {
+    for (const [when, then] of instrs) if (when) return then;
+
+    throw "Failed to match any condition in `cond`";
+}
