@@ -87,9 +87,9 @@ export function orThrow<T>(v?: T, err?: string): T {
  * function alert(res: Result) {
  *   console.log(
  *       cond(
- *           [res.type == "ok", `Good news: ${res.msg}`],
- *           [res.type == "warn", `Quick Heads Up: ${res.msg}`],
- *           [res.type == "err", `Oh No!: ${res.msg}`],
+ *           [res.type == "ok", () => `Good news: ${res.msg}`],
+ *           [res.type == "warn", () => `Quick Heads Up: ${res.msg}`],
+ *           [res.type == "err", () => `Oh No!: ${res.msg}`],
  *       ),
  *   );
  * }
@@ -99,8 +99,8 @@ export function orThrow<T>(v?: T, err?: string): T {
  * alert({ msg: 'the world is on fire', type: 'err' }) // Oh No!: the world is on fire
  * ```
  */
-export function cond<T>(...instrs: [when: boolean, then: T][]): T {
-    for (const [when, then] of instrs) if (when) return then;
+export function cond<T>(...instrs: [when: boolean, then: () => T][]): T {
+    for (const [when, then] of instrs) if (when) return then();
 
     throw "Failed to match any condition in `cond`";
 }

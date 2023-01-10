@@ -28,8 +28,8 @@ test("or throw", () => {
 });
 
 test("cond", () => {
-    expect(cond([1 + 1 == 2, "apple"], [1 + 1 == 2, "banana"])).toEqual("apple");
-    expect(cond([1 + 1 == 1, "apple"], [1 + 1 == 2, "banana"])).toEqual("banana");
+    expect(cond([1 + 1 == 2, () => "apple"], [1 + 1 == 2, () => "banana"])).toEqual("apple");
+    expect(cond([1 + 1 == 1, () => "apple"], [1 + 1 == 2, () => "banana"])).toEqual("banana");
 
-    expect(() => cond([1 + 1 == 1, "never"])).toThrow("Failed to match any condition in `cond`");
+    expect(() => cond([1 + 1 == 1, () => "never"])).toThrow("Failed to match any condition in `cond`");
 });
