@@ -52,7 +52,8 @@ export function keyFrom(...strs: (string | number)[]) {
  *
  * @example
  * ```
- * new RegExp(escapeRegex('$50'))
+ * new RegExp("$50").test("$50"); // false
+ * new RegExp(escapeRegex("$50")).test("$50"); // true
  * ```
  *
  * @note special thanks to mary.strodl@bryx.com and https://stackoverflow.com/a/3561711
