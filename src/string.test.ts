@@ -1,4 +1,4 @@
-import { keyFrom, strAdd } from "./string";
+import { escapeRegex, keyFrom, strAdd } from "./string";
 
 test("Result.strAdd", () => {
     const res = strAdd(["1", "2", "3", "4", "5"]);
@@ -25,4 +25,9 @@ test("Result.keyFrom", () => {
     const res = keyFrom("one", 1, "two", 2);
 
     expect(res).toStrictEqual("one-1-two-2");
+});
+
+test("escape regex", () => {
+    expect(new RegExp("$50").test("$50")).toEqual(false);
+    expect(new RegExp(escapeRegex("$50")).test("$50")).toEqual(true);
 });
