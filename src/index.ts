@@ -8,3 +8,4 @@ export * from "./maybe";
 export * from "./object";
 export * from "./result";
 export * from "./string";
+export * from "./errors";
