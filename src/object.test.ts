@@ -93,6 +93,45 @@ test("derecordify", () => {
     assertNoSideEffects(ages, obj);
 });
 
+test("derecordify spread", () => {
+    const people = {
+        bill: {
+            age: 38,
+            hobbies: ["cooking"],
+        },
+        john: {
+            age: 21,
+            hobbies: ["gardening", "fishing"],
+        },
+        adam: {
+            age: 25,
+            hobbies: ["hiking"],
+        },
+    };
+
+    const obj = derecordify(people, { k: "name", v: "..." });
+
+    expect(obj).toEqual([
+        {
+            name: "bill",
+            age: 38,
+            hobbies: ["cooking"],
+        },
+        {
+            name: "john",
+            age: 21,
+            hobbies: ["gardening", "fishing"],
+        },
+        {
+            name: "adam",
+            age: 25,
+            hobbies: ["hiking"],
+        },
+    ]);
+
+    assertNoSideEffects(people, obj);
+});
+
 test("recordify", () => {
     const people = [
         { first: "john", last: "smith", state: "NY" },

@@ -1,6 +1,5 @@
 import { act, renderHook } from "@testing-library/react";
 import { useState } from "react";
-import { useConst } from "./useConst";
 import { useConstCallback } from "./useConstCallback";
 
 test("useConstCallback", () => {

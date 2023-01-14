@@ -1,4 +1,4 @@
-import { isSome, Maybe } from "./maybe";
+import { Maybe } from "./maybe";
 
 /**
  * An object which can either be in an `Ok` state, or an `Err` state, with an associated value, `T`

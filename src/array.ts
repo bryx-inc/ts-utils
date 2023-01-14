@@ -1,4 +1,5 @@
 import { Maybe, intoMaybe } from "./maybe";
+import { getPropertyUnsafe } from "./object";
 import { Result } from "./result";
 
 /**
@@ -180,8 +181,8 @@ export function bailableMap<T, E, R>(
     const mappedArr = [] as E[];
     const _bail = Symbol();
 
-    function isBail(v: any): v is { _bail: symbol; v: R } {
-        return v._bail == _bail;
+    function isBail(v: unknown): v is { _bail: symbol; v: R } {
+        return v != null && typeof v == "object" && getPropertyUnsafe(v, "_bail") == _bail;
     }
 
     for (const v of arr) {
@@ -221,8 +222,8 @@ export function tryToFold<T, E, R>(
 ): Result<E, R> {
     const _bail = Symbol();
 
-    function isBail(v: any): v is { _bail: symbol; v: R } {
-        return v._bail == _bail;
+    function isBail(v: unknown): v is { _bail: symbol; v: R } {
+        return v != null && typeof v == "object" && getPropertyUnsafe(v, "_bail") == _bail;
     }
 
     const _next = (acc: E | { _bail: symbol; v: R }, i: number) => {

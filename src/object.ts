@@ -1,3 +1,4 @@
+import { cond } from "./condition";
 import { Maybe } from "./maybe";
 
 export function dropNullValues<T extends object>(obj: T) {
@@ -48,29 +49,54 @@ export function objectIsEmpty<T extends object>(obj: T) {
 }
 
 /**
- * Converts a record-styee object to an array with each record key and value mapped to a specified named attribute.
+ * Converts a record-style object to an array with each record key and value mapped to a specified named attribute.
+ * If the given `v` name is '...' then, given that the value of each record is an object, the keys of that subobject will be inlined into the new object.
  *
  * This method is pure.
  *
  * @example
  * ```
  * const ages = {
- *  'bill': 38,
- *  'john': 21,
- *  'adam': 25
+ *  bill: 38,
+ *  john: 21,
+ *  adam: 25
  * };
  *
- * derecordify(ages, { k: 'name', v: 'age' }); // [{ name: 'bill', age: 38 }, { name: 'john', age: 21 }, ...]
+ * derecordify(ages, { k: 'name', v: 'age' });
+ * // [{ name: 'bill', age: 38 }, { name: 'john', age: 21 }, ...]
+ *
+ * const people = {
+ *   bill: { age: 38, hobbies: ['cooking']},
+ *   john: { age: 21, hobbies: ['gardening', 'sports']},
+ *   adam: { age: 25 , hobbies: ['hiking']},
+ * }
+ *
+ * derecordify(people, { k: 'name', v: 'info' });
+ * // [{ name: "bill", info: { age: 38, hobbies: ["cooking"]}}, ...]
+ *
+ * derecordify(people, { k: 'name', v: '...' });
+ * // [{ name: "bill", age: 38, hobbies: ["cooking"] }, ...]
  * ```
  */
 export function derecordify<T extends object, KN extends string, VN extends string>(record: T, opts: { k: KN; v: VN }) {
-    return Object.entries(record).map(([k, v]) => ({
-        [opts.k]: k,
-        [opts.v]: v,
-    })) as {
-        [k in KN | VN]: k extends KN ? keyof T : T[keyof T];
-    }[];
+    return cond(
+        [opts.v == "...", () => Object.entries(record).map(([k, v]) => ({ [opts.k]: k, ...v }))],
+        [
+            true,
+            () =>
+                Object.entries(record).map(([k, v]) => ({
+                    [opts.k]: k,
+                    [opts.v]: v,
+                })),
+        ],
+    ) as (VN extends "..."
+        ? T[keyof T] extends object
+            ? { [k in KN]: keyof T } & T[keyof T]
+            : never
+        : { [k in KN | VN]: k extends KN ? keyof T : T[keyof T] })[];
 }
+
+//
 
 /**
  * Converts an array of objects into a single, record-style object keyed by the given key attribute.

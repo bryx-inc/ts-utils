@@ -1,5 +1,4 @@
 import { act, renderHook } from "@testing-library/react";
-import { useBool } from "./useBool";
 import { useDefer } from "./useDefer";
 
 test("useDefer", () => {
