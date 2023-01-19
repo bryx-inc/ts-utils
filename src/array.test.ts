@@ -8,6 +8,7 @@ import {
     isIndexOf,
     lastElem,
     moveToIdx,
+    objectifyArr,
     replaceAt,
     selectKeys,
     sliceAround,
@@ -165,4 +166,19 @@ test("try to fold", () => {
 
 test("arr from factory", () => {
     expect(arrFromFactory(5, (i) => i)).toEqual([0, 1, 2, 3, 4]);
+});
+
+test("objectify array", () => {
+    const arr = [
+        {
+            first: "jane",
+            last: "doe",
+        },
+        {
+            first: "john",
+            last: "smith",
+        },
+    ];
+
+    expect(objectifyArr(arr)).toEqual({ first: ["jane", "john"], last: ["doe", "smith"] });
 });

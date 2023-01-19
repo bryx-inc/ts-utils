@@ -1,5 +1,5 @@
 import { Maybe, intoMaybe } from "./maybe";
-import { getPropertyUnsafe } from "./object";
+import { getObjKeys, getPropertyUnsafe } from "./object";
 import { Result } from "./result";
 
 /**
@@ -246,4 +246,38 @@ export function tryToFold<T, E, R>(
  */
 export function arrFromFactory<T>(size: number, factory: (idx: number) => T): T[] {
     return new Array(size).fill(null).map((_, i) => factory(i));
+}
+
+/**
+ * Transform an array of objects sharing some type, `T`, into a single object sharing the same set of keys,
+ * but with each value mapped to the array of values from the given array for each key.
+ *
+ * @example
+ * ```
+ * const people = [
+ *   { first: "jane", last: "doe" },
+ *   { first: "john", last: "ppleseed" }
+ * ];
+ *
+ * console.log(objectifyArr(people));
+ *
+ * // {
+ * //  first: [ "jane", "john" ],
+ * //  last: ["doe", "appleseed"]
+ * // }
+ * ```
+ *
+ * @param arr The array to objectify
+ * @returns
+ */
+export function objectifyArr<T extends object>(arr: T[]) {
+    return arr.reduce(
+        (acc, cur) =>
+            getObjKeys(cur).reduce((acc, k) => {
+                if (!acc[k]) acc[k] = [];
+                acc[k].push(cur[k]);
+                return acc;
+            }, acc),
+        {} as { [k in keyof T]: T[k][] },
+    );
 }
