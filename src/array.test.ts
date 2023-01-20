@@ -3,6 +3,7 @@ import {
     arrFromFactory,
     bailableMap,
     cloneArr,
+    dropIdx,
     findFirstAndReplace,
     interleave,
     isIndexOf,
@@ -181,4 +182,10 @@ test("objectify array", () => {
     ];
 
     expect(objectifyArr(arr)).toEqual({ first: ["jane", "john"], last: ["doe", "smith"] });
+});
+
+test("drop index", () => {
+    const fruits = ["apple", "banana", "orange"];
+    expect(dropIdx(fruits, 1)).toEqual(["apple", "orange"]);
+    expect(dropIdx(fruits, -1)).toEqual(fruits);
 });

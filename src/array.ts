@@ -281,3 +281,18 @@ export function objectifyArr<T extends object>(arr: T[]) {
         {} as { [k in keyof T]: T[k][] },
     );
 }
+
+/**
+ * Construct a new array equal to the given array with the data at the given index excluded. The source array is left unmodified.
+ *
+ * @example
+ * ```
+ * const fruits = ['apple', 'banana', 'orange'];
+ * dropIdx(fruits, 1); // [ 'apple', 'orange' ];
+ * console.log(fruits); // ['apple', 'banana', 'orange']
+ * ```
+ */
+export function dropIdx<T>(arr: T[], idx: number): T[] {
+    if (!isIndexOf(arr, idx)) return arr;
+    return arr.filter((_, i) => i != idx);
+}
