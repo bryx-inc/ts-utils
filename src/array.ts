@@ -1,5 +1,5 @@
 import { Maybe, intoMaybe } from "./maybe";
-import { getObjKeys, getPropertyUnsafe } from "./object";
+import { dropKeys, getObjKeys, getPropertyUnsafe } from "./object";
 import { Result } from "./result";
 
 /**
@@ -295,4 +295,67 @@ export function objectifyArr<T extends object>(arr: T[]) {
 export function dropIdx<T>(arr: T[], idx: number): T[] {
     if (!isIndexOf(arr, idx)) return arr;
     return arr.filter((_, i) => i != idx);
+}
+
+/**
+ * Flatten an array of objects with children specified by the given `childKey`, into a 1D array with each child moving to a top-level node. Additionally,
+ * inline the original nested path of the object into the key specified by `pathKey`. This key must already exist for the given objects. The paths are jointed
+ * together by the given `pathDelim`.
+ * This transformation is especially helpful for interacting with the [MUI Data Grid in Tree Mode](https://mui.com/x/react-data-grid/tree-data/).
+ *
+ * @example
+ * ```
+ * type Person = { name: string, age: number, children: Person[] };
+ *
+ * const people: Person[] = [
+ *  { name: 'joe', age: 15, children: [] },
+ *  { name: 'rob', age: 40, children: [
+ *    { name: 'john', age: 17, children: [] },
+ *    { name: 'sam', age: 13, children: [] }
+ *  ]},
+ *  { name: 'zac', age: 60, children: [
+ *    { name: 'bill', age: 39, children: [
+ *      { name: 'jenna', age: 20, children: [
+ *        { name: 'lenny', age: 1, children: [] }
+ *      ]}
+ *    ]}
+ *  ]}
+ * ];
+ *
+ * console.log(toPathedArr(people, {
+ *  pathKey: 'name',
+ *  childKey: 'children',
+ *  pathDelim: '/'
+ * }));
+ *
+ * // [
+ * //  { name: 'joe', age: 15 },
+ * //  { name: 'rob', age: 40 },
+ * //  { name: 'rob/john', age: 17 },
+ * //  { name: 'rob/sam', age: 13 },
+ * //  { name: 'zac', age: 60 },
+ * //  { name: 'zac/bill', age: 39 },
+ * //  { name: 'zac/bill/jenna', age: 20 },
+ * //  { name: 'zac/bill/jenna/lenny', age: 1 }
+ * // ]
+ *
+ * ```
+ *
+ * @param arr The source array. This array is not modified.
+ * @param opts Behavior specifiction options
+ * @returns A new, flattened array
+ */
+export function toPathedArr<
+    PathDelim extends string,
+    PathKey extends string,
+    ChildKey extends string,
+    Source extends Record<ChildKey, Source[]> & Record<PathKey, string>,
+>(
+    arr: Source[],
+    opts: { pathKey: PathKey; pathDelim: PathDelim; childKey: ChildKey; basePath?: string },
+): (Exclude<Source, ChildKey> & Record<PathKey, string>)[] {
+    return arr.flatMap((e) => [
+        dropKeys<Source, ChildKey[]>({ ...e, name: (opts.basePath?.concat("/") ?? "") + e[opts.pathKey] }, [opts.childKey]),
+        ...toPathedArr(e[opts.childKey], { ...opts, basePath: (opts.basePath?.concat(opts.pathDelim) ?? "") + e[opts.pathKey] }),
+    ]);
 }

@@ -14,6 +14,7 @@ import {
     selectKeys,
     sliceAround,
     swapAt,
+    toPathedArr,
     tryToFold,
 } from "./array";
 
@@ -188,4 +189,39 @@ test("drop index", () => {
     const fruits = ["apple", "banana", "orange"];
     expect(dropIdx(fruits, 1)).toEqual(["apple", "orange"]);
     expect(dropIdx(fruits, -1)).toEqual(fruits);
+});
+
+test("to pathed arr", () => {
+    const arr = [
+        {
+            name: "joe",
+            age: 38,
+            children: [
+                { name: "alice", age: 15, children: [] },
+                { name: "robert", age: 18, children: [] },
+                { name: "travis", age: 3, children: [] },
+            ],
+        },
+        {
+            name: "gus",
+            age: 72,
+            children: [
+                { name: "laura", age: 37, children: [{ name: "alek", age: 13, children: [] }] },
+                { name: "ian", age: 55, children: [{ name: "lucy", age: 25, children: [{ name: "lonnie", age: 2, children: [] }] }] },
+            ],
+        },
+    ];
+
+    expect(toPathedArr(arr, { childKey: "children", pathDelim: "/", pathKey: "name" })).toEqual([
+        { name: "joe", age: 38 },
+        { name: "joe/alice", age: 15 },
+        { name: "joe/robert", age: 18 },
+        { name: "joe/travis", age: 3 },
+        { name: "gus", age: 72 },
+        { name: "gus/laura", age: 37 },
+        { name: "gus/laura/alek", age: 13 },
+        { name: "gus/ian", age: 55 },
+        { name: "gus/ian/lucy", age: 25 },
+        { name: "gus/ian/lucy/lonnie", age: 2 },
+    ]);
 });

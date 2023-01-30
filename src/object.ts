@@ -34,7 +34,7 @@ export function dropNullValues<T extends object>(obj: T) {
 export function dropKeys<T extends object, K extends (keyof T)[]>(from: T, keys: K) {
     const o = { ...from }; // clone object
     for (const k of keys) delete o[k];
-    return o as { [k in Exclude<keyof T, K[number]>]: T[k] };
+    return o as Exclude<T, K[number]>;
 }
 
 export function selectObjectKeys<T extends object, K extends (keyof T)[]>(from: T, keys: K) {
