@@ -3,6 +3,11 @@ import { dropKeys, getObjKeys, getPropertyUnsafe } from "./object";
 import { Result } from "./result";
 
 /**
+ * Extract the inner type of some given array type, `T`
+ */
+export type Unarray<T extends any[]> = T extends (infer K)[] ? K : never;
+
+/**
  * Filtered an incoming array of objects by discarding all keys on each object not specifiecd by 'keys'.
  *
  * @example
