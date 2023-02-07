@@ -9,6 +9,15 @@ export function isSome<T>(m: Maybe<T>): m is T {
     return m != null;
 }
 
+export class TsUtilsMaybeError extends Error {
+    __proto__ = Error;
+
+    constructor(msg: string) {
+        super(msg);
+        Object.setPrototypeOf(this, TsUtilsMaybeError.prototype);
+    }
+}
+
 /**
  * Converts a nullish `T?` value into a `Maybe<T>` type
  *
@@ -65,7 +74,7 @@ export function expectMaybe<T>(v: Maybe<T>, err: Error | string) {
             return v;
         },
         none() {
-            throw err;
+            throw err instanceof Error ? err : new TsUtilsMaybeError(err);
         },
     });
 }
@@ -251,7 +260,7 @@ export class FormalMaybe<T> {
      * @returns The non-null inner value
      */
     expect(msg: string) {
-        if (isNone(this.v)) throw msg;
+        if (isNone(this.v)) throw new TsUtilsMaybeError(msg);
         else return this.v;
     }
 
