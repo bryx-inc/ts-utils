@@ -44,6 +44,12 @@ test("unwrap maybe", () => {
     expect(() => unwrapMaybe(emptyMaybe)).toThrow("attempted to unwrap a null value!");
 });
 
+test("expect maybe", () => {
+    expect(expectMaybe(filledMaybe, "some error")).toEqual("foo");
+    expect(() => expectMaybe(emptyMaybe, "some error")).toThrow("some error");
+    expect(() => expectMaybe(emptyMaybe, new Error("some error"))).toThrow("some error");
+});
+
 test("with some", () => {
     expect(withSome(filledMaybe, (v) => v + "bar")).toEqual("foobar");
     expect(withSome(emptyMaybe, (v) => v + "bar")).toEqual(null);
@@ -98,6 +104,11 @@ test("formal maybe unwrap", () => {
 test("formal maybe unwrap or", () => {
     expect(FormalMaybe.from(filledMaybe).unwrapOr("bar")).toEqual("foo");
     expect(FormalMaybe.from<string>(emptyMaybe).unwrapOr("bar")).toEqual("bar");
+});
+
+test("formal maybe expect", () => {
+    expect(FormalMaybe.from(filledMaybe).unwrap()).toEqual("foo");
+    expect(() => FormalMaybe.from(emptyMaybe).expect("some error")).toThrow("some error");
 });
 
 test("formal maybe unwrap or else", () => {
