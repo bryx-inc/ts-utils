@@ -5,7 +5,7 @@ import { Result } from "./result";
 /**
  * Extract the inner type of some given array type, `T`
  */
-export type Unarray<T extends any[]> = T extends (infer K)[] ? K : never;
+export type Unarray<T extends any[]> = T extends (infer K)[] ? K : never; // eslint-disable-line @typescript-eslint/no-explicit-any
 
 /**
  * Filtered an incoming array of objects by discarding all keys on each object not specifiecd by 'keys'.
