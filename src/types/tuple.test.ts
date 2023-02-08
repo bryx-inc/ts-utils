@@ -10,13 +10,16 @@ test("sized tuple", () => {
 
     expect(() => {
         const _: TypeCheck<SizedTuple<2>, [unknown, unknown]> = "pass";
+        //    ^?
     });
 
     expect(() => {
         const _: TypeCheck<SizedTuple<2, "v">, ["v", "v"]> = "pass";
+        //    ^?
     });
 
     expect(() => {
         const _: TypeCheck<SizedTuple<3, "x", ["*"]>, ["x", "x", "*"]> = "pass";
+        //    ^?
     });
 });
