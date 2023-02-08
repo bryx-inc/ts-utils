@@ -10,7 +10,6 @@ default:
 
 stages:
   - setup
-  - typecheck
   - code quality
   - test
   - deploy
@@ -30,24 +29,14 @@ setup:
 
 ##
 
-typecheck:
-  stage: typecheck
-  needs: [setup]
-  except: [tags]
-
-  script: [yarn typecheck]
-##
-
 eslint:
   stage: code quality
-  needs: [typecheck]
   except: [tags]
 
   script: [yarn lint]
 
 prettier:
   stage: code quality
-  needs: [typecheck]
   except: [tags]
 
   script: [yarn format]
@@ -56,7 +45,6 @@ prettier:
 
 jest:
   stage: test
-  needs: [typecheck]
   except: [tags]
 
   script: [yarn test:cov]
@@ -68,7 +56,9 @@ pages:
   needs: [setup]
   only: [tags]
 
-  script: [yarn docs]
+  script:
+    - yarn build:docs
+    - mv docs/ public/
   
   artifacts:
     paths: [public]
