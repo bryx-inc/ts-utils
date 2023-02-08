@@ -1,8 +1,10 @@
 /**
- * Thows the given error. This is useful for cleaner one-line lambdas which function as branches which should only throw an error;
+ * Thows the given error
+ *
+ * ?> This is useful for cleaner one-line lambdas which function as branches which should only throw an error;
  *
  * @example
- * ```
+ * ```ts
  * const key:string = ...;
  *
  * const res = match(key)

@@ -1,2 +1,8 @@
 node_modules/
 dist/
+coverage/
+public/
+
+docs/*
+!docs/index.html
+!docs/tsutils_logo.png

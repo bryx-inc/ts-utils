@@ -11,7 +11,7 @@ export type Unarray<T extends any[]> = T extends (infer K)[] ? K : never; // esl
  * Filtered an incoming array of objects by discarding all keys on each object not specifiecd by 'keys'.
  *
  * @example
- * ```
+ * ```ts
  * const arr = [
  *  {
  *    first: 'johnny',
@@ -66,7 +66,7 @@ export function arrayIsEmpty(arr: unknown[]) {
  * This method is pure
  *
  * @example
- * ```
+ * ```ts
  * const arr = ['apple', 'banana', 'pear'];
  *
  * console.log(swapAt(arr, 1, 2)); // ['apple', 'pear', 'banana']
@@ -86,7 +86,7 @@ export function swapAt<T>(arr: T[], i1: number, i2: number): T[] {
  * Returns the last element of some array, and `null` if the array is empty
  *
  * @example
- * ```
+ * ```ts
  * const arr1 = [1, 2, 3, 4];
  * const arr2 = [];
  *
@@ -110,7 +110,7 @@ export function lastElem<T>(arr: T[]): Maybe<T> {
  * This method is pure
  *
  * @example
- * ```
+ * ```ts
  * const arr = [1, 2, null, 3, null, 4];
  * findFirstAndReplace([1, 2, null, 3, null, 4], 9, (v) => v == null);  // [1, 2, 9, 3, null, 4]
  *
@@ -128,7 +128,7 @@ export function findFirstAndReplace<T>(arr: T[], toInsert: T, predicate: (v: T) 
  * This method is pure
  *
  * @example
- * ```
+ * ```ts
  * const arr = ['apple', 'banana', 'orange'];
  * console.log(interleave(arr, '|')); // ['apple', '|', 'banana', '|', 'orange']
  * console.log(arr); // ['apple', 'banana', 'orange']
@@ -150,7 +150,7 @@ export function isIndexOf(arr: unknown[], i: number): boolean {
  * Create an array with some value inserted at some index, without modifying the source array.
  *
  * @example
- * ```
+ * ```ts
  * const arr = ['one', 'two', 'three'];
  * console.log(sliceAround(arr, 2, 'foo')); // ['one', 'two', 'foo', 'three']
  * console.log(arr); // ['one', 'two', 'three']
@@ -206,7 +206,7 @@ export function bailableMap<T, E, R>(
  * of the error being equal to the value that the `bail` method was called with.
  *
  * @example
- * ```
+ * ```ts
  * const nums1 = [5, 5, 2];
  * const nums2 = [5, 5, 0];
  *
@@ -258,7 +258,7 @@ export function arrFromFactory<T>(size: number, factory: (idx: number) => T): T[
  * but with each value mapped to the array of values from the given array for each key.
  *
  * @example
- * ```
+ * ```ts
  * const people = [
  *   { first: "jane", last: "doe" },
  *   { first: "john", last: "ppleseed" }
@@ -291,7 +291,7 @@ export function objectifyArr<T extends object>(arr: T[]) {
  * Construct a new array equal to the given array with the data at the given index excluded. The source array is left unmodified.
  *
  * @example
- * ```
+ * ```ts
  * const fruits = ['apple', 'banana', 'orange'];
  * dropIdx(fruits, 1); // [ 'apple', 'orange' ];
  * console.log(fruits); // ['apple', 'banana', 'orange']
@@ -309,7 +309,7 @@ export function dropIdx<T>(arr: T[], idx: number): T[] {
  * This transformation is especially helpful for interacting with the [MUI Data Grid in Tree Mode](https://mui.com/x/react-data-grid/tree-data/).
  *
  * @example
- * ```
+ * ```ts
  * type Person = { name: string, age: number, children: Person[] };
  *
  * const people: Person[] = [

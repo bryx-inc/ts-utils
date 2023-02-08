@@ -2,10 +2,10 @@ import React from "react";
 
 /**
  * Conditionally return a given value.
- * This is a useful replacement for `when ? something : undefined`.
+ * ?> This is a useful replacement for `when ? something : undefined`.
  *
  * @example
- * ```
+ * ```ts
  * function getSx(isRed: boolean) {
  *  return { fontFamily: 'monospace', backgroundColor: iff(isRed, 'red') }
  * }
@@ -25,10 +25,11 @@ export function iff<T>(cond: boolean | undefined, v: T): T | undefined {
 
 /**
  * Expect a certain condition and, given that condition, return a value.
- * This often serves as a fill-in for `const v = maybe ? thing : (throw 'err')`, since that syntax is not supported.
+ *
+ * ?> This often serves as a fill-in for `const v = maybe ? thing : (throw 'err')`, since that syntax is not supported.
  *
  * @example
- * ```
+ * ```ts
  * type Result = {
  *  isFetched: boolean,
  *  isSuccess: boolean,
@@ -61,10 +62,10 @@ export function orFragment(cond: boolean, node: React.ReactElement): React.React
 /**
  * Return the given value if it is not nullish, otherwise throw the given error. If no error is provided, a generic error will be thrown instead.
  *
- * Helpful to support the lack of `(someObject ?: throw "err").someMethod()` syntax.
+ * ?> Helpful to support the lack of `(someObject ?: throw "err").someMethod()` syntax.
  *
  * @example
- * ```
+ * ```ts
  * const fruits = ["apple", "pear", "banana"];
  * console.log(orThrow(fruits.find(v => v == "orange"), "could not find 'orange'").toUpperCase()); // throws "could not find 'orange'"
  * console.log(orThrow(fruits.find(v => v == "pear"), "could not find 'pear'").toUpperCase()); // "PEAR"
@@ -80,8 +81,7 @@ export function orThrow<T>(v?: T, err?: string): T {
  * is a boolean, and who's second value is the value to return if the aformentioned boolean is `true`.
  *
  * @example
- * ```
- *
+ * ```ts
  * type Result = { type: "ok" | "warn" | "err"; msg: string };
  *
  * function alert(res: Result) {

@@ -10,7 +10,7 @@ export class Result<T, E> {
      * Contructs a {@link Result} object in the `Ok` state around the given value.
      *
      * @example
-     * ```
+     * ```ts
      * console.log(Result.Ok('foo').isOk()); // true
      * ```
      */
@@ -22,7 +22,7 @@ export class Result<T, E> {
      * Constructs a {@link Result} object in the `Err` state around the given value.
      *
      * @example
-     * ```
+     * ```ts
      * console.log(Result.Err('yikes! something went wrong').isOk()); // false
      */
     static Err<T, E>(v: E) {
@@ -38,7 +38,7 @@ export class Result<T, E> {
      * `(v: E) => K`.
      *
      * @example
-     * ```
+     * ```ts
      * const res: Result<number, { msg: string }> = ...;
      * const mapped: Result<string, string> = res.map((v: number) => v.toString(), JSON.stringify);
      * ```
@@ -52,7 +52,7 @@ export class Result<T, E> {
      * Returns `true` if the {@link Result} is in an `Ok` state.
      *
      * @example
-     * ```
+     * ```ts
      * const res: Result<string, string> = ...;
      * if (res.isOk()) console.log('passed!');
      * ```
@@ -65,7 +65,7 @@ export class Result<T, E> {
      * Returns `true` is the {@link Result} in in an `Err` state.
      *
      * @example
-     * ```
+     * ```ts
      * const res: Result<string, string> = ...;
      * if (res.isErr()) console.log('an error occured!');
      * ```
@@ -78,7 +78,7 @@ export class Result<T, E> {
      * Returns the inner value if the {@link Result} in in an `Ok` state, otherwise `null`
      *
      * @example
-     * ```
+     * ```ts
      * const res: Result<string, string> = ...;
      * if (res.isOk()) console.log(`result: ${res.ok()}`);
      * ```
@@ -92,7 +92,7 @@ export class Result<T, E> {
      * Returns the inner value of the {@link Result} in an `Err` state, otherwise `null`
      *
      * @example
-     * ```
+     * ```ts
      * const res: Result<string, string> = ...;
      * if (res.isErr()) console.log(`result failed with: ${res.err()}`);
      * ```
@@ -106,7 +106,7 @@ export class Result<T, E> {
      * Maps a `Result.Ok(null)` to `null`, otherwise return self.
      *
      * @example
-     * ```
+     * ```ts
      * const res: Result<Maybe<string>, string> = ...;
      * const m: Maybe<Result<string, string>> = res.transpose();
      * ```
@@ -120,7 +120,7 @@ export class Result<T, E> {
      * Returns `res` if the {@link Result} is `Ok`, otherwise returns the inner `Err` value of the {@link Result}
      *
      * @example
-     * ```
+     * ```ts
      * const a: Result.Ok(10);
      * const b: Result.Err('foo');
      *
@@ -137,7 +137,7 @@ export class Result<T, E> {
      * If `this` is `Ok`, return `this`. Otherwise, return the other given {@link Result}, `res`;
      *
      * @example
-     * ```
+     * ```ts
      * function div(n1: number, n2: number) {
      *  if (n2 == 0) return Result.Err('divide by zero');
      *  else return Result.Ok(n1 / n2);
@@ -156,7 +156,7 @@ export class Result<T, E> {
      * Calls and returns the value of `fn` if `this` is `Ok`, otherwise returns `this`;
      *
      * @example
-     * ```
+     * ```ts
      * function div(n1: number, n2: number) {
      *  if (n2 == 0) return Result.Err('divide by zero');
      *  else return Result.Ok(n1 / n2);
@@ -175,7 +175,7 @@ export class Result<T, E> {
      * Calls and returns the value of `fn` if the {@link Result} is an `Err`, otherwise returns the `Ok` value of `this`.
      *
      * @example
-     * ```
+     * ```ts
      * const square = (v: number) => Result.Ok(v * v);
      * const err = (v: number) => Result.Err(v);
      *
@@ -194,7 +194,7 @@ export class Result<T, E> {
      * throws a generic error.
      *
      * @example
-     * ```
+     * ```ts
      * console.log(Result.Ok('foo').unwrap()); // 'foo'
      * console.log(Result.Err('bar').unwrap()); // ERROR!
      * ```
@@ -209,7 +209,7 @@ export class Result<T, E> {
      * then returns the given value `v`.
      *
      * @example
-     * ```
+     * ```ts
      * const a = Result.Err('foo');
      * const b = Result.Ok('fizz');
      *
@@ -227,7 +227,7 @@ export class Result<T, E> {
      * then returns the result of the given `fn`, called with the `Err` value.
      *
      * @example
-     * ```
+     * ```ts
      * const a = Result.Ok(15);
      * const b = Result.Err(15);
      *
@@ -244,7 +244,7 @@ export class Result<T, E> {
      * Returns `true` if the {@link Result} `Ok` state equals the given value.
      *
      * @example
-     * ```
+     * ```ts
      * console.log(Result.Ok('foo').contains('foo')); // true
      * console.log(Result.Ok('foobar').contains('foo')); // false
      * console.log(Result.Err('foo').contains('foo')) // false
@@ -259,7 +259,7 @@ export class Result<T, E> {
      * Returns `true` if the {@link Result} `Err` value equals the given value.
      *
      * @example
-     * ```
+     * ```ts
      * console.log(Result.Ok('foo').contains('foo')); // true
      * console.log(Result.Ok('foobar').contains('foo')); // false
      * console.log(Result.Err('foo').contains('foo')) // false

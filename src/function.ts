@@ -5,7 +5,7 @@
  * This is particularly helpful when the two predicates have two different input types, with the first predicate type-guarding the second.
  *
  * @example
- * ```
+ * ```ts
  * type Thing =
  *  | { empty: true }
  *  | { empty: false, data: string }

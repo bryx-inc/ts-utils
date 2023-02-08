@@ -4,7 +4,7 @@ import { useRef, useCallback } from "react";
  * Construct a function that maintains referential equality throughout lifecycle rerenders of the component. The returned function, however, will have updated closured values of each render's state.
  *
  * @example
- * ```
+ * ```tsx
  * function MyComponent() {
  *   const [ name, setName ] = useState("jonny appleseed");
  *   const onClick = useConstCalback(() => alert(name));

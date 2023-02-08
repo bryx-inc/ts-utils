@@ -13,8 +13,10 @@ export function isSome<T>(m: Maybe<T>): m is T {
  * Converts a nullish `T?` value into a `Maybe<T>` type
  *
  * @example
+ * ```ts
  * const arr = ['apple', 'banana'];
  * const res: Maybe<string> = intoMaybe(arr.find(v => v = 'apple'));
+ * ```
  */
 export function intoMaybe<T>(v?: T): Maybe<T> {
     return v ?? null;
@@ -25,7 +27,7 @@ export function intoMaybe<T>(v?: T): Maybe<T> {
  * each arm.
  *
  * @example
- * ```
+ * ```ts
  * const name: Maybe<{first: string, last: string}> = ...;
  * const first: string = matchMaybe(name, {
  *  some: ({ first }) => first,
@@ -51,10 +53,11 @@ export function matchMaybe<T, R, E>(
 
 /**
  * Converts a value from `Maybe<T>` to `T`, throwing the specify error is the given Maybe is None.
- * This is particularly helpful since `const value ?? throw 'error'` is not valid
+ *
+ * ?> This is particularly helpful since `const value ?? throw 'error'` is not valid
  *
  * @example
- * ```
+ * ```ts
  * function findSomethingOrDont(): Maybe<string> { ... }
  * const res: string = expectMaybe(findSomethingOrDont(), 'could not find the value!');
  * ```
@@ -72,7 +75,8 @@ export function expectMaybe<T>(v: Maybe<T>, err: Error | string) {
 
 /**
  * Converts a value from `Maybe<T>` to `T`, throwing a generic "unable to unwrap" error if the given Maybe is None
- * To specify the error this method uses, refer to {@link expectMaybe}
+ *
+ * ?> To specify the error this method uses, refer to {@link expectMaybe}
  */
 export function unwrapMaybe<T>(v: Maybe<T>) {
     return expectMaybe(v, "attempted to unwrap a null value!");
@@ -88,7 +92,7 @@ export function withSome<T, E>(v: Maybe<T>, fn: (v: T) => E): Maybe<E> {
 /**
  * A formal wrapper class for interacting with possibly `null` values.
  *
- * Note: that {@link Maybe<T>} is a type-alias for `T | null`, whereas {@link FormalMaybe<T>} is a runtime-evaluated object proper, containing a {@link Maybe<T>} value.
+ * ?> {@link Maybe<T>} is a type-alias for `T | null`, whereas {@link FormalMaybe<T>} is a runtime-evaluated object proper, containing a {@link Maybe<T>} value.
  */
 export class FormalMaybe<T> {
     constructor(private v: Maybe<T>) {}
@@ -97,8 +101,7 @@ export class FormalMaybe<T> {
      * Constructs a {@link FormalMaybe} from a nullish input.
      *
      * @example
-     *
-     * ```
+     * ```ts
      * const arr = ['apple', 'banana', 'orange', ...]
      * const fruit = FormalMaybe.from(arr.find(v => v == 'pear'));
      * ```
@@ -114,7 +117,7 @@ export class FormalMaybe<T> {
      * Constructs a {@link FormalMaybe} from a non-null input.
      *
      * @example
-     * ```
+     * ```ts
      * let name: Maybe<string> = FormalMaybe.None();
      *
      * function loadName() {
@@ -140,7 +143,7 @@ export class FormalMaybe<T> {
      * Constructs an empty {@link FormalMaybe}.
      *
      * @example
-     * ```
+     * ```ts
      * let name: Maybe<string> = FormalMaybe.None();
      *
      * function loadName() {
@@ -163,10 +166,11 @@ export class FormalMaybe<T> {
 
     /**
      * Eject the wrapped {@link Maybe} value from the {@link FormalMaybe}.
-     * This is helpful for interop compatability with raw {@link Maybe}-based functions.
+     *
+     * ?> This is helpful for interop compatability with raw {@link Maybe}-based functions.
      *
      * @example
-     * ```
+     * ```ts
      * function doSomething(v: Maybe<string>) { ... }
      * const val: FormalMaybe<string> = (...);
      *
@@ -182,7 +186,7 @@ export class FormalMaybe<T> {
      * Note: that for control guards that interact with checked value, it is recommended to use {@link FormalMaybe}::{@link when} instead.
      *
      * @example
-     * ```
+     * ```ts
      * const v: Maybe<string> = (...);
      *
      * if (v.isSome()) {
@@ -201,7 +205,7 @@ export class FormalMaybe<T> {
      * Note: that for control guards that interact with checked value, it is recommended to use {@link FormalMaybe}::{@link when} instead.
      *
      * @example
-     * ```
+     * ```ts
      * const v: Maybe<string> = (...);
      *
      * if (v.isNone()) {
@@ -219,7 +223,7 @@ export class FormalMaybe<T> {
      * If the {@link FormalMaybe} is `null`, return `None`. Otherwise, return the result given function, invoked with the non-null inner value.
      *
      * @example
-     * ```
+     * ```ts
      * const v1 = FormalMaybe.Some('foo');
      * const v2 = FormalMaybe.None<string>();
      *
@@ -241,7 +245,7 @@ export class FormalMaybe<T> {
      * Returns the inner value as a non-null {@link T}. If the inner value is `null`, throw the given error instead.
      *
      * @example
-     * ```
+     * ```ts
      * function fetchName(): FormalMaybe<string> { ... }
      *
      * console.log(`the name is ${fetchName().expect('failed to fetch name!')}`);
@@ -259,7 +263,7 @@ export class FormalMaybe<T> {
      * Returns the inner non-null value, throwing a generic error if the inner value is `null`.
      *
      * @example
-     * ```
+     * ```ts
      * const v = FormalMaybe.Some('foo');
      * const v2 = FormalMaybe.None();
      *
@@ -277,7 +281,7 @@ export class FormalMaybe<T> {
      * Returns the inner non-null value, or the provided value if the inner value is `null`.
      *
      * @example
-     * ```
+     * ```ts
      * console.log(FormalMaybe.Some("foo").unwrapOr("bar")); // "foo"
      * console.log(FormalMaybe.None().unwrapOr("bar")); // "bar"
      * ```
@@ -292,7 +296,7 @@ export class FormalMaybe<T> {
      * Returns the inner non-null value, or computes it from a given function.
      *
      * @example
-     * ```
+     * ```ts
      * const k = 10;
      * console.log(FormalResult.Some(4).unwrapOrElse(() => 2 * k)); // 4
      * console.log(FormalResult.None().unwrapOrelse(() => 2 * k)); // 20

@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
  * will be called with the given parameter on next rerender. A rerender is then queued.
  *
  * @example
- * ```
+ * ```tsx
  * // console.log some message on next render
  * const deferMsg = useDefer((s: string) => console.log(s));
  *

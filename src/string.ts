@@ -10,7 +10,7 @@ export type StrAddOptions = {
  * Add two numbers as strings together, yeilding a string which is the sum of those numbers.
  *
  * @example
- * ```
+ * ```ts
  * console.log(strAdd('5', '8')); // '13'
  * ```
  */
@@ -36,7 +36,7 @@ export function strAdd(strs: string[], options?: StrAddOptions): Maybe<string> {
  * Construct a key from a list of given bases
  *
  * @example
- * ```
+ * ```ts
  * console.log(keyFrom('one', 'two', 10)); // 'one-two-10'
  * ```
  *
@@ -51,12 +51,12 @@ export function keyFrom(...strs: (string | number)[]) {
  * Given a string that contains regex commands, escape those characters to match as literals with regex.
  *
  * @example
- * ```
+ * ```ts
  * new RegExp("$50").test("$50"); // false
  * new RegExp(escapeRegex("$50")).test("$50"); // true
  * ```
  *
- * @note special thanks to mary.strodl@bryx.com and https://stackoverflow.com/a/3561711
+ * ?> special thanks to mary.strodl@bryx.com and https://stackoverflow.com/a/3561711
  */
 export function escapeRegex(s: string): string {
     return s.replace(/[\-\[\]\/\{}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&"); /* eslint-disable-line no-useless-escape */

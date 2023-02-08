@@ -18,7 +18,7 @@ export function dropNullValues<T extends object>(obj: T) {
  * Creates a new object from the given object with the specified fields deleted.
  *
  * @example
- * ```
+ * ```ts
  * const person = {
  *  first: "John",
  *  last: "Smith",
@@ -55,7 +55,7 @@ export function objectIsEmpty<T extends object>(obj: T) {
  * This method is pure.
  *
  * @example
- * ```
+ * ```ts
  * const ages = {
  *  bill: 38,
  *  john: 21,
@@ -102,7 +102,7 @@ export function derecordify<T extends object, KN extends string, VN extends stri
  * Converts an array of objects into a single, record-style object keyed by the given key attribute.
  *
  * @example
- * ```
+ * ```ts
  * const people = [
  *  { first: 'john', last: 'smith', state: 'NY' },
  *  { first: 'sam', last: 'johnson', state: 'NY' },
