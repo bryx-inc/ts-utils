@@ -12,7 +12,7 @@ gulp.task("build:docs", async () => {
                 --entryPointStrategy resolve \
                 --entryPoints src/index.ts`;
 
-    await $`cp README.md docs/`;
+    await $`cp readme.md docs/`;
     await $`cat typedoc-dist/modules.md >> docs/README.md`;
     await $`rm typedoc-dist/modules.md typedoc-dist/README.md`;
 
