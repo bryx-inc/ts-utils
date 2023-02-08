@@ -2,7 +2,7 @@
  * Similar in functionality to the built-in {@link Partial<T>}, but the type is recursivly applied to all subobjects
  *
  * @example
- * ```
+ * ```ts
  * type FormattingBlock = { where: { argument: { value: string } } };
  *
  * type FormattingBlockPatch RecursivePartial<FormattingBlock>;
