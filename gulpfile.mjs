@@ -9,6 +9,7 @@ gulp.task("build:docs", async () => {
                 --out typedoc-dist \
                 --hideInPageTOC \
                 --hideMembersSymbol \
+                --excludeInternal \
                 --entryPointStrategy resolve \
                 --entryPoints src/index.ts`;
 

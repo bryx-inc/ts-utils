@@ -56,6 +56,15 @@ export function moveToIdx<T>(arr: T[], startIdx: number, endIdx: number) {
     return arrCpy;
 }
 
+/**
+ * Returns true if the given array is empty
+ *
+ * @example
+ * ```ts
+ * arrayIsEmpty([]); // true
+ * arrayIsEmpty([1, 2, 3]); // false
+ * ```
+ */
 export function arrayIsEmpty(arr: unknown[]) {
     return arr.length == 0;
 }
@@ -247,7 +256,13 @@ export function tryToFold<T, E, R>(
 }
 
 /**
- * Constructs a new array by
+ * Construct a new array of a given size from the result of calling the given factory method with the respective index therein.
+ *
+ * @example
+ * ```ts
+ * arrFromFactor(5, (idx) => idx % 2 == 0 ? 'even' : 'odd');
+ * // ['odd', 'even', 'odd', 'even', 'odd'];
+ * ```
  */
 export function arrFromFactory<T>(size: number, factory: (idx: number) => T): T[] {
     return new Array(size).fill(null).map((_, i) => factory(i));

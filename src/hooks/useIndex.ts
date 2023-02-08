@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useConst } from "./useConst";
 
+/**
+ * @internal
+ */
 export type UseIndexCallbacks = {
     inc: () => void;
     dec: () => void;

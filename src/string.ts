@@ -2,6 +2,9 @@ import { Maybe } from "./maybe";
 import { tryToFold } from "./array";
 import { Result } from "./result";
 
+/**
+ * @internal
+ */
 export type StrAddOptions = {
     treatEmptyStringAsZero?: boolean;
 };

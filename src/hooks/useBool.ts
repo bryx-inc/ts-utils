@@ -1,6 +1,9 @@
 import { useConst } from "./useConst";
 import { useState } from "react";
 
+/**
+ * @internal
+ */
 export type UseBooleanCallbacks = {
     setTrue: () => void;
     setFalse: () => void;
