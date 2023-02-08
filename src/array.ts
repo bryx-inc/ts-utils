@@ -261,7 +261,7 @@ export function tryToFold<T, E, R>(
  * @example
  * ```ts
  * arrFromFactor(5, (idx) => idx % 2 == 0 ? 'even' : 'odd');
- * // ['odd', 'even', 'odd', 'even', 'odd'];
+ * // ['even', 'odd', 'even', 'odd', 'even'];
  * ```
  */
 export function arrFromFactory<T>(size: number, factory: (idx: number) => T): T[] {
