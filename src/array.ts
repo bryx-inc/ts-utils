@@ -260,7 +260,7 @@ export function tryToFold<T, E, R>(
  *
  * @example
  * ```ts
- * arrFromFactor(5, (idx) => idx % 2 == 0 ? 'even' : 'odd');
+ * arrFromFactory(5, (idx) => idx % 2 == 0 ? 'even' : 'odd');
  * // ['even', 'odd', 'even', 'odd', 'even'];
  * ```
  */
