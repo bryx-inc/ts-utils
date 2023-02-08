@@ -65,7 +65,7 @@ export function expectMaybe<T>(v: Maybe<T>, err: Error | string) {
             return v;
         },
         none() {
-            throw err instanceof Error ? err : new Error(err)
+            throw err instanceof Error ? err : new Error(err);
         },
     });
 }
@@ -251,7 +251,7 @@ export class FormalMaybe<T> {
      * @returns The non-null inner value
      */
     expect(msg: string) {
-        if (isNone(this.v)) throw new Error(msg)
+        if (isNone(this.v)) throw new Error(msg);
         else return this.v;
     }
 
