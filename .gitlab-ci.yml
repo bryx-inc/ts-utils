@@ -48,6 +48,17 @@ jest:
   except: [tags]
 
   script: [yarn test:cov]
+  coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
+
+  artifacts:
+    paths: [coverage]
+    when: always
+    reports:
+      junit: [junit.xml]
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage/cobertura-coverage.xml
+
 
 ##
 
