@@ -6,3 +6,4 @@ public/
 docs/*
 !docs/index.html
 !docs/tsutils_logo.png
+!docs/_footer.md
