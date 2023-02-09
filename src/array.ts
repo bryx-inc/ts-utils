@@ -33,6 +33,7 @@ export type Unarray<T extends any[]> = T extends (infer K)[] ? K : never; // esl
  * @param arr The incoming array
  * @param keys The collection of keys desired for the resulting array
  * @returns The updated array
+ * @category Array
  */
 export function selectKeys<T extends object, K extends keyof T>(arr: T[], ...keys: K[]): Pick<T, K>[] {
     return arr.map((e) => {
@@ -47,6 +48,8 @@ export function selectKeys<T extends object, K extends keyof T>(arr: T[], ...key
  * Returns a copy of the given array, with the element at the specified startIdx moved to the specified endIdx.
  *
  * This operation is pure and leaves no gaps in the resulting array
+ *
+ * @category Array
  */
 export function moveToIdx<T>(arr: T[], startIdx: number, endIdx: number) {
     const arrCpy = cloneArr(arr);
@@ -64,6 +67,8 @@ export function moveToIdx<T>(arr: T[], startIdx: number, endIdx: number) {
  * arrayIsEmpty([]); // true
  * arrayIsEmpty([1, 2, 3]); // false
  * ```
+ *
+ * @category Array
  */
 export function arrayIsEmpty(arr: unknown[]) {
     return arr.length == 0;
@@ -81,6 +86,7 @@ export function arrayIsEmpty(arr: unknown[]) {
  * console.log(swapAt(arr, 1, 2)); // ['apple', 'pear', 'banana']
  * console.log(arr); // ['apple', 'banana', 'pear']
  * ```
+ * @category Array
  */
 export function swapAt<T>(arr: T[], i1: number, i2: number): T[] {
     const arrCpy = cloneArr(arr);
@@ -107,6 +113,8 @@ export function swapAt<T>(arr: T[], i1: number, i2: number): T[] {
  * lastElem(arr1); // 4
  * lastElem(arr2) // null
  * ```
+ *
+ * @category Array
  */
 export function lastElem<T>(arr: T[]): Maybe<T> {
     return intoMaybe(arr[arr.length - 1]);
@@ -125,6 +133,8 @@ export function lastElem<T>(arr: T[]): Maybe<T> {
  *
  * console.log(arr); // [1, 2, null, 3, null, 4];
  * ```
+ *
+ * @category Array
  */
 export function findFirstAndReplace<T>(arr: T[], toInsert: T, predicate: (v: T) => boolean): T[] {
     for (const [i, v] of arr.entries()) if (predicate(v)) return arr.slice(0, i).concat([toInsert], arr.slice(i + 1));
@@ -142,6 +152,8 @@ export function findFirstAndReplace<T>(arr: T[], toInsert: T, predicate: (v: T) 
  * console.log(interleave(arr, '|')); // ['apple', '|', 'banana', '|', 'orange']
  * console.log(arr); // ['apple', 'banana', 'orange']
  * ```
+ *
+ * @category Array
  */
 export function interleave<T>(arr: T[], toInsert: T) {
     return arr.flatMap((e) => [toInsert, e]).slice(1);
@@ -164,6 +176,8 @@ export function isIndexOf(arr: unknown[], i: number): boolean {
  * console.log(sliceAround(arr, 2, 'foo')); // ['one', 'two', 'foo', 'three']
  * console.log(arr); // ['one', 'two', 'three']
  * ```
+ *
+ * @category Array
  */
 export function sliceAround<T>(arr: T[], i: number, v: T): T[] {
     return arr.slice(0, i).concat([v]).concat(arr.slice(i));
@@ -171,6 +185,8 @@ export function sliceAround<T>(arr: T[], i: number, v: T): T[] {
 
 /**
  * Creates a copy of some array, with some value at the given index replaced with the given value
+ *
+ * @category Array
  */
 export function replaceAt<T>(arr: T[], i: number, v: T): T[] {
     const arrCpy = cloneArr(arr);
@@ -183,6 +199,8 @@ export function replaceAt<T>(arr: T[], i: number, v: T): T[] {
  * performance, particularly for larger arrays. For more information refer to [this comparison benchmark](https://jsbench.me/fylb5kvldn/1)
  *
  * This operation yields the same result as `const newArr = [...arr];`
+ *
+ * @category Array
  */
 export function cloneArr<T>(arr: T[]): T[] {
     return new Array<T>().concat(arr);
@@ -228,6 +246,8 @@ export function bailableMap<T, E, R>(
  * @typeParam T The inner type of the given array to fold
  * @typeParam E The success type if the fold doesn't bail early
  * @typeParam R The fail type if the fold bails early
+ *
+ * @category Array
  */
 export function tryToFold<T, E, R>(
     arr: T[],
@@ -263,6 +283,8 @@ export function tryToFold<T, E, R>(
  * arrFromFactory(5, (idx) => idx % 2 == 0 ? 'even' : 'odd');
  * // ['even', 'odd', 'even', 'odd', 'even'];
  * ```
+ *
+ * @category Array
  */
 export function arrFromFactory<T>(size: number, factory: (idx: number) => T): T[] {
     return new Array(size).fill(null).map((_, i) => factory(i));
@@ -289,6 +311,8 @@ export function arrFromFactory<T>(size: number, factory: (idx: number) => T): T[
  *
  * @param arr The array to objectify
  * @returns
+ *
+ * @category Array
  */
 export function objectifyArr<T extends object>(arr: T[]) {
     return arr.reduce(
@@ -311,6 +335,8 @@ export function objectifyArr<T extends object>(arr: T[]) {
  * dropIdx(fruits, 1); // [ 'apple', 'orange' ];
  * console.log(fruits); // ['apple', 'banana', 'orange']
  * ```
+ *
+ * @category Array
  */
 export function dropIdx<T>(arr: T[], idx: number): T[] {
     if (!isIndexOf(arr, idx)) return arr;
@@ -364,6 +390,8 @@ export function dropIdx<T>(arr: T[], idx: number): T[] {
  * @param arr The source array. This array is not modified.
  * @param opts Behavior specifiction options
  * @returns A new, flattened array
+ *
+ * @category Array
  */
 export function toPathedArr<
     PathDelim extends string,

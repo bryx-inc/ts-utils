@@ -17,6 +17,8 @@ import React from "react";
  * @param cond The condition to check
  * @param v The value to return if the `cond` is true
  * @returns v if `cond` is true, otherwise `undefined`
+ *
+ * @category Condition
  */
 export function iff<T>(cond: boolean | undefined, v: T): T | undefined {
     if (!!cond) return v;
@@ -49,6 +51,8 @@ export function iff<T>(cond: boolean | undefined, v: T): T | undefined {
  * @param then The value to return if the assertation passes.
  * @param err The Error or error message to throw of the assertation fails. If none is provided, a generic message will be thrown instead.
  * @returns The `then` value, given a passing assertation.
+ *
+ * @category Condition
  */
 export function expect<T>(assertation: boolean, then: T, err?: Error | string): T {
     if (assertation) return then;
@@ -70,6 +74,8 @@ export function orFragment(cond: boolean, node: React.ReactElement): React.React
  * console.log(orThrow(fruits.find(v => v == "orange"), "could not find 'orange'").toUpperCase()); // throws "could not find 'orange'"
  * console.log(orThrow(fruits.find(v => v == "pear"), "could not find 'pear'").toUpperCase()); // "PEAR"
  * ```
+ *
+ * @category Condition
  */
 export function orThrow<T>(v?: T, err?: string): T {
     if (typeof v == "undefined" || v === null) throw err ?? "orThrow found a nullish value!";
@@ -98,6 +104,8 @@ export function orThrow<T>(v?: T, err?: string): T {
  * alert({ msg: 'some stuff is down', type: 'warn' }) // Quick Heads Up: some stuff is down
  * alert({ msg: 'the world is on fire', type: 'err' }) // Oh No!: the world is on fire
  * ```
+ *
+ * @category Condition
  */
 export function cond<T>(...instrs: [when: boolean, then: () => T][]): T {
     for (const [when, then] of instrs) if (when) return then();

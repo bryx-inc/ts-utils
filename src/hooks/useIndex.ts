@@ -10,6 +10,9 @@ export type UseIndexCallbacks = {
     set: (i: number) => void;
 };
 
+/**
+ * @category Hook
+ */
 export function useIndex(initialState: number): [number, UseIndexCallbacks] {
     const [value, setValue] = useState(initialState);
 

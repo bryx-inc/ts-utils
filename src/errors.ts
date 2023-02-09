@@ -16,6 +16,8 @@
  * ```
  *
  * @param err The error to throw
+ *
+ * @category Error
  */
 export function throwError<T extends Error | string, R = void>(err: T): R {
     throw err;

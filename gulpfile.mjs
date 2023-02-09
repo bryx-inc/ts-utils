@@ -1,24 +1,29 @@
 import gulp from "gulp";
 import { $ } from "zx";
 
+gulp.task("clean:docs", () => $`find docs/* -not \\( -name 'index.html' -or -name 'tsutils_logo.png' -or -name '_footer.md' \\) -delete`);
+
 gulp.task("build:docs", async () => {
     await $`npx typedoc \
                 --name 'Docs' \
                 --plugin typedoc-plugin-markdown \
                 --plugin typedoc-plugin-merge-modules \
                 --out typedoc-dist \
-                --hideInPageTOC \
                 --hideMembersSymbol \
+                --hideBreadcrumbs \
+                --hideInPageTOC \
                 --excludeInternal \
+                --mergeModulesMergeMode module-category \
                 --entryPointStrategy resolve \
                 --entryPoints src/index.ts`;
 
     await $`cp readme.md docs/`;
-    await $`cat typedoc-dist/modules.md >> docs/README.md`;
-    await $`rm typedoc-dist/modules.md typedoc-dist/README.md`;
 
-    await $`cp -R typedoc-dist/* docs/`;
-    await $`rm -rf typedoc-dist/`;
+    await $`cat typedoc-dist/modules.md >> docs/README.md`;
+    await $`cat typedoc-dist/classes/* >> docs/README.md`;
+
+    await $`rm typedoc-dist/README.md`;
+    await $`mv typedoc-dist/* docs/`;
 });
 
 gulp.task("deploy", async () => {
@@ -27,13 +32,13 @@ gulp.task("deploy", async () => {
     await $`git push origin main`;
 });
 
-gulp.task('build:lib', () => $`tsc`);
-gulp.task('check:lint', () => $`eslint .`);
-gulp.task('check:formatting', () => $`prettier -c src/*`);
+gulp.task("build:lib", () => $`tsc`);
+gulp.task("check:lint", () => $`eslint .`);
+gulp.task("check:formatting", () => $`prettier -c src/*`);
 
-gulp.task('fix:formatting', () => $`prettier -w src/*`);
+gulp.task("fix:formatting", () => $`prettier -w src/*`);
 
-gulp.task("check:quality", gulp.parallel('check:lint', 'check:formatting'));
+gulp.task("check:quality", gulp.parallel("check:lint", "check:formatting"));
 
 gulp.task("clean:tags", async () => {
     await $`git tag -d $(git tag -l)`;

@@ -1,5 +1,8 @@
 import { useRef } from "react";
 
+/**
+ * @category Hook
+ */
 export function useConst<T>(initialValue: T | (() => T)): T {
     const ref = useRef<{ value: T }>();
 

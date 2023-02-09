@@ -19,6 +19,8 @@ import { useEffect, useState } from "react";
     // --> "first"
     // --> "second"
  * ```
+ * 
+ * @category Hook
  */
 export function useDefer<T>(fn: (v: T) => unknown) {
     const [[shouldRun, v], setInstr] = useState<[true, T] | [false, null]>([false, null]);

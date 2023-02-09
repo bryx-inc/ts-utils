@@ -1,6 +1,26 @@
 import { cond } from "./condition";
 import { Maybe } from "./maybe";
 
+/**
+ * Construct a object with properties identical to the given base object, without any nullish values.
+ *
+ * @example
+ * ```ts
+ * const person = {
+ *  name: 'Jane Doe',
+ *  age: 21,
+ *  phone: null
+ * }
+ *
+ * dropNullValues(person);
+ * // { name: 'Jane Doe', age: 21 }
+ * ```
+ *
+ * @param obj The given base object
+ * @returns The base object with all nullish values dropped
+ *
+ * @category Object
+ */
 export function dropNullValues<T extends object>(obj: T) {
     type PermittedValue = T extends {
         [K in keyof T]: Exclude<infer V, "undefined" | "null">;
@@ -30,6 +50,8 @@ export function dropNullValues<T extends object>(obj: T) {
  * console.log(name); // { "first": "John", "last": "Smith" }
  * console.log(person); // { "first": "John", "last": "Smith", "age": 23, "state": "NY" }
  * ```
+ *
+ * @category Object
  */
 export function dropKeys<T extends object, K extends (keyof T)[]>(from: T, keys: K) {
     const o = { ...from }; // clone object
@@ -77,6 +99,8 @@ export function objectIsEmpty<T extends object>(obj: T) {
  * derecordify(people, { k: 'name', v: '...' });
  * // [{ name: "bill", age: 38, hobbies: ["cooking"] }, ...]
  * ```
+ *
+ * @category Object
  */
 export function derecordify<T extends object, KN extends string, VN extends string>(record: T, opts: { k: KN; v: VN }) {
     return cond(
@@ -122,6 +146,8 @@ export function derecordify<T extends object, KN extends string, VN extends stri
  * //    ...
  * // }
  * ```
+ *
+ * @category Object
  */
 export function recordify<T extends object, K extends keyof { [Key in keyof T]-?: T[Key] extends string ? Key : never }>(arr: T[], key: K) {
     return arr.reduce((obj, cur) => {
@@ -131,17 +157,70 @@ export function recordify<T extends object, K extends keyof { [Key in keyof T]-?
     }, {} as Record<string, T[]>);
 }
 
+/**
+ * Return the keys of the given object an array.
+ *
+ * ?> This is identical to `Object.keys()`, except this method types it's return type as `(keyof T)[]`, rather than `string | number | symbol`.
+ *
+ * @example
+ * ```ts
+ * const person = {
+ *   firstName: 'Jane',
+ *   lastName: 'Doe',
+ *   favoriteColor: 'Green'
+ * }
+ *
+ * const keys = getObjKeys(person);
+ * //    ^? ('firstName' | 'lastName' | 'favoriteColor')[]
+ * ```
+ * @param v The given object
+ * @returns The array of keys
+ *
+ * @category Object
+ */
 export function getObjKeys<T extends object>(v: T) {
     return Object.keys(v) as (keyof T)[];
 }
 
 /**
  * Maybe get a property on some object, who's type does not define the specified key. If no property is found on the given object at the given key, `null` is returned.
+ *
+ * @category Object
  */
 export function getPropertyUnsafe<T extends object, E, K extends string>(v: T, key: K): Maybe<E> {
     return (v as T & Record<K, E>)[key as keyof T | K] ?? null;
 }
 
+/**
+ * Cast some given `T` to `E` without any type overlap checks.
+ *
+ * !> This function should be used _very_ sparingly, and only in situations where typescript cannot follow the typechecking. Often times, this happens when object properies are being checked on an indexed value. Although, in most cases this object should simply be explicitly bound to a variable, in sitations where it cannot, `unsafeCast` may be used.
+ *
+ * @example
+ * ```ts
+ * type Shape2D = ...;
+ * type Shape3D = ...;
+ *
+ * type Shape =
+ *  | { type: '2d', shape: Shape2D }
+ *  | { type: '3d', shape: Shape3D }
+ *
+ * function print2DShape(shape: Shape2D) { ... }
+ * function print3DShape(shape: Shape3D) { ... }
+ *
+ * function printShapeRange(shapes: Shape[], lowerIdx: number, upperIdx: number) {
+ *  if (shapes[lowerIdx].type == '2d')
+ *    print2DShape(castUnsafe(shapes[lowerIdx]));
+ *  else
+ *    print3DShape(castUnsafe(shapes[lowerIdx]))
+ *
+ *  if (lowerIdx < upperIdx)
+ *    printShapeRange(shapes, lowerIdx + 1, upperIdx);
+ * }
+ *
+ * ```
+ *
+ */
 export function castUnsafe<T, E>(v: T): E {
     return v as unknown as E;
 }

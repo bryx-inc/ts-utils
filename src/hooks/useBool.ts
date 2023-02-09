@@ -10,6 +10,9 @@ export type UseBooleanCallbacks = {
     toggle: () => void;
 };
 
+/**
+ * @category Hook
+ */
 export function useBool(initialState: boolean): [boolean, UseBooleanCallbacks] {
     const [value, setValue] = useState(initialState);
 
