@@ -1,6 +1,6 @@
 {
   "name": "@bryx911/ts-utils",
-  "version": "1.23.8",
+  "version": "1.24.0",
   "repository": "git@gitlab.bryx.com:bryx911/ts-utils",
   "author": "Tyler Holewinski <tyler.holewinski@bryx.com>",
   "license": "MIT",
