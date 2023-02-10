@@ -2,6 +2,7 @@ node_modules/
 dist/
 coverage/
 public/
+.idea/
 
 docs/*
 !docs/index.html

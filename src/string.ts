@@ -64,3 +64,25 @@ export function keyFrom(...strs: (string | number)[]) {
 export function escapeRegex(s: string): string {
     return s.replace(/[\-\[\]\/\{}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&"); /* eslint-disable-line no-useless-escape */
 }
+
+/**
+ * Construct an initialism (the first letters of each token) in a given string separated by a given separator
+ *
+ * @example
+ * ```ts
+ * console.log(initialism("adam blue")); // 'AB'
+ * console.log(initialism("joe_schmoe", "_")); // 'JS'
+ * console.log(initialism("balsam bagels", " ", false)); // 'bb'
+ * ```
+ *
+ * @param s The string to initialize
+ * @param separator Delimiter separating tokens in `s`; by default, a space (`' '`)
+ * @param capitalize Whether to capitalize the letters or leave as is; by default, `true`
+ * @returns The initialism of `s`
+ */
+export function initialism(s: string, separator = " ", capitalize = true) {
+    return s
+        .split(separator)
+        .map((s) => (capitalize ? s.at(0)?.toUpperCase() : s.at(0) ?? ""))
+        .join("");
+}

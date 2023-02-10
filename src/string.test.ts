@@ -1,4 +1,4 @@
-import { escapeRegex, keyFrom, strAdd } from "./string";
+import { escapeRegex, keyFrom, strAdd, initialism } from "./string";
 
 test("Result.strAdd", () => {
     const res = strAdd(["1", "2", "3", "4", "5"]);
@@ -30,4 +30,11 @@ test("Result.keyFrom", () => {
 test("escape regex", () => {
     expect(new RegExp("$50").test("$50")).toEqual(false);
     expect(new RegExp(escapeRegex("$50")).test("$50")).toEqual(true);
+});
+
+test("initialism", () => {
+    expect(initialism("adam blue")).toStrictEqual("AB");
+    expect(initialism("joe_schmoe", "_")).toStrictEqual("JS");
+    expect(initialism("balsam bagels", " ", false)).toStrictEqual("bb");
+    expect(initialism("bryx-inc", "-", false)).toStrictEqual("bi");
 });
