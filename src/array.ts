@@ -411,7 +411,7 @@ export function toPathedArr<
 
 /**
  * For each index between the given `lower` and `upper` bounds (exclusive upper), call the specified function with that index.
- * 
+ *
  * @example
  * ```ts
  * repeat(10, console.log);
@@ -421,14 +421,14 @@ export function toPathedArr<
  * // ...
  * // 9
  * ```
- * 
+ *
  * @example
  * ```ts
  * const arr = [1, 2, 3];
  * repeat(10, 13, (i) => {
  *   arr.push(i);
  * });
- * 
+ *
  * console.log(arr);
  * // [1, 2, 3, 10, 12]
  * ```
@@ -463,6 +463,7 @@ export function repeat(lower: number, upper: number, fn: (i: number) => void) {
 export function permutationsOf(nums: number[]): number[][] {
     const result: number[][] = [[...nums].fill(0)];
 
+    /* eslint-disable-next-line no-constant-condition */
     while (true) {
         let i = nums.length - 1;
 

@@ -27,5 +27,5 @@ test("pipe", () => {
     expect(pipe("joe", len, double, double, double, double, double)).toEqual(96);
 
     // this is a forced bad case to test the `default` branch
-    expect(pipe(...castUnsafe<any, [any]>(["joe", len, double, double, double, double, double, double, double]))).toEqual(384);
+    expect(pipe(...castUnsafe<any, [any]>(["joe", len, double, double, undefined, double, double, double]))).toEqual(48);
 });

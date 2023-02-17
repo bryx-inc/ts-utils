@@ -1,4 +1,5 @@
-import { arrFromFactory } from "./array";
+/* eslint-disable @typescript-eslint/ban-types */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 /**
  * Create an "andable"/curried predicate from some base type guard predicate. This method returns a function that, when invoked with its own
@@ -39,7 +40,7 @@ export function createCurriedGuardPredicate<T, E extends T>(basePredicate: (v: T
  * Pipes the value of an expression into a pipeline of functions.
  *
  * !> Adapted from the `pipe` implementation in [fp-ts](https://github.com/gcanti/fp-ts)
- * 
+ *
  * @example
  * ```ts
  *
@@ -68,17 +69,7 @@ export function pipe<A, B, C, D, E, F, G>(
     ef: (e: E) => F,
     fg: (f: F) => G,
 ): G;
-export function pipe(
-    a: unknown,
-    ab?: Function,
-    bc?: Function,
-    cd?: Function,
-    de?: Function,
-    ef?: Function,
-    fg?: Function,
-    gh?: Function,
-    hi?: Function,
-): unknown {
+export function pipe(a: unknown, ab?: Function, bc?: Function, cd?: Function, de?: Function, ef?: Function, fg?: Function): unknown {
     switch (arguments.length) {
         case 1:
             return a;
@@ -95,10 +86,10 @@ export function pipe(
         case 7:
             return fg!(ef!(de!(cd!(bc!(ab!(a))))));
         default: {
-            const args = arguments;
-            return arrFromFactory(arguments.length, (i) => args[i])
-                .slice(1)
-                .reduce((acc, fn) => fn(acc), arguments[0]);
+            return [ab, bc, cd, de, ef, fg].reduce((acc, fn) => {
+                if (!!fn) return fn(acc);
+                return acc;
+            }, a);
         }
     }
 }

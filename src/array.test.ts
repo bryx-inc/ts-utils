@@ -228,14 +228,14 @@ test("to pathed arr", () => {
     ]);
 });
 
-test('repeat', () => {
+test("repeat", () => {
     const fn = jest.fn();
 
     repeat(0, 5, (_) => fn());
     expect(fn).toBeCalledTimes(5);
 });
 
-test('permutations of', () => {
+test("permutations of", () => {
     expect(permutationsOf([2, 3, 2])).toEqual([
         [0, 0, 0],
         [0, 0, 1],
@@ -249,5 +249,5 @@ test('permutations of', () => {
         [1, 1, 1],
         [1, 2, 0],
         [1, 2, 1],
-    ])
-})
+    ]);
+});
