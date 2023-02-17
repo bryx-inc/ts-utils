@@ -1,54 +1,23 @@
+import { SetStateAction, Dispatch, useRef, useEffect, useCallback, useState } from "react";
+
 /**
- * The following hook is the same as @react-hook/debounce
- * https://github.com/jaredLunde/react-hook
+ * @author Adam Green
  */
-import * as React from "react";
-import useLatest from "./useLatest";
+export function useDebounce<T>(initialState: T | (() => T), delay: number): [T, (v: T) => void] {
+    const [value, setValue] = useState(initialState);
+    const timeout = useRef<NodeJS.Timeout>();
 
-export const useDebounceCallback = <CallbackArgs extends never[]>(
-    callback: (...args: CallbackArgs) => void,
-    wait = 100,
-    leading = false,
-): ((...args: CallbackArgs) => void) => {
-    const storedCallback = useLatest(callback);
-    const timeout = React.useRef<ReturnType<typeof setTimeout>>();
-    const deps = [wait, leading, storedCallback];
-    // Cleans up pending timeouts when the deps change
-    React.useEffect(
-        () => () => {
-            timeout.current && clearTimeout(timeout.current);
-            timeout.current = void 0;
-        },
-        deps,
-    );
+    return [
+        value,
+        (v: T) => {
+            if (timeout.current) {
+                clearTimeout(timeout.current);
+                delete timeout.current;
+            }
 
-    return React.useCallback(function () {
-        // eslint-disable-next-line prefer-rest-params
-        const args = arguments;
-        const { current } = timeout;
-        // Calls on leading edge
-        if (current === void 0 && leading) {
             timeout.current = setTimeout(() => {
-                timeout.current = void 0;
-            }, wait);
-            // eslint-disable-next-line prefer-spread
-            return storedCallback.current.apply(null, args as never);
-        }
-        // Clear the timeout every call and start waiting again
-        current && clearTimeout(current);
-        // Waits for `wait` before invoking the callback
-        timeout.current = setTimeout(() => {
-            timeout.current = void 0;
-            storedCallback.current.apply(null, args as never);
-        }, wait);
-    }, deps);
-};
-
-export const useDebounce = <State>(
-    initialState: State | (() => State),
-    wait?: number,
-    leading?: boolean,
-): [State, React.Dispatch<React.SetStateAction<State>>, React.Dispatch<React.SetStateAction<State>>] => {
-    const state = React.useState(initialState);
-    return [state[0], useDebounceCallback(state[1], wait, leading), state[1]];
-};
+                setValue(v);
+            }, delay);
+        },
+    ];
+}
