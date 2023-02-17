@@ -1,4 +1,4 @@
-import { escapeRegex, keyFrom, strAdd, initialism } from "./string";
+import { escapeRegex, keyFrom, strAdd, initialism, sliceStrTo } from "./string";
 
 test("Result.strAdd", () => {
     const res = strAdd(["1", "2", "3", "4", "5"]);
@@ -42,4 +42,10 @@ test("initialism", () => {
     expect(initialism("")).toStrictEqual("");
     expect(initialism("", "", false)).toStrictEqual("");
     expect(initialism("A-", "-", false)).toStrictEqual("A");
+});
+
+test("sliceStrTo", () => {
+    expect(sliceStrTo("apple.banana.orange.kiwi", ".")).toEqual("apple.");
+    expect(sliceStrTo("apple.banana.orange.kiwi", ".", 2)).toEqual("apple.banana.orange.");
+    expect(sliceStrTo("apple.banana.orange.kiwi", ".", 100)).toEqual("apple.banana.orange.kiwi");
 });

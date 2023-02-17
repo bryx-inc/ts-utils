@@ -88,3 +88,21 @@ export function initialism(s: string, separator = " ", capitalize = true) {
         .map((s) => (capitalize ? s.at(0)?.toUpperCase() : s.at(0) ?? ""))
         .join("");
 }
+
+/**
+ * Get a substring of the given string `str` from the origin of the string to the first or nth occurance of the given `to` string
+ *
+ * @example
+ * ```ts
+ * const str = 'apple.banana.orange.kiwi';
+ * sliceStrTo(str, '.'); // 'apple.'
+ * sliceStrTo(str, '.', 2); // 'apple.banana.orange.'
+ * ```
+ */
+export function sliceStrTo(str: string, to: string, nth = 0): string {
+    const sliced = str.slice(0, str.indexOf(to) + to.length);
+
+    if (sliced == "") return str; // no match
+    if (nth == 0) return sliced;
+    else return sliced + sliceStrTo(str.slice(sliced.length), to, nth - 1);
+}
