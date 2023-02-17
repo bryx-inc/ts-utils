@@ -37,4 +37,9 @@ test("initialism", () => {
     expect(initialism("joe_schmoe", "_")).toStrictEqual("JS");
     expect(initialism("balsam bagels", " ", false)).toStrictEqual("bb");
     expect(initialism("bryx-inc", "-", false)).toStrictEqual("bi");
+    expect(initialism("A")).toStrictEqual("A");
+    expect(initialism("A", "", false)).toStrictEqual("A");
+    expect(initialism("")).toStrictEqual("");
+    expect(initialism("", "", false)).toStrictEqual("");
+    expect(initialism("A-", "-", false)).toStrictEqual("A");
 });

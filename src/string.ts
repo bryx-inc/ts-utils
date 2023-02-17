@@ -79,6 +79,8 @@ export function escapeRegex(s: string): string {
  * @param separator Delimiter separating tokens in `s`; by default, a space (`' '`)
  * @param capitalize Whether to capitalize the letters or leave as is; by default, `true`
  * @returns The initialism of `s`
+ *
+ * @author Adam Green
  */
 export function initialism(s: string, separator = " ", capitalize = true) {
     return s
