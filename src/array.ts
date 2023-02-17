@@ -1,4 +1,5 @@
-import { Maybe, intoMaybe } from "./maybe";
+import { pipe } from "./function";
+import { Maybe, intoMaybe, unwrapMaybe } from "./maybe";
 import { dropKeys, getObjKeys, getPropertyUnsafe } from "./object";
 import { Result } from "./result";
 
@@ -406,4 +407,78 @@ export function toPathedArr<
         dropKeys<Source, ChildKey[]>({ ...e, name: (opts.basePath?.concat("/") ?? "") + e[opts.pathKey] }, [opts.childKey]),
         ...toPathedArr(e[opts.childKey], { ...opts, basePath: (opts.basePath?.concat(opts.pathDelim) ?? "") + e[opts.pathKey] }),
     ]);
+}
+
+/**
+ * For each index between the given `lower` and `upper` bounds (exclusive upper), call the specified function with that index.
+ * 
+ * @example
+ * ```ts
+ * repeat(10, console.log);
+ * // 0
+ * // 1
+ * // 2
+ * // ...
+ * // 9
+ * ```
+ * 
+ * @example
+ * ```ts
+ * const arr = [1, 2, 3];
+ * repeat(10, 13, (i) => {
+ *   arr.push(i);
+ * });
+ * 
+ * console.log(arr);
+ * // [1, 2, 3, 10, 12]
+ * ```
+ */
+export function repeat(lower: number, upper: number, fn: (i: number) => void) {
+    if (lower == upper) return;
+
+    fn(lower);
+    repeat(lower + 1, upper, fn);
+}
+
+/**
+ * Generates all possible permutations of a sequence of numbers with the specified lengths for each position.
+ *
+ * @example
+ * console.log(permurationsOf([2, 3, 2]));
+ * // [
+ * //   [0, 0, 0],
+ * //   [0, 0, 1],
+ * //   [0, 1, 0],
+ * //   [0, 1, 1],
+ * //   [0, 2, 0],
+ * //   [0, 2, 1],
+ * //   [1, 0, 0],
+ * //   [1, 0, 1],
+ * //   [1, 1, 0],
+ * //   [1, 1, 1],
+ * //   [1, 2, 0],
+ * //   [1, 2, 1],
+ * // ];
+ */
+export function permutationsOf(nums: number[]): number[][] {
+    const result: number[][] = [[...nums].fill(0)];
+
+    while (true) {
+        let i = nums.length - 1;
+
+        while (i >= 0 && result[result.length - 1][i] == nums[i] - 1) i--;
+
+        if (i < 0) break;
+
+        const newPermutation = pipe(result, lastElem, unwrapMaybe, cloneArr);
+        newPermutation[i]++;
+
+        repeat(i + 1, nums.length, (j) => {
+            newPermutation[j] = 0;
+        });
+
+        result.push(newPermutation);
+    }
+
+    return result;
 }

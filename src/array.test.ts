@@ -10,6 +10,8 @@ import {
     lastElem,
     moveToIdx,
     objectifyArr,
+    permutationsOf,
+    repeat,
     replaceAt,
     selectKeys,
     sliceAround,
@@ -225,3 +227,27 @@ test("to pathed arr", () => {
         { name: "gus/ian/lucy/lonnie", age: 2 },
     ]);
 });
+
+test('repeat', () => {
+    const fn = jest.fn();
+
+    repeat(0, 5, (_) => fn());
+    expect(fn).toBeCalledTimes(5);
+});
+
+test('permutations of', () => {
+    expect(permutationsOf([2, 3, 2])).toEqual([
+        [0, 0, 0],
+        [0, 0, 1],
+        [0, 1, 0],
+        [0, 1, 1],
+        [0, 2, 0],
+        [0, 2, 1],
+        [1, 0, 0],
+        [1, 0, 1],
+        [1, 1, 0],
+        [1, 1, 1],
+        [1, 2, 0],
+        [1, 2, 1],
+    ])
+})
