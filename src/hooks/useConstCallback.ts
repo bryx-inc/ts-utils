@@ -16,7 +16,12 @@ import { useRef, useCallback } from "react";
  * @author Mary Strodl
  * @category Hook
  */
-export function useConstCallback<T extends (...args: unknown[]) => unknown>(cb: T): T {
+export function useConstCallback<
+    T extends (
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ...args: any[]
+    ) => unknown,
+>(cb: T): T {
     const cbRef = useRef<T>(cb);
     cbRef.current = cb;
 
