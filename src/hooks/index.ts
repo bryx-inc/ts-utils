@@ -5,3 +5,4 @@ export * from "./useDefer";
 export * from "./useIndex";
 export * from "./useConstCallback";
 export * from "./useDebounce";
+export * from "./useWaitFor";
