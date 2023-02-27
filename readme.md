@@ -42,6 +42,11 @@ $ git branch
 * main
 ```
 
+Make sure you've set a Gitlab access token in your yarn config
+```
+$ yarn config set _authToken <access_token>
+```
+
 then, to roll out a patch/minor/major release
 
 ```
