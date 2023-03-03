@@ -1,4 +1,4 @@
-import { expectMaybe, FormalMaybe, intoMaybe, isNone, isSome, matchMaybe, Maybe, unwrapMaybe, withSome } from "./maybe";
+import { expectMaybe, FormalMaybe, intoMaybe, isNone, isSome, matchMaybe, Maybe, unwrapMaybe, unwrapOrUndef, withSome } from "./maybe";
 
 const emptyMaybe: Maybe<string> = null;
 const filledMaybe: Maybe<string> = "foo";
@@ -42,6 +42,11 @@ test("expect maybe", () => {
 test("unwrap maybe", () => {
     expect(unwrapMaybe(filledMaybe)).toEqual("foo");
     expect(() => unwrapMaybe(emptyMaybe)).toThrow("attempted to unwrap a null value!");
+});
+
+test("unwrap or undef", () => {
+    expect(unwrapOrUndef(filledMaybe)).toEqual("foo");
+    expect(unwrapOrUndef(emptyMaybe)).toStrictEqual(undefined);
 });
 
 test("expect maybe", () => {
@@ -99,6 +104,11 @@ test("formal maybe is some and", () => {
 test("formal maybe unwrap", () => {
     expect(FormalMaybe.from(filledMaybe).unwrap()).toEqual("foo");
     expect(() => FormalMaybe.from(emptyMaybe).unwrap()).toThrow("Failed to unwrap!");
+});
+
+test("formal maybe or undefined", () => {
+    expect(FormalMaybe.from(filledMaybe).unwrapOrUndef()).toEqual("foo");
+    expect(FormalMaybe.from(emptyMaybe).unwrapOrUndef()).toStrictEqual(undefined);
 });
 
 test("formal maybe unwrap or", () => {

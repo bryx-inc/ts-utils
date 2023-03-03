@@ -84,6 +84,23 @@ export function unwrapMaybe<T>(v: Maybe<T>) {
     return expectMaybe(v, "attempted to unwrap a null value!");
 }
 
+/**
+ * Converts a value from `Maybe<T>` to `T | undefined`.
+ *
+ * ?> Typically, this is useful for passing a `Maybe<T>` to an optional function parameter.
+ *
+ * @example
+ * ```ts
+ * function doSomething(arg?: string) { ... }
+ * const maybeStr: Maybe<string> = ...;
+ *
+ * doSomething(unwrapOrUndef(maybeStr));
+ * ```
+ */
+export function unwrapOrUndef<T>(v: Maybe<T>) {
+    return v ?? undefined;
+}
+
 export function withSome<T, E>(v: Maybe<T>, fn: (v: T) => E): Maybe<E> {
     if (isSome(v)) return fn(v);
     else return null;
@@ -308,6 +325,23 @@ export class FormalMaybe<T> {
      */
     unwrapOrElse(fn: () => T) {
         return this.v ?? fn();
+    }
+
+    /**
+     * Returns the inner non-null value, or returns `undefined`.
+     *
+     * ?> Typically, this is useful for passing the inner value to an optional function parameter.
+     *
+     * @example
+     * ```ts
+     * function doSomething(arg?: string) { ... }
+     * const maybeStr: FormalMaybe<string> = ...;
+     *
+     * doSomething(maybeStr.unwrapOrUndef());
+     * ```
+     */
+    unwrapOrUndef(): T | undefined {
+        return this.v ?? undefined;
     }
 
     /**
