@@ -1,7 +1,7 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 
 /**
- * Fires the given `thunk` a single time once all the given preconditions are `true`.
+ * Fires the given `fn` a single time once all the given preconditions are `true`.
  *
  * @example
  * ```tsx
@@ -20,14 +20,14 @@ import { useRef, useEffect } from "react";
  * @category Hook
  * ```
  */
-export function useWaitFor<T extends () => unknown>(thunk: T, ...preconditions: boolean[]) {
-    const done = useRef(false);
+export function useWaitFor<T extends () => unknown>(fn: T, ...preconditions: boolean[]) {
+    const [done, setDone] = useState(false);
 
     useEffect(() => {
-        if (done.current) return;
+        if (done) return;
         if (preconditions.some((v) => !v)) return;
 
-        thunk();
-        done.current = true;
+        fn();
+        setDone(true);
     }, preconditions);
 }
