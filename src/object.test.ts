@@ -9,6 +9,7 @@ import {
     objectIsEmpty,
     recordify,
     selectObjectKeys,
+    mapKeys,
 } from "./object";
 
 function assertNoSideEffects<T extends object, E extends object>(o1: T, o2: E) {
@@ -186,4 +187,10 @@ test("cast unsafe", () => {
     ];
 
     expect(castUnsafe(people)).toBe(people);
+});
+
+test("map keys", () => {
+    const obj = { a: 1, b: 2, c: 3 };
+    const result = mapKeys(obj, (key) => key.toUpperCase());
+    expect(result).toEqual(["A", "B", "C"]);
 });

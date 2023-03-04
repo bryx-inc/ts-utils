@@ -224,3 +224,25 @@ export function getPropertyUnsafe<T extends object, E, K extends string>(v: T, k
 export function castUnsafe<T, E>(v: T): E {
     return v as unknown as E;
 }
+
+/**
+ * Applies the given function `fn` to each key in the object `obj` and returns an array of the resulting values.
+ *
+ * @example
+ * ```ts
+ * const obj = { a: 1, b: 2, c: 3 };
+ * const result = mapKeys(obj, (key) => key.toUpperCase());
+ * // result is ['A', 'B', 'C']
+ * ```
+ *
+ * @typeparam T - The type of the input object `obj`
+ * @typeparam U - The type of the output array elements
+ * @param obj - The input object
+ * @param fn - A function to apply to each key in the object
+ * @returns An array of the resulting values
+ *
+ * @category Object
+ */
+export function mapKeys<T extends object, U>(obj: T, fn: (k: keyof T) => U): U[] {
+    return getObjKeys(obj).map(fn);
+}
