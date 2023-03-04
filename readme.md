@@ -2,22 +2,21 @@
 This library serves as a shared collection of common typescript utility methods.
 
 ## Installation
-If you have not already, set up scoping `bryx911` to the bryx gitlab instance.
+If you have not already, set up scoping `bryxinc` to the bryx gitlab instance.
 
 ```
-$ echo @bryx911:registry=https://gitlab.bryx.com/api/v4/packages/npm/ >> .npmrc
+$ echo @bryxinc:registry=https://gitlab.com/api/v4/packages/npm/ >> .npmrc
 ```
 
 Additionally, if you have not already, make sure you have correctly configured your gitlab access token.
 
 ```
-$ npm config set -- '//gitlab.bryx.com/api/v4/packages/npm/:_authToken' "<your_token>"
-$ npm config set -- '//gitlab.bryx.com/api/v4/projects/353/packages/npm/:_authToken=' "<your_token>"
+$ npm config set -- '//gitlab.com/api/v4/packages/npm/:_authToken' "<your_token>"
 ```
 
 Then, install the package.
 ```
-$ yarn add @bryx911/ts-utils
+$ yarn add @bryxinc/ts-utils
 ```
 
 ## Documentation
@@ -33,7 +32,7 @@ The most up-to-date documentation is hosted at [https://bryx911.pages.bryx.com/t
 
 ## Deployments
 
-`bryx911/ts-utils` follows semantic versioning. Changes should be submitted via a [merge request](https://gitlab.bryx.com/bryx911/ts-utils/-/merge_requests/new) and, once merged, a new package should be rolled out.
+`bryxinc/ts-utils` follows semantic versioning. Changes should be submitted via a [merge request](https://gitlab.bryx.com/bryx911/ts-utils/-/merge_requests/new) and, once merged, a new package should be rolled out.
 
 To roll out a new deployment, ensure the working branch is the `main` branch.
 

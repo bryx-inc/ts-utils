@@ -6,7 +6,6 @@ cache: &node_modules
 
 default:
   image: node:16.18.0
-  tags: [k8s]
 
 stages:
   - setup
