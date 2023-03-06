@@ -18,6 +18,7 @@
     "release:major": "gulp release:major"
   },
   "main": "dist/index.js",
+  "sideEffects": false,
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
