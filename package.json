@@ -1,6 +1,6 @@
 {
   "name": "@bryxinc/ts-utils",
-  "version": "1.32.4",
+  "version": "1.32.5",
   "repository": "git@gitlab.com:bryxinc/bryx911/ts-utils.git",
   "author": "Tyler Holewinski <tyler.holewinski@bryx.com>",
   "license": "MIT",
@@ -26,8 +26,12 @@
   },
   "typesVersions": {
     "*": {
-      ".": ["dist/index.d.ts"],
-      "builtins": ["dist/builtins/index.d.ts"]
+      ".": [
+        "dist/index.d.ts"
+      ],
+      "builtins": [
+        "dist/builtins/index.d.ts"
+      ]
     }
   },
   "devDependencies": {
