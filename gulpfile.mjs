@@ -33,6 +33,7 @@ gulp.task("deploy", async () => {
 });
 
 gulp.task("build:lib", async () => {
+    await $`rm -rf dist/`;
     await $`tsc`;
     await $`cp -R src/builtins dist/`
     await $`touch dist/builtins/object.js`;
