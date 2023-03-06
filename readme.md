@@ -12,6 +12,7 @@ Additionally, if you have not already, make sure you have correctly configured y
 
 ```
 $ npm config set -- '//gitlab.com/api/v4/packages/npm/:_authToken' "<your_token>"
+$ npm config set -- '//gitlab.com/api/v4/projects/44033793/packages/npm/:authToken' "<your_token>"
 ```
 
 Then, install the package.
@@ -28,11 +29,11 @@ $ yarn docs
 $ npx serve public/
 ```
 
-The most up-to-date documentation is hosted at [https://bryx911.pages.bryx.com/ts-utils](https://bryx911.pages.bryx.com/ts-utils).
+The most up-to-date documentation is hosted at [https://bryxinc.gitlab.io/common/ts-utils](https://bryxinc.gitlab.io/common/ts-utils).
 
 ## Deployments
 
-`bryxinc/ts-utils` follows semantic versioning. Changes should be submitted via a [merge request](https://gitlab.bryx.com/bryx911/ts-utils/-/merge_requests/new) and, once merged, a new package should be rolled out.
+`bryxinc/ts-utils` follows semantic versioning. Changes should be submitted via a [merge request](https://gitlab.com/bryxinc/common/ts-utils/-/merge_requests/new) and, once merged, a new package should be rolled out.
 
 To roll out a new deployment, ensure the working branch is the `main` branch.
 
@@ -41,17 +42,20 @@ $ git branch
 * main
 ```
 
-Make sure you've set a Gitlab access token in your yarn config
-```
-$ yarn config set _authToken <access_token>
-```
-
 then, to roll out a patch/minor/major release
 
 ```
 $ yarn release:patch
 $ yarn release:minor
 $ yarn release:major
+```
+
+alternativly, with `npm`
+
+```
+$ npm run release:patch
+$ npm run release:minor
+$ npm run release:major
 ```
 
 This bumps the package version, packs and pushes the npm package, and then pushes the committed version bump, as well as a new git tag.
