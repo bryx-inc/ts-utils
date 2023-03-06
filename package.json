@@ -13,12 +13,22 @@
     "format": "gulp check:formatting",
     "clean:docs": "gulp clean:docs",
     "fix:formatting": "gulp fix:formatting",
-    "release:patch": "gulp release:patch",
-    "release:minor": "gulp release:minor",
+    "release:patch": "gulp release:patch", "release:minor": "gulp release:minor",
     "release:major": "gulp release:major"
   },
   "main": "dist/index.js",
   "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    },
+    "./builtins": {
+      "types": "./dist/builtins/index.d.ts"
+    }
+  },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",

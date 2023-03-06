@@ -10,8 +10,6 @@ type FromEntries<T> = T extends [infer Key, any][]
 
 type FromEntriesWithReadOnly<T> = FromEntries<RecursiveWriteable<T>>;
 
-declare global {
-    export interface ObjectConstructor {
-        fromEntries<T>(obj: T): FromEntriesWithReadOnly<T>;
-    }
+export interface ObjectConstructor {
+    fromEntries<T>(obj: T): FromEntriesWithReadOnly<T>;
 }
