@@ -9,3 +9,5 @@ export * from "./object";
 export * from "./result";
 export * from "./string";
 export * from "./errors";
+
+export * from "./builtins";
