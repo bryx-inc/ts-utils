@@ -1,6 +1,6 @@
 {
   "name": "@bryxinc/ts-utils",
-  "version": "1.32.3",
+  "version": "1.32.4",
   "repository": "git@gitlab.com:bryxinc/bryx911/ts-utils.git",
   "author": "Tyler Holewinski <tyler.holewinski@bryx.com>",
   "license": "MIT",
@@ -13,7 +13,8 @@
     "format": "gulp check:formatting",
     "clean:docs": "gulp clean:docs",
     "fix:formatting": "gulp fix:formatting",
-    "release:patch": "gulp release:patch", "release:minor": "gulp release:minor",
+    "release:patch": "gulp release:patch",
+    "release:minor": "gulp release:minor",
     "release:major": "gulp release:major"
   },
   "main": "dist/index.js",
