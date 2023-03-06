@@ -35,6 +35,7 @@ gulp.task("deploy", async () => {
 gulp.task("build:lib", async () => {
     await $`tsc`;
     await $`cp -R src/builtins dist/`
+    await $`touch dist/builtins/index.js`;
 });
 
 gulp.task("check:lint", () => $`eslint .`);

@@ -20,14 +20,14 @@
   "main": "dist/index.js",
   "sideEffects": false,
   "exports": {
-    ".": {
-      "types": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
-      }
-    },
-    "./builtins": {
-      "types": "./dist/builtins/index.d.ts"
+    "./package.json": "./package.json",
+    ".": "./dist/index.js",
+    "./builtins": "./dist/builtins/index.d.js"
+  },
+  "typesVersions": {
+    "*": {
+      ".": ["dist/index.d.ts"],
+      "builtins": ["dist/builtins/index.d.ts"]
     }
   },
   "devDependencies": {
