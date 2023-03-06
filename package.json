@@ -22,15 +22,15 @@
   "exports": {
     "./package.json": "./package.json",
     ".": "./dist/index.js",
-    "./builtins": "./dist/builtins/index.d.js"
+    "./builtins/object": "./dist/builtins/object/index.d.js"
   },
   "typesVersions": {
     "*": {
       ".": [
         "dist/index.d.ts"
       ],
-      "builtins": [
-        "dist/builtins/index.d.ts"
+      "builtins/object": [
+        "dist/builtins/object/index.d.ts"
       ]
     }
   },
