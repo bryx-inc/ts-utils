@@ -32,12 +32,7 @@ gulp.task("deploy", async () => {
     await $`git push origin main`;
 });
 
-gulp.task("build:lib", async () => {
-    await $`rm -rf dist/`;
-    await $`tsc`;
-    await $`cp -R src/builtins dist/`
-    await $`touch dist/builtins/object.js`;
-});
+gulp.task("build:lib", $`tsc`);
 
 gulp.task("check:lint", () => $`eslint .`);
 gulp.task("check:formatting", () => $`prettier -c src/*`);
