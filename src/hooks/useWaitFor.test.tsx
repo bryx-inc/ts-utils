@@ -1,6 +1,5 @@
 import { act, renderHook } from "@testing-library/react";
 import { useState } from "react";
-import { useIndex } from "./useIndex";
 import { useWaitFor } from "./useWaitFor";
 
 test("useWaitFor", () => {
