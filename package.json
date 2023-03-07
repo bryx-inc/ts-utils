@@ -19,21 +19,6 @@
   },
   "main": "dist/index.js",
   "sideEffects": false,
-  "exports": {
-    "./package.json": "./package.json",
-    ".": "./dist/index.js",
-    "./builtins/object": "./dist/builtins/object.js"
-  },
-  "typesVersions": {
-    "*": {
-      ".": [
-        "dist/index.d.ts"
-      ],
-      "builtins/object": [
-        "dist/builtins/object.d.ts"
-      ]
-    }
-  },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
