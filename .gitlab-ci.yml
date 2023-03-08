@@ -50,6 +50,7 @@ jest:
   coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
 
   artifacts:
+    expire_in: 30 days
     paths: [coverage]
     when: always
     reports:
@@ -71,4 +72,5 @@ pages:
     - mv docs/ public/
   
   artifacts:
+    expire_in: 30 days
     paths: [public]
