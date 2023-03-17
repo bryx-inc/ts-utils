@@ -261,7 +261,7 @@ export function tryToFold<T, E, R>(
         return v != null && typeof v == "object" && getPropertyUnsafe(v, "_bail") == _bail;
     }
 
-    const _next = (acc: E | { _bail: symbol; v: R }, i: number) => {
+    const _next = (acc: E | { _bail: symbol; v: R }, i: number): E | { _bail: symbol; v: R } => {
         if (isBail(acc)) return acc;
         if (i >= arr.length) return acc;
 

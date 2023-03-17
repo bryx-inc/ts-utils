@@ -10,6 +10,7 @@
     "outDir": "dist/",
     "moduleResolution": "node",
     "strictNullChecks": true,
+    "strict": true,
     "downlevelIteration": true,
     "jsx": "react-jsx"
   },
