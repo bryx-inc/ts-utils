@@ -1,5 +1,6 @@
 import { cond } from "./condition";
 import { Maybe } from "./maybe";
+import { DeepKeyOf } from "./types";
 
 /**
  * Construct a object with properties identical to the given base object, without any nullish values.
@@ -207,6 +208,57 @@ export function recordify<T extends object, K extends keyof { [Key in keyof T]-?
  */
 export function getObjKeys<T extends object>(v: T) {
     return Object.keys(v) as (keyof T)[];
+}
+
+/**
+ * Returns the keys of the given object in {@link DeepKeyOf} format.
+ *
+ * @example
+ * ```ts
+ * const joe = {
+ *   firstName: 'Joe',
+ *   lastName: 'Smith',
+ *   address: {
+ *     city: 'Somewhereville',
+ *     state: "NY"
+ *   },
+ *   hobbies: [{
+ *     name: "Golfing"
+ *     equipment: ["Clubs", "Membership", "Golf Balls"]
+ *   }]
+ * }
+ * console.log(getDeepKeyOf(person))
+ * DeepKeyOf<Person>;
+ * // ^? 'firstName' | 'lastName' | 'address' | 'address.city' | 'address.state' | 'hobbies' | 'hobbies.name' | 'hobbies.equipment'
+ * ````
+ */
+export function getDeepObjKeys<T extends object>(o: T): DeepKeyOf<T>[] {
+    function _next<T extends object>(o: T, prefix: string): DeepKeyOf<T>[] {
+        if (getObjKeys(o).length == 0) return [];
+
+        return Object.keys(o).flatMap((k) => {
+            const v = o[k as keyof T];
+
+            if (Array.isArray(v) && v.some((el) => typeof el == "object")) {
+                v.reduce((last, cur) => {
+                    if (JSON.stringify(getObjKeys(last)) != JSON.stringify(getObjKeys(cur)))
+                        throw new Error(
+                            `Tried to call getDeepObjKeys with an array subobject that does not have a well-defined structure: ${getObjKeys(
+                                last,
+                            )} != ${getObjKeys(cur)}`,
+                        );
+                    return cur;
+                });
+
+                return [prefix + k, ..._next(v[0], k + ".").map((k) => prefix + k)];
+            }
+
+            if (typeof v == "object" && !Array.isArray(v)) return [prefix + k, ..._next(v as object, k + ".").map((k) => k + prefix)];
+            return prefix + k;
+        }) as DeepKeyOf<T>[];
+    }
+
+    return _next(o, "");
 }
 
 /**

@@ -11,6 +11,7 @@ import {
     selectObjectKeys,
     mapKeys,
     pickKeys,
+    getDeepObjKeys,
 } from "./object";
 
 function assertNoSideEffects<T extends object, E extends object>(o1: T, o2: E) {
@@ -178,6 +179,45 @@ test("get obj keys", () => {
 
     expect(keys).toEqual(["first", "last", "age", "state"]);
     assertNoSideEffects(obj, keys);
+});
+
+test("get deep obj keys", () => {
+    const joe = {
+        firstName: "Joe",
+        lastName: "Smith",
+        address: {
+            city: "Somewhereville",
+            state: "NY",
+        },
+        hobbies: [
+            {
+                name: "Golfing",
+                equipment: ["Clubs", "Membership", "Golf Balls"],
+            },
+            {
+                name: "Painting",
+                equipment: ["Paint Brush"],
+            },
+        ],
+        emptyKey: {},
+    };
+
+    const keys = getDeepObjKeys(joe);
+    expect(keys).toEqual([
+        "firstName",
+        "lastName",
+        "address",
+        "address.city",
+        "address.state",
+        "hobbies",
+        "hobbies.name",
+        "hobbies.equipment",
+        "emptyKey",
+    ]);
+
+    expect(() => getDeepObjKeys({ parent: [{ a: "a" }, { b: "b" }] })).toThrow(
+        "Tried to call getDeepObjKeys with an array subobject that does not have a well-defined structure: a != b",
+    );
 });
 
 test("get property unsafe", () => {
