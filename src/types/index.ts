@@ -4,3 +4,6 @@ export * from "./withRequiredKeys";
 export * from "./recursivePartial";
 export * from "./narrow";
 export * from "./recursiveWritable";
+export * from "./intersectUnion";
+export * from "./deepKeyOf";
+export * from "./deepPick";
