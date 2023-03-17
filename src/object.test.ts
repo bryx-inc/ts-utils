@@ -10,6 +10,7 @@ import {
     recordify,
     selectObjectKeys,
     mapKeys,
+    pickKeys,
 } from "./object";
 
 function assertNoSideEffects<T extends object, E extends object>(o1: T, o2: E) {
@@ -44,6 +45,18 @@ test("drop keys", () => {
         last: "Smith",
     });
     assertNoSideEffects(obj, newObj);
+});
+
+test("pick keys", () => {
+    const person = {
+        first: "John",
+        last: "Smith",
+        age: 23,
+        state: "NY",
+    };
+
+    const newObj = pickKeys(person, ["first", "last"]);
+    expect(newObj).toEqual({ first: "John", last: "Smith" });
 });
 
 test("select keys", () => {

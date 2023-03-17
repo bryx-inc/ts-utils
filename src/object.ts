@@ -59,6 +59,33 @@ export function dropKeys<T extends object, K extends (keyof T)[]>(from: T, keys:
     return o as Exclude<T, K[number]>;
 }
 
+/**
+ * Creates a new object from the given object only with the specified fields from the base object
+ *
+ * @example
+ * ```ts
+ * const person = {
+ *  first: "John",
+ *  last: "Smith",
+ *  age: 23,
+ *  state: "NY"
+ * }
+ *
+ * const newObj = pickKeys(person, ['first', 'last']);
+ * console.log(newObj); // { "first": "John", "last": "Smith" }
+ * console.log(person); // { "first": "John", "last": "Smith", "age": 23, "state": "NY" }
+ * ```
+ *
+ * @category Object
+ */
+export function pickKeys<T extends object, K extends (keyof T)[]>(from: T, keys: K): Pick<T, K[number]> {
+    return Object.fromEntries(
+        getObjKeys(from)
+            .filter((k) => keys.includes(k))
+            .map((k) => [k, from[k]]),
+    ) as Pick<T, K[number]>;
+}
+
 export function selectObjectKeys<T extends object, K extends (keyof T)[]>(from: T, keys: K) {
     const o = new Object() as Pick<T, K[number]>;
     for (const k of keys) o[k] = from[k];
