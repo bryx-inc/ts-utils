@@ -37,13 +37,13 @@ export type DeepPick<TBase extends object, TKeys extends DeepKeyOf<TBase>> = Int
                 ? TBase[KHead] extends object[]
                     ? KTail extends DeepKeyOf<TBase[KHead][number]>
                         ? { [_ in KHead]: DeepPick<TBase[KHead][number], KTail>[] }
-                        : "error: KTail extends QueryKeys<TBase[KHead][number]> failed!"
+                        : "error: KTail extends DeepPick<TBase[KHead][number]> failed!"
                     : TBase[KHead] extends object
                     ? KTail extends DeepKeyOf<TBase[KHead]>
                         ? { [_ in KHead]: DeepPick<TBase[KHead], KTail> }
-                        : "error: KTail extends QueryKeys<TBase[KHead]> failed!"
+                        : "error: KTail extends DeepPick<TBase[KHead]> failed!"
                     : "error: TBase[KHead] extends object failed!"
                 : "error: KHead extends keyof TBase failed!"
-            : { [_ in K]: K extends keyof TBase ? TBase[K] : `never5` };
+            : { [_ in K]: K extends keyof TBase ? TBase[K] : `error: K doesn't match _._, but also doesn't extend keyof TBase!` };
     }[TKeys]
 >;
