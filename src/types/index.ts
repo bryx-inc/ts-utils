@@ -7,3 +7,4 @@ export * from "./recursiveWritable";
 export * from "./intersectUnion";
 export * from "./deepKeyOf";
 export * from "./deepPick";
+export * from "./deepValue";
