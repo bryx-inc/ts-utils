@@ -8,7 +8,7 @@ import { DeepPick } from "./deepPick";
  * @typeParam TKey - The deep key path to resolve.
  *
  * @example
- * ```
+ * ```ts
  * type User = {
  *   id: number,
  *   name: string,
