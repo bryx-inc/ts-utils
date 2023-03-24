@@ -488,3 +488,58 @@ export function castUnsafe<T, E>(v: T): E {
 export function mapKeys<T extends object, U>(obj: T, fn: (k: keyof T) => U): U[] {
     return getObjKeys(obj).map(fn);
 }
+
+/**
+ * Returns the value at the specified {@link DeepKeyOf} the specified object.
+ *
+ * @example
+ * ```ts
+ * const obj = { a: { b: { c: 10 } } };
+ *
+ * getDeepValue(obj, 'a.b.c'); // returns 10
+ * ```
+ *
+ * @example
+ * ```ts
+ * const obj = { a: [{ b: { c: 10 } }, { b: { c: 20 } }] };
+ *
+ * getDeepValue(obj, 'a.b.c'); // returns [10, 20]
+ * ```
+ *
+ * @example
+ * ```ts
+ * const john: Person = {
+ *     firstName: 'John',
+ *     orders: [
+ *         {
+ *             day: 'Monday',
+ *             items: [
+ *                 { name: 'gizmo', price: 5 },
+ *                 { name: 'thing', price: 2 },
+ *             ],
+ *         },
+ *         {
+ *             day: 'Wednesday',
+ *             items: [
+ *                 { name: 'guitar', price: 20 },
+ *             ],
+ *         },
+ *     ],
+ * };
+ *
+ * getDeepValue(john, 'orders.day'); // returns ['Monday', 'Wednesday']
+ * getDeepValue(john, 'orders.items.name'); // returns [['gizmo', 'thing'], ['guitar']]
+ * ```
+ *
+ * @param obj - The object to retrieve the value from.
+ * @param key - The deep key to retrieve the value at.
+ * @returns The value at the specified deep key of the object.
+ */
+export function getDeepValue<TObj extends object, TKey extends DeepKeyOf<TObj>>(obj: TObj, key: TKey): DeepValue<TObj, TKey> {
+    const [kHead, ...kRest] = key.split(".") as [keyof TObj, ...string[]];
+    const cur = obj[kHead];
+
+    if (kRest.length == 0) return cur as DeepValue<TObj, TKey>;
+    else if (Array.isArray(cur)) return cur.map((el) => getDeepValue(el, kRest.join(".") as DeepKeyOf<typeof el>)) as DeepValue<TObj, TKey>;
+    else return getDeepValue(cur as object, kRest.join(".") as DeepKeyOf<object>);
+}

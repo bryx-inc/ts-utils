@@ -14,6 +14,7 @@ import {
     getDeepObjKeys,
     slicePropertyAtDeepKey,
     quickDeepClone,
+    getDeepValue,
 } from "./object";
 
 function assertNoSideEffects<T extends object, E extends object>(o1: T, o2: E) {
@@ -338,4 +339,44 @@ test("map keys", () => {
     const obj = { a: 1, b: 2, c: 3 };
     const result = mapKeys(obj, (key) => key.toUpperCase());
     expect(result).toEqual(["A", "B", "C"]);
+});
+
+test("get deep object", () => {
+    const obj = {
+        firstname: "john",
+        subobj1: {
+            subobj2: {
+                deepValue: 5,
+            },
+        },
+        orders: [
+            {
+                day: "monday",
+                items: [
+                    {
+                        name: "gizmo",
+                        price: 5,
+                    },
+                    {
+                        name: "thing",
+                        price: 2,
+                    },
+                ],
+            },
+            {
+                day: "wednesday",
+                items: [
+                    {
+                        name: "guitar",
+                        price: 20,
+                    },
+                ],
+            },
+        ],
+    };
+
+    expect(getDeepValue(obj, "firstname")).toEqual("john");
+    expect(getDeepValue(obj, "subobj1.subobj2.deepValue")).toEqual(5);
+    expect(getDeepValue(obj, "orders.day")).toEqual(["monday", "wednesday"]);
+    expect(getDeepValue(obj, "orders.items.name")).toEqual([["gizmo", "thing"], ["guitar"]]);
 });
