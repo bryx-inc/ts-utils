@@ -117,6 +117,138 @@ export function pickKeys<T extends object, K extends (keyof T)[]>(from: T, keys:
     ) as Pick<T, K[number]>;
 }
 
+/**
+ * Construct a new object which is a clone of the given `obj` with the specified value replacing the base value at the given deep key (see {@link DeepKeyOf}), without modifying the source object.
+ * 
+ * This method can also work with multiple objects spread across nested subobjects/arrays.
+ * 
+ * !> This method internally uses {@link quickDeepClone}, and is thus subject to all the object limitations therein.
+ * 
+ * ### Examples
+ * 
+ * #### Basic Values
+ * @example
+ * ```ts
+ * slicePropertyAtDeepKey({ name: 'John Doe' }, 'name', 'Jane Doe');
+ * // returns: { name: 'Jane Doe' }
+ * slicePropertyAtDeepKey({ person: { name: 'John Doe' } }, 'person.name', 'Jane Doe');
+ * // returns: { person: { name: 'Jane Doe' } }
+ * ```
+ * 
+ * #### Array Values
+ * @example
+ * ```ts
+ * slicePropertyAtDeepKey({ arr: ["one", "two", "three"] }, "arr", ["four", "five"]);
+ * // returns: { arr: ["four", "five"] }
+ * ```
+ * 
+ * #### Distributed Replacement (1-Dimentional)
+ * It is possible that a single key can target multiple different values within an object. This often happens if the key specifies a subobject within an array.
+ * With this method, we can specify a key for *each* of the expected targets of keys by specifying an array of values to use. The values will be used in the order
+ * of which the subobjects are encountered (top to bottom, outer to inner).
+ * @example
+ * ```ts
+ * const data = {
+ *  people: [
+ *    { name: "Joe", age: 12 },
+ *    { name: "Jane", age: 15 }
+ *  ]
+ * };
+ * 
+ * slicePropertyAtDeepKey(data, 'people.name', ["foo", "bar"]);
+ * // returns: {
+ * //   people: [
+ * //     { name: "foo", age: 12 },
+ * //     { name: "bar", age: 15 }
+ * //   ]
+ * // }
+ * ```
+ * 
+ * #### Advanced Distributed Replacement (N-Dimentional)
+ * This concept of distributed replacement can be scaled to any number of nested dimentions. For each new subobject array encountered,
+ * the method will move one more level deep in the array. A 2D distributed replacement could look like this
+ * @example
+ * ```ts
+ * const customer = {
+ *   firstname: 'john',
+ *   lastname: 'doe',
+ *   orders: [
+ *     {
+ *       day: 'monday',
+ *       items: [
+ *         {
+ *           name: 'gizmo',
+ *           price: 12
+ *         },
+ *         {
+ *           name: 'gadget',
+ *           price: 15
+ *         }
+ *       ]
+ *     },
+ *     {
+ *       day: 'wednesday',
+ *       items: [
+ *         {
+ *           name: 'tickets',
+ *           price: 20 
+ *         },
+ *       ]
+ *     }
+ *   ]
+ * }
+ * 
+ * slicePropertAtDeepKey(customer, 'orders.items.name', [["foo", "bar", "foobar"]]);
+ * // returns: {
+ * //   firstname: 'john',
+ * //   lastname: 'doe',
+ * //   orders: [
+ * //     {
+ * //       day: 'monday',
+ * //       items: [
+ * //         {
+ * //           name: 'foo',
+ * //           price: 12
+ * //         },
+ * //         {
+ * //           name: 'bar',
+ * //           price: 15
+ * //         }
+ * //       ]
+ * //     },
+ * //     {
+ * //       day: 'wednesday',
+ * //       items: [
+ * //         {
+ * //           name: 'foobar',
+ * //           price: 20 
+ * //         },
+ * //       ]
+ * //     }
+ * //   ]
+ * // }
+ * ```
+ * 
+ * @param obj The base object to use
+ * @param key The specified {@link DeepKeyOf} of the base object
+ * @param value The value to use at the specified `key`
+ * @returns The new object
+ */
+export function slicePropertyAtDeepKey<TObj extends object, K extends DeepKeyOf<TObj>>(obj: TObj, key: K, value: DeepValue<TObj, K>): TObj {
+    const _mutateObj = (obj: any, key: string, value: any): void => {
+        const [kHead, ...kRest] = key.split(".");
+
+        if (Array.isArray(obj)) obj.forEach((member, i) => _mutateObj(member, key, value[i]));
+        else if (kRest.length == 0) obj[kHead] = value;
+        else _mutateObj(obj[kHead], kRest.join("."), value);
+    };
+
+    const clonedObj = quickDeepClone(obj);
+    _mutateObj(clonedObj, key, value);
+
+    return clonedObj;
+}
+
 export function selectObjectKeys<T extends object, K extends (keyof T)[]>(from: T, keys: K) {
     const o = new Object() as Pick<T, K[number]>;
     for (const k of keys) o[k] = from[k];

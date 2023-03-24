@@ -12,6 +12,7 @@ import {
     mapKeys,
     pickKeys,
     getDeepObjKeys,
+    slicePropertyAtDeepKey,
     quickDeepClone,
 } from "./object";
 
@@ -230,6 +231,87 @@ test("quick deep clone", () => {
     expect(clone.extraInfo).not.toBe(gizmo.extraInfo);
     expect(clone.extraInfo.tags).not.toBe(gizmo.extraInfo.tags);
 });
+
+test("slice property at deep key", () => {
+    const obj = {
+        firstname: "john",
+        lastname: "doe",
+        orders: [
+            {
+                day: "monday",
+                items: [
+                    {
+                        name: "gizmo",
+                        price: 5,
+                    },
+                    {
+                        name: "thigy",
+                        price: 2,
+                    },
+                ],
+            },
+            {
+                day: "wednesday",
+                items: [
+                    {
+                        name: "guitar",
+                        price: 20,
+                    },
+                ],
+            },
+        ],
+    };
+
+    expect(slicePropertyAtDeepKey({ v: "foo" }, "v", "bar")).toEqual({ v: "bar" });
+    expect(slicePropertyAtDeepKey({ arr: ["one", "two", "three"] }, "arr", ["four", "five"])).toEqual({ arr: ["four", "five"] });
+    expect(
+        slicePropertyAtDeepKey(
+            {
+                people: [
+                    { name: "joe", age: 12 },
+                    { name: "jane", age: 15 },
+                ],
+            },
+            "people.name",
+            ["foo", "bar"],
+        ),
+    ).toEqual({
+        people: [
+            { name: "foo", age: 12 },
+            { name: "bar", age: 15 },
+        ],
+    });
+
+    expect(slicePropertyAtDeepKey(obj, "orders.items.name", [["one", "two"], ["three"]])).toEqual({
+        firstname: "john",
+        lastname: "doe",
+        orders: [
+            {
+                day: "monday",
+                items: [
+                    {
+                        name: "one",
+                        price: 5,
+                    },
+                    {
+                        name: "two",
+                        price: 2,
+                    },
+                ],
+            },
+            {
+                day: "wednesday",
+                items: [
+                    {
+                        name: "three",
+                        price: 20,
+                    },
+                ],
+            },
+        ],
+    });
+});
+
 test("get property unsafe", () => {
     const obj = {
         name: "John Smith",
