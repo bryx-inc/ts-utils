@@ -37,27 +37,27 @@ export function dropNullValues<T extends object>(obj: T) {
 
 /**
  * Performs a deep clone of an object via the JSON serialize/deserialize method.
- * 
+ *
  * !> This method *will not work* for objects that have values of `Date`, `undefined`, or `Infinity`s
- * 
+ *
  * @example
  * ```ts
  * const gizmo = { name: 'gizmo', extraInfo: { tags: ['tag1', 'tag2'] } } }
- * 
+ *
  * // with quickDeepClone
  * const deepClone = quickDeepClone(gizmo);
  * shallowClone == gizmo; // false
  * shallowClone.name == gizmo.name; // false
  * shallowClone.extraInfo.tags == gizmo.extraInfo.tags; // false
- * 
+ *
  * // with shallow clone
  * const shallowClone = { ...gizmo };
  * shallowClone == gizmo; // false
  * shallowClone.name == gizmo.name; // false
  * shallowClone.extraInfo.tags == gizmo.extraInfo.tags; // true
  * ```
- * 
- * 
+ *
+ *
  * @param o The object to clone
  * @returns The deep clone
  */
@@ -119,13 +119,13 @@ export function pickKeys<T extends object, K extends (keyof T)[]>(from: T, keys:
 
 /**
  * Construct a new object which is a clone of the given `obj` with the specified value replacing the base value at the given deep key (see {@link DeepKeyOf}), without modifying the source object.
- * 
+ *
  * This method can also work with multiple objects spread across nested subobjects/arrays.
- * 
+ *
  * !> This method internally uses {@link quickDeepClone}, and is thus subject to all the object limitations therein.
- * 
+ *
  * ### Examples
- * 
+ *
  * #### Basic Values
  * @example
  * ```ts
@@ -134,14 +134,14 @@ export function pickKeys<T extends object, K extends (keyof T)[]>(from: T, keys:
  * slicePropertyAtDeepKey({ person: { name: 'John Doe' } }, 'person.name', 'Jane Doe');
  * // returns: { person: { name: 'Jane Doe' } }
  * ```
- * 
+ *
  * #### Array Values
  * @example
  * ```ts
  * slicePropertyAtDeepKey({ arr: ["one", "two", "three"] }, "arr", ["four", "five"]);
  * // returns: { arr: ["four", "five"] }
  * ```
- * 
+ *
  * #### Distributed Replacement (1-Dimentional)
  * It is possible that a single key can target multiple different values within an object. This often happens if the key specifies a subobject within an array.
  * With this method, we can specify a key for *each* of the expected targets of keys by specifying an array of values to use. The values will be used in the order
@@ -154,7 +154,7 @@ export function pickKeys<T extends object, K extends (keyof T)[]>(from: T, keys:
  *    { name: "Jane", age: 15 }
  *  ]
  * };
- * 
+ *
  * slicePropertyAtDeepKey(data, 'people.name', ["foo", "bar"]);
  * // returns: {
  * //   people: [
@@ -163,7 +163,7 @@ export function pickKeys<T extends object, K extends (keyof T)[]>(from: T, keys:
  * //   ]
  * // }
  * ```
- * 
+ *
  * #### Advanced Distributed Replacement (N-Dimentional)
  * This concept of distributed replacement can be scaled to any number of nested dimentions. For each new subobject array encountered,
  * the method will move one more level deep in the array. A 2D distributed replacement could look like this
@@ -191,13 +191,13 @@ export function pickKeys<T extends object, K extends (keyof T)[]>(from: T, keys:
  *       items: [
  *         {
  *           name: 'tickets',
- *           price: 20 
+ *           price: 20
  *         },
  *       ]
  *     }
  *   ]
  * }
- * 
+ *
  * slicePropertAtDeepKey(customer, 'orders.items.name', [["foo", "bar", "foobar"]]);
  * // returns: {
  * //   firstname: 'john',
@@ -221,20 +221,21 @@ export function pickKeys<T extends object, K extends (keyof T)[]>(from: T, keys:
  * //       items: [
  * //         {
  * //           name: 'foobar',
- * //           price: 20 
+ * //           price: 20
  * //         },
  * //       ]
  * //     }
  * //   ]
  * // }
  * ```
- * 
+ *
  * @param obj The base object to use
  * @param key The specified {@link DeepKeyOf} of the base object
  * @param value The value to use at the specified `key`
  * @returns The new object
  */
 export function slicePropertyAtDeepKey<TObj extends object, K extends DeepKeyOf<TObj>>(obj: TObj, key: K, value: DeepValue<TObj, K>): TObj {
+    /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
     const _mutateObj = (obj: any, key: string, value: any): void => {
         const [kHead, ...kRest] = key.split(".");
 
