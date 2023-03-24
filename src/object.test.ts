@@ -12,6 +12,7 @@ import {
     mapKeys,
     pickKeys,
     getDeepObjKeys,
+    quickDeepClone,
 } from "./object";
 
 function assertNoSideEffects<T extends object, E extends object>(o1: T, o2: E) {
@@ -220,6 +221,15 @@ test("get deep obj keys", () => {
     );
 });
 
+test("quick deep clone", () => {
+    const gizmo = { name: "gizmo", extraInfo: { tags: ["tag1", "tag2"] } };
+
+    const clone = quickDeepClone(gizmo);
+    expect(clone).toEqual(gizmo);
+    expect(clone).not.toBe(gizmo);
+    expect(clone.extraInfo).not.toBe(gizmo.extraInfo);
+    expect(clone.extraInfo.tags).not.toBe(gizmo.extraInfo.tags);
+});
 test("get property unsafe", () => {
     const obj = {
         name: "John Smith",

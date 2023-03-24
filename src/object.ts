@@ -1,6 +1,6 @@
 import { cond } from "./condition";
 import { Maybe } from "./maybe";
-import { DeepKeyOf } from "./types";
+import { DeepKeyOf, DeepValue } from "./types";
 
 /**
  * Construct a object with properties identical to the given base object, without any nullish values.
@@ -33,6 +33,36 @@ export function dropNullValues<T extends object>(obj: T) {
         if (typeof obj[cur as keyof T] != "undefined" && obj[cur as keyof T] !== null) acc[cur] = obj[cur as keyof T] as PermittedValue;
         return acc;
     }, {} as { [k: string]: PermittedValue });
+}
+
+/**
+ * Performs a deep clone of an object via the JSON serialize/deserialize method.
+ * 
+ * !> This method *will not work* for objects that have values of `Date`, `undefined`, or `Infinity`s
+ * 
+ * @example
+ * ```ts
+ * const gizmo = { name: 'gizmo', extraInfo: { tags: ['tag1', 'tag2'] } } }
+ * 
+ * // with quickDeepClone
+ * const deepClone = quickDeepClone(gizmo);
+ * shallowClone == gizmo; // false
+ * shallowClone.name == gizmo.name; // false
+ * shallowClone.extraInfo.tags == gizmo.extraInfo.tags; // false
+ * 
+ * // with shallow clone
+ * const shallowClone = { ...gizmo };
+ * shallowClone == gizmo; // false
+ * shallowClone.name == gizmo.name; // false
+ * shallowClone.extraInfo.tags == gizmo.extraInfo.tags; // true
+ * ```
+ * 
+ * 
+ * @param o The object to clone
+ * @returns The deep clone
+ */
+export function quickDeepClone<T extends object>(o: T): T {
+    return JSON.parse(JSON.stringify(o)) as T;
 }
 
 /**
