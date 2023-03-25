@@ -539,6 +539,7 @@ export function getDeepValue<TObj extends object, TKey extends DeepKeyOf<TObj>>(
     const [kHead, ...kRest] = key.split(".") as [keyof TObj, ...string[]];
     const cur = obj[kHead];
 
+    if (cur === undefined) return cur as DeepValue<TObj, TKey>;
     if (kRest.length == 0) return cur as DeepValue<TObj, TKey>;
     else if (Array.isArray(cur)) return cur.map((el) => getDeepValue(el, kRest.join(".") as DeepKeyOf<typeof el>)) as DeepValue<TObj, TKey>;
     else return getDeepValue(cur as object, kRest.join(".") as DeepKeyOf<object>);

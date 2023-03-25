@@ -375,6 +375,9 @@ test("get deep object", () => {
         ],
     };
 
+    type DeepObjectWithUndef = { a: { b?: { c: string } } };
+    const deepObjWithUndef: DeepObjectWithUndef = { a: {} };
+    expect(getDeepValue(deepObjWithUndef, "a.b.c")).toBeUndefined();
     expect(getDeepValue(obj, "firstname")).toEqual("john");
     expect(getDeepValue(obj, "subobj1.subobj2.deepValue")).toEqual(5);
     expect(getDeepValue(obj, "orders.day")).toEqual(["monday", "wednesday"]);
