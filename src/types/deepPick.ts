@@ -42,6 +42,10 @@ export type DeepPick<TBase extends object, TKeys extends DeepKeyOf<TBase>> = Int
                     ? KTail extends DeepKeyOf<InferredInner>
                         ? { [_ in KHead]: DeepPick<InferredInner, KTail> }
                         : "error: KTail extends DeepPick<TBase[KHead]> failed!"
+                    : TBase[KHead] extends (infer InferredNonNullishInnerObject extends object)[] | undefined /* prettier-ignore */ // *1
+                    ? KTail extends DeepKeyOf<InferredNonNullishInnerObject>
+                        ? { [_ in KHead]?: DeepPick<InferredNonNullishInnerObject, KTail>[] }
+                        : "error: KTail extends DeepKeyOf<InferredNOnNullishInnerObject> failed!"
                     : TBase[KHead] extends (infer InferredNonNullishInnerObject extends object) | undefined /* prettier-ignore */ // *1
                     ? KTail extends DeepKeyOf<InferredNonNullishInnerObject>
                         ? { [_ in KHead]?: DeepPick<InferredNonNullishInnerObject, KTail> }
