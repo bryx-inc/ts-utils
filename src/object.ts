@@ -142,6 +142,19 @@ export function pickKeys<T extends object, K extends (keyof T)[]>(from: T, keys:
  * // returns: { arr: ["four", "five"] }
  * ```
  *
+ * #### Undefined Direct Parents
+ * It may be possible to specify a valid deep key which does not resolve to a value that has a parent. For example
+ * @example
+ * ```ts
+ * type Thing = { a: { b?: { c: string } } };
+ * const thing: Thing = { a: { } };
+ * slicePropertyAtDeepKey(a, 'a.b.c', 'foo');
+ *
+ * // `c` doesn't have a parent to set the key/value `"c" => "foo"` since `b` is optional.
+ * // in this situation, the method will just return the base object.
+ * // returns { a: { } }
+ * ```
+ *
  * #### Distributed Replacement (1-Dimentional)
  * It is possible that a single key can target multiple different values within an object. This often happens if the key specifies a subobject within an array.
  * With this method, we can specify a key for *each* of the expected targets of keys by specifying an array of values to use. The values will be used in the order
@@ -241,7 +254,7 @@ export function slicePropertyAtDeepKey<TObj extends object, K extends DeepKeyOf<
 
         if (Array.isArray(obj)) obj.forEach((member, i) => _mutateObj(member, key, value[i]));
         else if (kRest.length == 0) obj[kHead] = value;
-        else _mutateObj(obj[kHead], kRest.join("."), value);
+        else if (obj[kHead] !== undefined) _mutateObj(obj[kHead], kRest.join("."), value);
     };
 
     const clonedObj = quickDeepClone(obj);

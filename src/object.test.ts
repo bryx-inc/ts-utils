@@ -16,6 +16,7 @@ import {
     quickDeepClone,
     getDeepValue,
 } from "./object";
+import { DeepKeyOf, DeepValue } from "./types";
 
 function assertNoSideEffects<T extends object, E extends object>(o1: T, o2: E) {
     expect(o1).not.toEqual(o2);
@@ -264,6 +265,10 @@ test("slice property at deep key", () => {
     };
 
     expect(slicePropertyAtDeepKey({ v: "foo" }, "v", "bar")).toEqual({ v: "bar" });
+
+    type Thing = { a: { b?: { c: string } } };
+    expect(slicePropertyAtDeepKey({ a: {} } as Thing, "a.b.c", "foo")).toEqual({ a: {} });
+
     expect(slicePropertyAtDeepKey({ arr: ["one", "two", "three"] }, "arr", ["four", "five"])).toEqual({ arr: ["four", "five"] });
     expect(
         slicePropertyAtDeepKey(
