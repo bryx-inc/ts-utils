@@ -8,3 +8,4 @@ export * from "./intersectUnion";
 export * from "./deepKeyOf";
 export * from "./deepPick";
 export * from "./deepValue";
+export * from "./deepUnwrap";
