@@ -15,4 +15,4 @@
  *
  * @typeParam T - The array to unwrap.
  */
-export type DeepUnwrap<T extends unknown[]> = T extends (infer Inner extends unknown[])[] ? DeepUnwrap<Inner> : T[number];
+export type DeepUnwrap<T> = T extends (infer Inner)[] ? DeepUnwrap<Inner> : T;
