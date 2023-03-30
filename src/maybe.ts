@@ -7,7 +7,7 @@ export function isNone<T>(m: Maybe<T>): m is null {
     return m == null;
 }
 
-export function isSome<T>(m: Maybe<T>): m is T {
+export function isSome<T>(m: Maybe<T>): m is NonNullable<T> {
     return m != null;
 }
 
@@ -101,7 +101,7 @@ export function unwrapOrUndef<T>(v: Maybe<T>) {
     return v ?? undefined;
 }
 
-export function withSome<T, E>(v: Maybe<T>, fn: (v: T) => E): Maybe<E> {
+export function withSome<T, E>(v: Maybe<T>, fn: (v: NonNullable<T>) => E): Maybe<E> {
     if (isSome(v)) return fn(v);
     else return null;
 }
