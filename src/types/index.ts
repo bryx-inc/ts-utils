@@ -9,3 +9,4 @@ export * from "./deepKeyOf";
 export * from "./deepPick";
 export * from "./deepValue";
 export * from "./deepUnwrap";
+export * from "./overrideKeys";
