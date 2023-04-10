@@ -1,4 +1,4 @@
-import { createCurriedGuardPredicate, pipe } from "./function";
+import { createCurriedGuardPredicate, pipe, tryOr } from "./function";
 import { castUnsafe } from "./object";
 
 test("create curried guard predicate", () => {
@@ -28,4 +28,13 @@ test("pipe", () => {
 
     // this is a forced bad case to test the `default` branch
     expect(pipe(...castUnsafe<any, [any]>(["joe", len, double, double, undefined, double, double, double]))).toEqual(48);
+});
+
+test("try or", () => {
+    expect(tryOr(() => "success", "fallback")).toEqual("success");
+    expect(
+        tryOr(() => {
+            throw new Error("error");
+        }, "fallback"),
+    ).toEqual("fallback");
 });

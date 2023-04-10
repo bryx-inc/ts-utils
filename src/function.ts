@@ -93,3 +93,22 @@ export function pipe(a: unknown, ab?: Function, bc?: Function, cd?: Function, de
         }
     }
 }
+
+/**
+ * Calls the provided function and returns its result. If an exception is thrown during the function call,
+ * returns the provided fallback value instead.
+ *
+ * @param fn - The function to call.
+ * @param or - The value to return if an exception is thrown during the function call.
+ * @returns The result of the function call or the fallback value.
+ *
+ * @typeParam T - The type of the value returned by the function.
+ * @typeParam E - The type of the fallback value.
+ */
+export function tryOr<T, E>(fn: () => T, or: E): T | E {
+    try {
+        return fn();
+    } catch {
+        return or;
+    }
+}
