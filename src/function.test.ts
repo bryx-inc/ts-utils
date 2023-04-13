@@ -1,4 +1,4 @@
-import { createCurriedGuardPredicate, pipe, tryOr } from "./function";
+import { createCurriedGuardPredicate, pipe, tryOr, inject } from "./function";
 import { castUnsafe } from "./object";
 
 test("create curried guard predicate", () => {
@@ -37,4 +37,16 @@ test("try or", () => {
             throw new Error("error");
         }, "fallback"),
     ).toEqual("fallback");
+});
+
+test("inject", () => {
+    const fn1 = jest.fn();
+    const fn2 = jest.fn();
+
+    const arr = [1, 2, 3];
+
+    arr.map(inject(fn1)).forEach(fn2);
+
+    expect(fn1).toHaveBeenCalledTimes(arr.length);
+    expect(fn2).toHaveBeenCalledTimes(arr.length);
 });

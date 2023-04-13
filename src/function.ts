@@ -112,3 +112,38 @@ export function tryOr<T, E>(fn: () => T, or: E): T | E {
         return or;
     }
 }
+
+/**
+ * Wraps a function and returns a new function that calls the wrapped function with its argument
+ * and then returns the same argument.
+ *
+ * @example
+ * This example demonstrates how to use `inject` with `Array.prototype.filter`, `Array.prototype.map`,
+ * and `Array.prototype.forEach` to filter, transform, and log an array of numbers.
+ *
+ * ```typescript
+ * [1, 2, 3, 4, 5, 6, 7]
+ *  .filter(n => n % 2 == 0) // keep only even numbers
+ *  .map(inject(console.log)) // log each even number and pass it through
+ *  .map(n => n * 2) // double each even number
+ *  .forEach(console.log); // log each doubled even number
+ *
+ * // Output:
+ * // 2
+ * // 4
+ * // 6
+ * // 4
+ * // 8
+ * // 12
+ * ```
+ *
+ * @typeParam T The type of the argument for both the wrapped function and the returned function.
+ * @param fn The function to be wrapped.
+ * @returns A new function that calls `fn` with its argument and returns the same argument.
+ */
+export function inject<T>(fn: (arg: T) => unknown): (arg: T) => T {
+    return (arg: T) => {
+        fn(arg);
+        return arg;
+    };
+}
