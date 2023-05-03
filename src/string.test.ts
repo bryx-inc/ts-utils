@@ -1,4 +1,4 @@
-import { escapeRegex, keyFrom, strAdd, initialism, sliceStrTo } from "./string";
+import { escapeRegex, keyFrom, strAdd, initialism, sliceStrTo, maybeParseInt, maybeParseFloat } from "./string";
 
 test("Result.strAdd", () => {
     const res = strAdd(["1", "2", "3", "4", "5"]);
@@ -48,4 +48,16 @@ test("sliceStrTo", () => {
     expect(sliceStrTo("apple.banana.orange.kiwi", ".")).toEqual("apple.");
     expect(sliceStrTo("apple.banana.orange.kiwi", ".", 2)).toEqual("apple.banana.orange.");
     expect(sliceStrTo("apple.banana.orange.kiwi", ".", 100)).toEqual("apple.banana.orange.kiwi");
+});
+
+test("maybe parse int", () => {
+    expect(maybeParseInt("123")).toEqual(123);
+    expect(maybeParseInt("1010", 2)).toEqual(10);
+    expect(maybeParseInt("abc")).toBeNull();
+});
+
+test("maybe parse float", () => {
+    expect(maybeParseFloat("3.14")).toEqual(3.14);
+    expect(maybeParseFloat("123")).toEqual(123);
+    expect(maybeParseFloat("abc")).toBeNull();
 });

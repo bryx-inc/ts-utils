@@ -106,3 +106,51 @@ export function sliceStrTo(str: string, to: string, nth = 0): string {
     if (nth == 0) return sliced;
     else return sliced + sliceStrTo(str.slice(sliced.length), to, nth - 1);
 }
+
+/**
+ * Parses a string into an integer, returning `null` instead of `NaN` if parsing fails
+ *
+ * @example
+ * ```ts
+ * // returns 10
+ * maybeParseInt('10');
+ * ```
+ *
+ * @example
+ * ```ts
+ * maybeParseInt('abc');
+ * // returns null
+ * ```
+ *
+ * @param str - The string to parse.
+ * @param radix - The radix used to parse the string. Defaults to 10.
+ * @returns The parsed integer, or null if parsing fails.
+ *
+ */
+export function maybeParseInt(str: string, radix?: number): Maybe<number> {
+    const parsed = parseInt(str, radix);
+    return isNaN(parsed) ? null : parsed;
+}
+
+/**
+ * Parses a string into a floating-point number, returning null instead of `NaN` if parsing fails.
+ *
+ * @example
+ * ```ts
+ * maybeParseFloat('3.14');
+ * // returns 3.14
+ * ```
+ *
+ * @example
+ * ```ts
+ * maybeParseFloat('abc');
+ * // returns null
+ * ```
+ *
+ * @param str - The string to parse.
+ * @returns The parsed number, or null if parsing fails.
+ */
+export function maybeParseFloat(str: string): Maybe<number> {
+    const parsed = parseFloat(str);
+    return isNaN(parsed) ? null : parsed;
+}
