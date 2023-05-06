@@ -483,3 +483,52 @@ export function permutationsOf(nums: number[]): number[][] {
 
     return result;
 }
+
+/**
+ * Clears all elements of the given array.
+ *
+ * @typeParam T - The type of the elements in the array.
+ * @param arr - The array to clear.
+ *
+ * @example
+ * ```ts
+ * const arr = [1, 2, 3];
+ * clearArr(arr);
+ * console.log(arr); // []
+ * ```
+ */
+export function clearArr<T>(arr: T[]): void {
+    arr.splice(0, arr.length);
+}
+
+/**
+ * Chunks the input array into smaller arrays of the specified size.
+ *
+ * @typeParam T - The type of the elements in the array.
+ * @param arr - The array to chunk.
+ * @param chunkSize - The size of each chunk.
+ * @returns An array of chunks, where each chunk is an array of `T`.
+ *
+ * @example
+ * ```ts
+ * const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+ * const chunkSize = 3;
+ * const chunks = chunkArr(arr, chunkSize);
+ * console.log(chunks); // [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10]]
+ * ```
+ */
+export function chunkArr<T>(arr: T[], chunkSize: number): T[][] {
+    const chunks: T[][] = [];
+    const buf: T[] = [];
+
+    arr.forEach((cur, i) => {
+        buf.push(cur);
+
+        if (buf.length == chunkSize || i + 1 == arr.length) {
+            chunks.push([...buf]);
+            clearArr(buf);
+        }
+    });
+
+    return chunks;
+}

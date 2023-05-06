@@ -2,6 +2,8 @@ import {
     arrayIsEmpty,
     arrFromFactory,
     bailableMap,
+    chunkArr,
+    clearArr,
     cloneArr,
     dropIdx,
     findFirstAndReplace,
@@ -250,4 +252,25 @@ test("permutations of", () => {
         [1, 2, 0],
         [1, 2, 1],
     ]);
+});
+
+test("clear arr", () => {
+    const arr1 = [1, 2, 3];
+    clearArr(arr1);
+    expect(arr1).toEqual([]);
+
+    const arr2: number[] = [];
+    clearArr(arr2);
+    expect(arr2).toEqual([]);
+
+    const arr3 = [{ a: 1 }, { b: 2 }];
+    clearArr(arr3);
+    expect(arr3).toEqual([]);
+});
+
+test("chunk arr", () => {
+    expect(chunkArr([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3)).toEqual([[1, 2, 3], [4, 5, 6], [7, 8, 9], [10]]);
+    expect(chunkArr([1, 2], 3)).toEqual([[1, 2]]);
+    expect(chunkArr([], 3)).toEqual([]);
+    expect(chunkArr([{ a: 1 }, { b: 2 }, { c: 3 }], 2)).toEqual([[{ a: 1 }, { b: 2 }], [{ c: 3 }]]);
 });
