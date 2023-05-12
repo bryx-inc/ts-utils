@@ -1,7 +1,7 @@
 {
-  "name": "@bryxinc/ts-utils",
+  "name": "@bryx-inc/ts-utils",
   "version": "1.44.0",
-  "repository": "git@gitlab.com:bryxinc/bryx911/ts-utils.git",
+  "repository": "git@github.com:bryx-inc/ts-utils.git",
   "author": "Tyler Holewinski <tyler.holewinski@bryx.com>",
   "license": "MIT",
   "scripts": {
@@ -20,6 +20,7 @@
   "main": "dist/index.js",
   "sideEffects": false,
   "devDependencies": {
+    "@changesets/cli": "^2.26.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
@@ -40,9 +41,6 @@
     "typedoc-plugin-merge-modules": "^4.0.1",
     "typescript": "^4.9.4",
     "zx": "^7.1.1"
-  },
-  "publishConfig": {
-    "@bryxinc:registry": "https://gitlab.com/api/v4/projects/44033793/packages/npm/"
   },
   "dependencies": {
     "react": "^18.2.0"
