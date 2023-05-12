@@ -1,23 +1,13 @@
-# Bryx TS Utils
+<p align="center" style="text-align: 'center'">
+    <img src="https://raw.githubusercontent.com/bryx-inc/ts-utils/main/docs/tsutils_logo.png" />
+    <h1 style="text-align: center"><span style="font-weight: 200">Bryx | </span> <strong>TS Utils</strong></h1>
+</p>
+
 This library serves as a shared collection of common typescript utility methods.
 
 ## Installation
-If you have not already, set up scoping `bryxinc` to the bryx gitlab instance.
-
 ```
-$ echo @bryxinc:registry=https://gitlab.com/api/v4/packages/npm/ >> .npmrc
-```
-
-Additionally, if you have not already, make sure you have correctly configured your gitlab access token.
-
-```
-$ npm config set -- '//gitlab.com/api/v4/packages/npm/:_authToken' "<your_token>"
-$ npm config set -- '//gitlab.com/api/v4/projects/44033793/packages/npm/:authToken' "<your_token>"
-```
-
-Then, install the package.
-```
-$ yarn add @bryxinc/ts-utils
+$ npm i @bryx-inc/ts-utils
 ```
 
 ## Documentation
@@ -31,31 +21,18 @@ $ npx serve public/
 
 The most up-to-date documentation is hosted at [https://bryxinc.gitlab.io/common/ts-utils](https://bryxinc.gitlab.io/common/ts-utils).
 
-## Deployments
+## Contributions
 
-`bryxinc/ts-utils` follows semantic versioning. Changes should be submitted via a [merge request](https://gitlab.com/bryxinc/common/ts-utils/-/merge_requests/new) and, once merged, a new package should be rolled out.
-
-To roll out a new deployment, ensure the working branch is the `main` branch.
+This project utilizes [changesets](https://github.com/changesets/changesets) to manage contributions. To get started, fork the repository and add your changes. When you are ready to pubmit a pull request, run `yarn changeset` to create a changeset and add it to the commit, then create a PR.
 
 ```
-$ git branch
-* main
+$ gh pr create --repo bryx-inc --base main
 ```
 
-then, to roll out a patch/minor/major release
+Please refer to our [contribution guidelines](/CONTRIBUTING.md) for more information.
 
-```
-$ yarn release:patch
-$ yarn release:minor
-$ yarn release:major
-```
+---
 
-alternativly, with `npm`
-
-```
-$ npm run release:patch
-$ npm run release:minor
-$ npm run release:major
-```
-
-This bumps the package version, packs and pushes the npm package, and then pushes the committed version bump, as well as a new git tag.
+<footer align="center">
+    Brought to you with 🤍 By the <a href="https://bryx.com">Bryx</a> team in Rochester, NY.
+</footer>
