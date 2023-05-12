@@ -1,11 +1,11 @@
 {
   "name": "@bryx-inc/ts-utils",
-  "version": "1.45.0",
+  "version": "1.45.1",
   "repository": "git@github.com:bryx-inc/ts-utils.git",
   "author": "Tyler Holewinski <tyler.holewinski@bryx.com>",
   "license": "MIT",
   "scripts": {
-    "release": "yarn changeset publish", 
+    "release": "yarn changeset publish",
     "build:lib": "gulp build:lib",
     "build:docs": "gulp build:docs",
     "test": "jest",
