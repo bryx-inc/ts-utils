@@ -1,6 +1,6 @@
 <p align="center" style="text-align: 'center'">
     <img src="https://raw.githubusercontent.com/bryx-inc/ts-utils/main/docs/tsutils_logo.png" />
-    <h1 style="text-align: center"><span style="font-weight: 200">Bryx | </span> <strong>TS Utils</strong></h1>
+    <h1 align="center" style="text-align: center"><span style="font-weight: 200">Bryx | </span> <strong>TS Utils</strong></h1>
 </p>
 
 This library serves as a shared collection of common typescript utility methods.
