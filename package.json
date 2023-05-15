@@ -5,7 +5,7 @@
   "author": "Tyler Holewinski <tyler.holewinski@bryx.com>",
   "license": "MIT",
   "scripts": {
-    "release": "yarn changeset publish",
+    "release": "yarn build:lib && yarn changeset publish",
     "build:lib": "gulp build:lib",
     "build:docs": "gulp build:docs",
     "test": "jest",
@@ -13,10 +13,7 @@
     "lint": "gulp check:lint",
     "format": "gulp check:formatting",
     "clean:docs": "gulp clean:docs",
-    "fix:formatting": "gulp fix:formatting",
-    "release:patch": "gulp release:patch",
-    "release:minor": "gulp release:minor",
-    "release:major": "gulp release:major"
+    "fix:formatting": "gulp fix:formatting"
   },
   "main": "dist/index.js",
   "sideEffects": false,
