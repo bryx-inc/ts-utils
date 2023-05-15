@@ -1,7 +1,7 @@
-<p align="center" style="text-align: 'center'">
-    <img src="https://raw.githubusercontent.com/bryx-inc/ts-utils/main/docs/tsutils_logo.png" />
-    <h1 align="center" style="text-align: center"><span style="font-weight: 200">Bryx | </span> <strong>TS Utils</strong></h1>
-</p>
+<div align="center" style="text-align: center; display: flex; justify-content: center; align-items: center; gap: 8px;">
+    <img src="https://raw.githubusercontent.com/bryx-inc/ts-utils/main/docs/tsutils_logo.png" height="32px" />
+    <h1 align="center" style="font-size: 32px;"><span style="font-weight: 200">Bryx | </span> <strong>TS Utils</strong></div>
+</div>
 
 This library serves as a shared collection of common typescript utility methods.
 
@@ -33,6 +33,6 @@ Please refer to our [contribution guidelines](/CONTRIBUTING.md) for more informa
 
 ---
 
-<footer align="center">
+<p align="center">
     Brought to you with 🤍 By the <a href="https://bryx.com">Bryx</a> team in Rochester, NY.
-</footer>
+</p>
