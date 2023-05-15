@@ -1,5 +1,11 @@
 # @bryx-inc/ts-utils
 
+## 1.45.3
+
+### Patch Changes
+
+-   00a3929: build library before publishing to actually include it in package
+
 ## 1.45.2
 
 ### Patch Changes
