@@ -10,3 +10,4 @@ export * from "./deepPick";
 export * from "./deepValue";
 export * from "./deepUnwrap";
 export * from "./overrideKeys";
+export * from "./concatTuple";
