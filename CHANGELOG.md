@@ -1,5 +1,11 @@
 # @bryx-inc/ts-utils
 
+## 1.46.0
+
+### Minor Changes
+
+-   10f7c44: Add ConcatTuple and ConcatReadonlyTuple utility types
+
 ## 1.45.3
 
 ### Patch Changes
