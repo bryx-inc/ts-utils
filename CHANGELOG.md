@@ -1,5 +1,16 @@
 # @bryx-inc/ts-utils
 
+## 1.48.0
+
+### Minor Changes
+
+-   ceaeb8d: Add `mergeArrs` Array Function
+-   90384af: Add `deepFlattenArr` Method
+
+### Patch Changes
+
+-   bb99ae9: Clean Up flatMapIntoDeepKey
+
 ## 1.47.0
 
 ### Minor Changes
