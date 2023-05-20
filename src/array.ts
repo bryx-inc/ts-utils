@@ -595,3 +595,26 @@ export function dedupArr<T>(arr: T[]): T[] {
 export function flatMapIntoDeepKey<T extends object, K extends DeepKeyOf<T>>(arr: T[], key: K): DeepValue<T, K>[] {
     return arr.flatMap((el) => getDeepValue(el, key));
 }
+
+/**
+ * Merges multiple arrays and returns a new array containing the unique elements from all union of the given arrays.
+ *
+ * @typeParam T - The type of elements in the arrays.
+ * @param arrs - Arrays to be merged.
+ * @returns A new array with unique elements from all input arrays.
+ *
+ * @example
+ * ```ts
+ * const arr1 = [1, 2, 3];
+ * const arr2 = [2, 3, 4];
+ * const arr3 = [3, 4, 5];
+ *
+ * mergeArrs(arr1, arr2, arr3);
+ * // returns [1, 2, 3, 4, 5]
+ * ```
+ * 
+ * @category Array
+ */
+export function mergeArrs<T>(...arrs: T[][]): T[] {
+    return arrs.reduce((acc, cur) => dedupArr(acc.concat(cur)));
+}
