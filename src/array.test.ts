@@ -6,6 +6,7 @@ import {
     clearArr,
     cloneArr,
     dedupArr,
+    deepFlattenArr,
     dropIdx,
     findFirstAndReplace,
     flatMapIntoDeepKey,
@@ -327,5 +328,29 @@ describe("flat map into deep key", () => {
         ];
         const result = flatMapIntoDeepKey(gizmos, "parts.partName");
         expect(result).toEqual(["spring", "sprocket", "steel plate", "plastic cap"]);
+    });
+});
+
+describe("deep flatten arr", () => {
+    it("should flatten a nested array of numbers", () => {
+        const arr = deepFlattenArr([[0], [[1]], [[[2]]]]);
+        expect(arr).toEqual([0, 1, 2]);
+    });
+
+    it("should flatten a nested array of mixed types", () => {
+        const arr = deepFlattenArr([[["str"]], [false], [[5]], [null]]);
+        expect(arr).toEqual(["str", false, 5, null]);
+    });
+
+    it("should return the input array if it is already flat", () => {
+        const arr = [0, 1, 2];
+        const result = deepFlattenArr(arr);
+        expect(result).toEqual(arr);
+    });
+
+    it("should return an empty array if the input array is empty", () => {
+        const arr: any[] = [];
+        const result = deepFlattenArr(arr);
+        expect(result).toEqual([]);
     });
 });

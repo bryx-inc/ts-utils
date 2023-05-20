@@ -2,7 +2,7 @@ import { pipe } from "./function";
 import { Maybe, intoMaybe, unwrapMaybe } from "./maybe";
 import { dropKeys, getDeepValue, getObjKeys, getPropertyUnsafe } from "./object";
 import { Result } from "./result";
-import { DeepKeyOf, DeepValue } from "./types";
+import { DeepKeyOf, DeepUnwrap, DeepValue } from "./types";
 
 /**
  * Extract the inner type of some given array type, `T`
@@ -547,6 +547,40 @@ export function chunkArr<T>(arr: T[], chunkSize: number): T[][] {
  */
 export function dedupArr<T>(arr: T[]): T[] {
     return arr.filter((cur, i) => arr.indexOf(cur) == i);
+}
+
+/**
+ * Recursively flattens a nested array, returning a new array with all elements flattened.
+ *
+ * ?> This method serves as a more typescript-friendly, ergonimic alternative to `Array.prototype.flat` called with `Number.POSITIVE_INFINITY`
+ *
+ * @typeParam T - The type of the input array.
+ * @param arr - The array to flatten.
+ * @returns A new array with all elements flattened.
+ *
+ * ### With `deepFlattenArr`
+ *
+ * @example
+ * ```typescript
+ * const arr1 = deepFlattenArr([[0], [[1]]]);
+ * //    ^? number[]
+ * //    returns [0, 1]
+ *
+ * const arr2 = [[["str"]], [false], [[5]]];
+ * //    ^? (string | boolean | number)[]
+ * //    returns ["str", false, 5]
+ * ```
+ *
+ * ### With `Array.prototype.flat`
+ * ```typescript
+ * const arr = [[0], [[1]]].flat(Number.POSITIVE_INFINITY);
+ * //    ^? FlatArray<number[] | number[][], 0 | 1 | 2 | -1 | 3 | 4 | 5 | ...
+ * ```
+ *
+ */
+
+export function deepFlattenArr<T extends unknown[]>(arr: T): DeepUnwrap<T>[] {
+    return arr.map((el) => (Array.isArray(el) ? deepFlattenArr(el.flat()) : el)) as DeepUnwrap<T>[];
 }
 
 /**
