@@ -1,5 +1,11 @@
 # @bryx-inc/ts-utils
 
+## 1.47.0
+
+### Minor Changes
+
+-   9d89617: Add DedupArr and FlatMapIntoDeepKey array methods
+
 ## 1.46.0
 
 ### Minor Changes
