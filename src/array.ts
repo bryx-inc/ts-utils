@@ -580,7 +580,7 @@ export function dedupArr<T>(arr: T[]): T[] {
  */
 
 export function deepFlattenArr<T extends unknown[]>(arr: T): DeepUnwrap<T>[] {
-    return arr.map((el) => (Array.isArray(el) ? deepFlattenArr(el.flat()) : el)) as DeepUnwrap<T>[];
+    return arr.flatMap((el) => (Array.isArray(el) ? deepFlattenArr(el) : el)) as DeepUnwrap<T>[];
 }
 
 /**
