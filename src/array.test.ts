@@ -5,8 +5,10 @@ import {
     chunkArr,
     clearArr,
     cloneArr,
+    dedupArr,
     dropIdx,
     findFirstAndReplace,
+    flatMapIntoDeepKey,
     interleave,
     isIndexOf,
     lastElem,
@@ -273,4 +275,57 @@ test("chunk arr", () => {
     expect(chunkArr([1, 2], 3)).toEqual([[1, 2]]);
     expect(chunkArr([], 3)).toEqual([]);
     expect(chunkArr([{ a: 1 }, { b: 2 }, { c: 3 }], 2)).toEqual([[{ a: 1 }, { b: 2 }], [{ c: 3 }]]);
+});
+
+describe("dedup arr", () => {
+    it("removes duplicate elements from the array", () => {
+        const arr = [1, 1, 1, 2, 1, 3, 4, 4, 2, 1, 2];
+        const deduped = dedupArr(arr);
+        expect(deduped).toEqual([1, 2, 3, 4]);
+    });
+
+    it("returns an empty array for an empty input array", () => {
+        const emptyArr: number[] = [];
+        const deduped = dedupArr(emptyArr);
+        expect(deduped).toEqual([]);
+    });
+
+    it("preserves the order of elements", () => {
+        const arr = [3, 1, 2, 2, 1, 4, 4, 3];
+        const deduped = dedupArr(arr);
+        expect(deduped).toEqual([3, 1, 2, 4]);
+    });
+});
+
+describe("flat map into deep key", () => {
+    it("maps an array of objects into an associated array of the specified property", () => {
+        const people = [
+            { first: "joe", last: "smith" },
+            { first: "jane", last: "doe" },
+        ];
+
+        const result = flatMapIntoDeepKey(people, "first");
+        expect(result).toEqual(["joe", "jane"]);
+    });
+
+    it("maps an array of objects into an associated array of a deep property", () => {
+        const gizmos = [
+            {
+                name: "gizmo1",
+                parts: [
+                    { partName: "spring", cost: 15 },
+                    { partName: "sprocket", cost: 12 },
+                ],
+            },
+            {
+                name: "gizmo2",
+                parts: [
+                    { partName: "steel plate", cost: 20 },
+                    { partName: "plastic cap", cost: 5 },
+                ],
+            },
+        ];
+        const result = flatMapIntoDeepKey(gizmos, "parts.partName");
+        expect(result).toEqual(["spring", "sprocket", "steel plate", "plastic cap"]);
+    });
 });
