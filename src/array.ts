@@ -626,6 +626,6 @@ export function deepFlattenArr<T extends unknown[]>(arr: T): DeepUnwrap<T>[] {
  * @param key
  * @returns
  */
-export function flatMapIntoDeepKey<T extends object, K extends DeepKeyOf<T>>(arr: T[], key: K): DeepValue<T, K>[] {
-    return arr.flatMap((el) => getDeepValue(el, key));
+export function flatMapIntoDeepKey<T extends object, K extends DeepKeyOf<T>>(arr: T[], key: K): DeepUnwrap<DeepValue<T, K>>[] {
+    return deepFlattenArr(arr.map((el) => getDeepValue(el, key)));
 }
