@@ -12,6 +12,7 @@ import {
     interleave,
     isIndexOf,
     lastElem,
+    mergeArrs,
     moveToIdx,
     objectifyArr,
     permutationsOf,
@@ -327,5 +328,35 @@ describe("flat map into deep key", () => {
         ];
         const result = flatMapIntoDeepKey(gizmos, "parts.partName");
         expect(result).toEqual(["spring", "sprocket", "steel plate", "plastic cap"]);
+    });
+});
+
+describe("merge arrs", () => {
+    it("should merge multiple arrays and return a new array with unique elements", () => {
+        const arr1 = [1, 2, 3];
+        const arr2 = [2, 3, 4];
+        const arr3 = [3, 4, 5];
+
+        const mergedArray = mergeArrs(arr1, arr2, arr3);
+
+        expect(mergedArray).toEqual(expect.arrayContaining([1, 2, 3, 4, 5]));
+        expect(mergedArray.length).toEqual(5);
+    });
+
+    it("should handle empty arrays and return an empty array", () => {
+        const mergedArray = mergeArrs([], [], []);
+
+        expect(mergedArray).toEqual([]);
+    });
+
+    it("should handle arrays with duplicate elements and return an array with unique elements", () => {
+        const arr1 = [1, 2, 3];
+        const arr2 = [2, 3, 4, 4, 5];
+        const arr3: number[] = [];
+
+        const mergedArray = mergeArrs(arr1, arr2, arr3);
+
+        expect(mergedArray).toEqual(expect.arrayContaining([1, 2, 3, 4, 5]));
+        expect(mergedArray.length).toEqual(5);
     });
 });
