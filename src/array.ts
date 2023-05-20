@@ -1,7 +1,8 @@
 import { pipe } from "./function";
 import { Maybe, intoMaybe, unwrapMaybe } from "./maybe";
-import { dropKeys, getObjKeys, getPropertyUnsafe } from "./object";
+import { dropKeys, getDeepValue, getObjKeys, getPropertyUnsafe } from "./object";
 import { Result } from "./result";
+import { DeepKeyOf, DeepValue } from "./types";
 
 /**
  * Extract the inner type of some given array type, `T`
@@ -531,4 +532,66 @@ export function chunkArr<T>(arr: T[], chunkSize: number): T[][] {
     });
 
     return chunks;
+}
+
+/**
+ * Returns a clone of the given array wih duplicate elements removed via the `filter/indexOf` method.
+ *
+ * @example
+ * ```ts
+ * const arr = [1, 1, 1, 2, 1, 3, 4, 4, 2, 1, 2];
+ *
+ * dedupArr(arr);
+ * // returns [1, 2, 3, 4]
+ * ```
+ */
+export function dedupArr<T>(arr: T[]): T[] {
+    return arr.filter((cur, i) => arr.indexOf(cur) == i);
+}
+
+/**
+ * Flat map an array of objects into an associated array of one of their specified proerties at the given {@link DeepKeyOf} the object type.
+ *
+ * !> Note that since `DeepKeyOf<T>` is a *superset* of `keyof T`, any regular key may be used with this method as well.
+ *
+ * ### With Traditional Keys
+ *
+ * @example
+ * ```ts
+ * const people = [{ first: "joe", last: "smith" }, { first: "jane", last: "doe" }];
+ *
+ * flatMapIntoDeepKey(people, "first");
+ * // returns: ["joe", "jane"];
+ * ```
+ *
+ * ### With Deep Keys
+ * @example
+ * ```ts
+ * const gizmos = [
+ *  {
+ *    name: "gizmo1",
+ *    parts: [
+ *      { partName: "spring", cost: 15 },
+ *      { partName: "sprocket", cost: 12 }
+ *    ]
+ *  },
+ *  {
+ *     name: "gizmo2",
+ *     parts: [
+ *       { partName: "steel plate", cost: 20 },
+ *       { partName: "plastic cap", cost: 5 }
+ *     ]
+ *   }
+ * ];
+ *
+ * flatMapIntoDeepKey(gizmos, "parts.partName");
+ * // returns ["spring", "sprocket", "steel plate", "plastic cap"];
+ * ```
+ *
+ * @param arr
+ * @param key
+ * @returns
+ */
+export function flatMapIntoDeepKey<T extends object, K extends DeepKeyOf<T>>(arr: T[], key: K): DeepValue<T, K>[] {
+    return arr.flatMap((el) => getDeepValue(el, key));
 }
