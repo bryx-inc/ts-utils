@@ -332,7 +332,6 @@ describe("flat map into deep key", () => {
     });
 });
 
-
 describe("deep flatten arr", () => {
     it("should flatten a nested array of numbers", () => {
         const arr = deepFlattenArr([[0], [[1]], [[[2]]]]);
@@ -354,6 +353,8 @@ describe("deep flatten arr", () => {
         const arr: any[] = [];
         const result = deepFlattenArr(arr);
         expect(result).toEqual([]);
+    });
+});
 
 describe("merge arrs", () => {
     it("should merge multiple arrays and return a new array with unique elements", () => {
