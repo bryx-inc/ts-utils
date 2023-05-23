@@ -1,5 +1,11 @@
 # @bryx-inc/ts-utils
 
+## 1.48.1
+
+### Patch Changes
+
+-   50e2a3a: add readonly support for `DeepUnwrap`
+
 ## 1.48.0
 
 ### Minor Changes
