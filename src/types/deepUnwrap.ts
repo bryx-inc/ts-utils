@@ -15,4 +15,4 @@
  *
  * @typeParam T - The array to unwrap.
  */
-export type DeepUnwrap<T> = T extends (infer Inner)[] ? DeepUnwrap<Inner> : T;
+export type DeepUnwrap<T> = T extends (infer Inner)[] ? DeepUnwrap<Inner> : T extends ReadonlyArray<infer Inner> ? DeepUnwrap<Inner> : T;
