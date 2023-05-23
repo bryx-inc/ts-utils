@@ -646,7 +646,7 @@ export function flatMapIntoDeepKey<T extends object, K extends DeepKeyOf<T>>(arr
  * mergeArrs(arr1, arr2, arr3);
  * // returns [1, 2, 3, 4, 5]
  * ```
- * 
+ *
  * @category Array
  */
 export function mergeArrs<T>(...arrs: T[][]): T[] {

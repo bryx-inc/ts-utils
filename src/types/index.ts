@@ -11,3 +11,4 @@ export * from "./deepValue";
 export * from "./deepUnwrap";
 export * from "./overrideKeys";
 export * from "./concatTuple";
+export * from "./deepRemoveReadonly";
