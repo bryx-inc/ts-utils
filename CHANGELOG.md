@@ -1,5 +1,11 @@
 # @bryx-inc/ts-utils
 
+## 1.50.0
+
+### Minor Changes
+
+-   c34ae2b: Introduce `MappedTupleWithAffixes` type
+
 ## 1.49.0
 
 ### Minor Changes
