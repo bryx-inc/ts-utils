@@ -12,3 +12,4 @@ export * from "./deepUnwrap";
 export * from "./overrideKeys";
 export * from "./concatTuple";
 export * from "./deepRemoveReadonly";
+export * from "./mappedTupleWithAffixes";
