@@ -2,11 +2,11 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>Document</title>
+        <title>Bryx TS-Utils | Docs</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta name="description" content="Description" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
-        <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css"> -->
+        
         <link
             rel="stylesheet"
             media="(prefers-color-scheme: dark)"
@@ -17,6 +17,71 @@
             media="(prefers-color-scheme: light)"
             href="//cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css"
         />
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+            @import url("bui4.css");
+            @import url("prism.css");
+
+            .sidebar::-webkit-scrollbar-thumb {
+                background: transparent;
+                border-radius: 4px;
+            }
+            .sidebar::-webkit-scrollbar {
+                width: 6px;
+            }
+            .sidebar:hover::-webkit-scrollbar-thumb {
+                background: hsla(0, 0%, 88%, 0.4);
+            }
+            .sidebar:hover::-webkit-scrollbar-track {
+                background: hsla(0, 0%, 53%, 0.1);
+            }
+
+            @media (prefers-color-scheme: dark) {
+                :root {
+                    --theme-color: var(--bui-brand-dark);
+                    --base-color: var(--bui-text-dark);
+                    --base-background-color: var(--bui-bg-dark);
+
+                    --base-font-family: "Open Sans";
+                    --base-font-size: 14px;
+                    --base-font-weight: 400;
+
+                    --code-inline-background: var(--bui-component-bg-dark);
+
+                    --selection-color: var(--bui-component-bg-dark);
+
+                    --small-font-size: 10px;
+                    --strong-font-weight: 600;
+
+                    --heading-color: var(--bui-text-dark);
+                    --heading-h1-font-size: 31px;
+                    --heading-h1-font-weight: 400;
+                    --heading-h2-font-size: 25px;
+                    --heading-h2-font-weight: 400;
+                    --heading-h3-font-size: 20px;
+                    --heading-h3-font-weight: 600;
+                    --heading-h4-font-size: 16px;
+                    --heading-h4-font-weight: 700;
+                    --heading-h5-font-size: 16px;
+                    --heading-h5-font-weight: 600;
+                    --heading-h6-font-size: 13px;
+                    --heading-h6-font-weight: 700;
+
+                    --link-color: var(--bui-text-dark);
+
+                    --sidebar-background: var(--bui-bg-dark);
+                    --sidebar-width: 21rem;
+
+                    --search-input-background-color: var(--bui-bg-secondary-dark);
+                    --search-input-border-width: 0px;
+                    --search-input-color: var(--bui-text-dark);
+                    --search-input-placeholder-color: var(--bui-text-dark);
+                    --search-input-border-radius: 4px;
+                    --search-input-height: 38px;
+                    --search-input-margin: 0px;
+                }
+            }
+        </style>
     </head>
     <body>
         <div id="app"></div>
@@ -24,11 +89,11 @@
             window.$docsify = {
                 loadSidebar: false,
                 maxLevel: 3,
-                logo: "/tsutils_logo.png",
+                logo: "/brand.png",
                 name: "Bryx TS-Utils",
                 repo: "https://gitlab.bryx.com/bryx911/ts-utils",
 
-                loadFooter: '_footer.md',
+                loadFooter: "_footer.md",
 
                 search: "auto", // default
 
@@ -36,16 +101,16 @@
                 search: {
                     maxAge: 86400000, // Expiration time, the default one day
                     paths: "auto",
-                    placeholder: "Type to search",
+                    placeholder: "Search Docs...",
                     noData: "No Results!",
                     depth: 6,
                     hideOtherSidebarContent: false, // whether or not to hide other sidebar content
                 },
                 copyCode: {
-                    buttonText : 'Copy to clipboard',
-                    errorText  : 'Error',
-                    successText: 'Copied!'
-                }
+                    buttonText: "Copy to clipboard",
+                    errorText: "Error",
+                    successText: "Copied!",
+                },
             };
         </script>
         <script src="//cdn.jsdelivr.net/npm/docsify-themeable@0/dist/js/docsify-themeable.min.js"></script>

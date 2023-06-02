@@ -1,7 +1,7 @@
 import gulp from "gulp";
 import { $ } from "zx";
 
-gulp.task("clean:docs", () => $`find docs/* -not \\( -name 'index.html' -or -name 'tsutils_logo.png' -or -name '_footer.md' \\) -delete`);
+gulp.task("clean:docs", () => $`find docs/* -not \\( -name 'index.html' -or -name 'tsutils_logo.png' -or -name '_footer.md' -or -name 'brand.png' -or -name 'bui4.css' -or -name 'prism.css' \\) -delete`);
 
 gulp.task("build:docs", async () => {
     await $`npx typedoc \
@@ -12,7 +12,6 @@ gulp.task("build:docs", async () => {
                 --hideMembersSymbol \
                 --hideBreadcrumbs \
                 --hideInPageTOC \
-                --excludeInternal \
                 --mergeModulesMergeMode module-category \
                 --entryPointStrategy resolve \
                 --entryPoints src/index.ts`;
