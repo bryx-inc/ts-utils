@@ -1,6 +1,7 @@
 import { cond } from "./condition";
 import { Maybe } from "./maybe";
 import { DeepKeyOf, DeepValue } from "./types";
+import { unsafe } from "./unsafe";
 
 /**
  * Construct a object with properties identical to the given base object, without any nullish values.
@@ -439,7 +440,9 @@ export function getDeepObjKeys<T extends object>(o: T): DeepKeyOf<T>[] {
 
 /**
  * Maybe get a property on some object, who's type does not define the specified key. If no property is found on the given object at the given key, `null` is returned.
+ * 
  *
+ * @deprecated in favor of {@link unsafe}.
  * @category Object
  */
 export function getPropertyUnsafe<T extends object, E, K extends string>(v: T, key: K): Maybe<E> {
@@ -474,7 +477,8 @@ export function getPropertyUnsafe<T extends object, E, K extends string>(v: T, k
  * }
  *
  * ```
- *
+ * 
+ * @deprecated in favor of {@link unsafe}.
  */
 export function castUnsafe<T, E>(v: T): E {
     return v as unknown as E;
