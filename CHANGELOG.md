@@ -1,5 +1,11 @@
 # @bryx-inc/ts-utils
 
+## 1.51.0
+
+### Minor Changes
+
+-   b17c17f: mirgrate unsafe utilities to an `unsafe` block and deprecate non-unsafe-scoped `castUnsafe` and `getPropertyUnsafe`
+
 ## 1.50.0
 
 ### Minor Changes
