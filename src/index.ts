@@ -10,4 +10,4 @@ export * from "./result";
 export * from "./string";
 export * from "./errors";
 export * from "./unsafe";
-export * from './calcMs';
+export * from "./calcMs";
