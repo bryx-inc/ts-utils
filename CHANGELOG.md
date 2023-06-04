@@ -1,5 +1,11 @@
 # @bryx-inc/ts-utils
 
+## 1.52.0
+
+### Minor Changes
+
+-   7422c43: Introduce `calcMs` method
+
 ## 1.51.0
 
 ### Minor Changes
