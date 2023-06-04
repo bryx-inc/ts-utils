@@ -50,13 +50,13 @@ function getProperty<TObj extends object, TKey extends string, TReturn>(obj: TOb
  * This function provides a controlled and opt-in approach to using unsafe utilities within your TypeScript code. It accepts a callback function that takes an object containing unsafe utilities as a parameter. The callback function can then make use of these unsafe utilities for specific scenarios where TypeScript's type checking falls short or cannot follow certain type constraints.
  *
  * ## Current utilities:
- * 
+ *
  * ### `cast`
- * 
+ *
  * {@inheritDoc cast}
- * 
+ *
  * ### `getProperty`
- * 
+ *
  * {@inheritDoc getProperty}
  *
  * @param fn - The callback function to execute in an unsafe context.
@@ -92,6 +92,6 @@ function getProperty<TObj extends object, TKey extends string, TReturn>(obj: TOb
  *
  * @category Unsafe
  */
-export function unsafe<TResult>(fn: (utils: { getProperty: typeof getProperty, cast: typeof cast }) => TResult): TResult {
+export function unsafe<TResult>(fn: (utils: { getProperty: typeof getProperty; cast: typeof cast }) => TResult): TResult {
     return fn({ getProperty, cast });
 }
