@@ -30,7 +30,7 @@ An object which can either be in an `Ok` state, or an `Err` state, with an assoc
 
 #### Defined in
 
-[result.ts:7](https://github.com/bryx-inc/ts-utils/blob/a894f7f/src/result.ts#L7)
+[result.ts:7](https://github.com/bryx-inc/ts-utils/blob/218b54c/src/result.ts#L7)
 
 ## Properties
 
@@ -40,7 +40,7 @@ An object which can either be in an `Ok` state, or an `Err` state, with an assoc
 
 #### Defined in
 
-[result.ts:7](https://github.com/bryx-inc/ts-utils/blob/a894f7f/src/result.ts#L7)
+[result.ts:7](https://github.com/bryx-inc/ts-utils/blob/218b54c/src/result.ts#L7)
 
 ## Methods
 
@@ -72,7 +72,7 @@ console.log(v.and(v => Result.Ok(v * 2))); // Err('foo')
 
 #### Defined in
 
-[result.ts:131](https://github.com/bryx-inc/ts-utils/blob/a894f7f/src/result.ts#L131)
+[result.ts:131](https://github.com/bryx-inc/ts-utils/blob/218b54c/src/result.ts#L131)
 
 ___
 
@@ -112,7 +112,7 @@ console.log(div(20, 0).andThen(n => div(n, 2))); // Err('divide by zero');
 
 #### Defined in
 
-[result.ts:169](https://github.com/bryx-inc/ts-utils/blob/a894f7f/src/result.ts#L169)
+[result.ts:169](https://github.com/bryx-inc/ts-utils/blob/218b54c/src/result.ts#L169)
 
 ___
 
@@ -142,7 +142,7 @@ console.log(Result.Err('foo').contains('foo')) // false
 
 #### Defined in
 
-[result.ts:253](https://github.com/bryx-inc/ts-utils/blob/a894f7f/src/result.ts#L253)
+[result.ts:253](https://github.com/bryx-inc/ts-utils/blob/218b54c/src/result.ts#L253)
 
 ___
 
@@ -172,7 +172,7 @@ console.log(Result.Err('foo').contains('foo')) // false
 
 #### Defined in
 
-[result.ts:268](https://github.com/bryx-inc/ts-utils/blob/a894f7f/src/result.ts#L268)
+[result.ts:268](https://github.com/bryx-inc/ts-utils/blob/218b54c/src/result.ts#L268)
 
 ___
 
@@ -192,7 +192,7 @@ ___
 
 #### Defined in
 
-[result.ts:273](https://github.com/bryx-inc/ts-utils/blob/a894f7f/src/result.ts#L273)
+[result.ts:273](https://github.com/bryx-inc/ts-utils/blob/218b54c/src/result.ts#L273)
 
 ___
 
@@ -215,7 +215,7 @@ if (res.isErr()) console.log(`result failed with: ${res.err()}`);
 
 #### Defined in
 
-[result.ts:100](https://github.com/bryx-inc/ts-utils/blob/a894f7f/src/result.ts#L100)
+[result.ts:100](https://github.com/bryx-inc/ts-utils/blob/218b54c/src/result.ts#L100)
 
 ___
 
@@ -229,7 +229,7 @@ ___
 
 #### Defined in
 
-[result.ts:32](https://github.com/bryx-inc/ts-utils/blob/a894f7f/src/result.ts#L32)
+[result.ts:32](https://github.com/bryx-inc/ts-utils/blob/218b54c/src/result.ts#L32)
 
 ___
 
@@ -252,7 +252,7 @@ if (res.isErr()) console.log('an error occured!');
 
 #### Defined in
 
-[result.ts:73](https://github.com/bryx-inc/ts-utils/blob/a894f7f/src/result.ts#L73)
+[result.ts:73](https://github.com/bryx-inc/ts-utils/blob/218b54c/src/result.ts#L73)
 
 ___
 
@@ -275,7 +275,7 @@ if (res.isOk()) console.log('passed!');
 
 #### Defined in
 
-[result.ts:60](https://github.com/bryx-inc/ts-utils/blob/a894f7f/src/result.ts#L60)
+[result.ts:60](https://github.com/bryx-inc/ts-utils/blob/218b54c/src/result.ts#L60)
 
 ___
 
@@ -313,7 +313,7 @@ const mapped: Result<string, string> = res.map((v: number) => v.toString(), JSON
 
 #### Defined in
 
-[result.ts:46](https://github.com/bryx-inc/ts-utils/blob/a894f7f/src/result.ts#L46)
+[result.ts:46](https://github.com/bryx-inc/ts-utils/blob/218b54c/src/result.ts#L46)
 
 ___
 
@@ -336,7 +336,7 @@ if (res.isOk()) console.log(`result: ${res.ok()}`);
 
 #### Defined in
 
-[result.ts:86](https://github.com/bryx-inc/ts-utils/blob/a894f7f/src/result.ts#L86)
+[result.ts:86](https://github.com/bryx-inc/ts-utils/blob/218b54c/src/result.ts#L86)
 
 ___
 
@@ -370,7 +370,7 @@ console.log(div(10, 0).or(Result.Ok(0))) // Ok(0)
 
 #### Defined in
 
-[result.ts:150](https://github.com/bryx-inc/ts-utils/blob/a894f7f/src/result.ts#L150)
+[result.ts:150](https://github.com/bryx-inc/ts-utils/blob/218b54c/src/result.ts#L150)
 
 ___
 
@@ -409,7 +409,7 @@ console.log(Result.Ok(3).orElse(square).orElse(err)) // Ok(9)
 
 #### Defined in
 
-[result.ts:187](https://github.com/bryx-inc/ts-utils/blob/a894f7f/src/result.ts#L187)
+[result.ts:187](https://github.com/bryx-inc/ts-utils/blob/218b54c/src/result.ts#L187)
 
 ___
 
@@ -423,7 +423,7 @@ ___
 
 #### Defined in
 
-[result.ts:277](https://github.com/bryx-inc/ts-utils/blob/a894f7f/src/result.ts#L277)
+[result.ts:277](https://github.com/bryx-inc/ts-utils/blob/218b54c/src/result.ts#L277)
 
 ___
 
@@ -446,7 +446,7 @@ const m: Maybe<Result<string, string>> = res.transpose();
 
 #### Defined in
 
-[result.ts:114](https://github.com/bryx-inc/ts-utils/blob/a894f7f/src/result.ts#L114)
+[result.ts:114](https://github.com/bryx-inc/ts-utils/blob/218b54c/src/result.ts#L114)
 
 ___
 
@@ -470,7 +470,7 @@ console.log(Result.Err('bar').unwrap()); // ERROR!
 
 #### Defined in
 
-[result.ts:202](https://github.com/bryx-inc/ts-utils/blob/a894f7f/src/result.ts#L202)
+[result.ts:202](https://github.com/bryx-inc/ts-utils/blob/218b54c/src/result.ts#L202)
 
 ___
 
@@ -503,7 +503,7 @@ console.log(b.unwrapOr('bar')); // 'fizz'
 
 #### Defined in
 
-[result.ts:220](https://github.com/bryx-inc/ts-utils/blob/a894f7f/src/result.ts#L220)
+[result.ts:220](https://github.com/bryx-inc/ts-utils/blob/218b54c/src/result.ts#L220)
 
 ___
 
@@ -536,7 +536,7 @@ console.log(b.unwrapOrElse(err => err.toString())); // '15'
 
 #### Defined in
 
-[result.ts:238](https://github.com/bryx-inc/ts-utils/blob/a894f7f/src/result.ts#L238)
+[result.ts:238](https://github.com/bryx-inc/ts-utils/blob/218b54c/src/result.ts#L238)
 
 ___
 
@@ -570,7 +570,7 @@ console.log(Result.Err('yikes! something went wrong').isOk()); // false
 
 #### Defined in
 
-[result.ts:28](https://github.com/bryx-inc/ts-utils/blob/a894f7f/src/result.ts#L28)
+[result.ts:28](https://github.com/bryx-inc/ts-utils/blob/218b54c/src/result.ts#L28)
 
 ___
 
@@ -605,4 +605,4 @@ console.log(Result.Ok('foo').isOk()); // true
 
 #### Defined in
 
-[result.ts:17](https://github.com/bryx-inc/ts-utils/blob/a894f7f/src/result.ts#L17)
+[result.ts:17](https://github.com/bryx-inc/ts-utils/blob/218b54c/src/result.ts#L17)
