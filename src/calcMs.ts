@@ -18,6 +18,38 @@ type CalcMsTimeStr =
     | `${Range<1, 7>}${"" | " "}${CalcMsDayUnitType}`
     | `${Range<1, 4>}${"" | " "}${CalcMsWeekUnitType}`;
 
+/**
+ * Calculates the equivalent number of milliseconds based on the given time string.
+ * Supports units of seconds, minutes, hours, days, and weeks.
+ *
+ * @param s The time string in the format: `${value} ${unit}`.
+ *          - `${value}` is a positive integer representing the quantity.
+ *          - `${unit}` is one of the supported time units: 's', 'sec', 'second', 'seconds',
+ *            'm', 'min', 'minute', 'minutes', 'hr', 'hrs', 'hour', 'hours',
+ *            'd', 'dy', 'day', 'days', 'wk', 'wks', 'week', 'weeks'.
+ *
+ * @returns The calculated equivalent number of milliseconds.
+ *
+ * @example
+ * ```ts
+ * // Returns: 60000 (1 minute in milliseconds)
+ * calcMs('1m');
+ * ```
+ *
+ * @example
+ * ```ts
+ * // Returns: 86400000 (1 day in milliseconds)
+ * calcMs('1 day');
+ * ```
+ *
+ * @example
+ * ```ts
+ * // Throws: Error('Failed to parse given time string!')
+ * calcMs('10'); // Invalid input, no unit specified
+ *
+ * // note: this will also throw a *type* error, however if you are not checking types before execution the method's error will be thrown.
+ * ```
+ */
 export function calcMs<T extends CalcMsTimeStr>(s: T): number {
     const calcFromSeconds = (n: number) => n * 1000;
     const calcFromMinutes = (n: number) => pipe(n * 60, calcFromSeconds);
