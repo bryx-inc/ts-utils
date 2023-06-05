@@ -345,6 +345,28 @@ export class FormalMaybe<T> {
     }
 
     /**
+     * Removes and returns the wrapped value from the `FormalMaybe` instance.
+     * After calling this method, the `FormalMaybe` instance will be empty (`null`).
+     *
+     * @example
+     * ```
+     * const maybeValue = FormalMaybe.Some(42);
+     * const value = maybeValue.take(); // value = 42, maybeValue is now empty
+     *
+     * console.log(value); // 42
+     * console.log(maybeValue.isNone()); // true
+     * ```
+     *
+     * @returns The wrapped value if it exists, otherwise `null`.
+     */
+    take(): Maybe<T> {
+        const taken = this.v;
+        this.v = null;
+
+        return taken;
+    }
+
+    /**
      * Conditionally execute a block of code based on the `null` state of the inner value
      *
      * @param cond "some" to run the code block when the inner value is not null
