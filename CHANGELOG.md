@@ -1,5 +1,11 @@
 # @bryx-inc/ts-utils
 
+## 1.53.0
+
+### Minor Changes
+
+-   e52ace6: Added `take()` method to instances of `FormalMaybe`
+
 ## 1.52.0
 
 ### Minor Changes
