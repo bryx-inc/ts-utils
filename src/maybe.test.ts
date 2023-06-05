@@ -148,3 +148,24 @@ test("formal maybe when", () => {
     expect(fn1).toBeCalledTimes(1);
     expect(fn2).toBeCalledTimes(1);
 });
+
+describe("take()", () => {
+    it("should return the inner value and set it to null", () => {
+        const value = "example";
+        const nullableValue = new FormalMaybe(value);
+
+        const takenValue = nullableValue.take();
+
+        expect(takenValue).toEqual(value);
+        expect(nullableValue.inner()).toBeNull();
+    });
+
+    it("should return null if the inner value is already null", () => {
+        const nullableValue = FormalMaybe.None();
+
+        const takenValue = nullableValue.take();
+
+        expect(takenValue).toBeNull();
+        expect(nullableValue.inner()).toBeNull();
+    });
+});
