@@ -1,5 +1,11 @@
 # @bryx-inc/ts-utils
 
+## 1.54.0
+
+### Minor Changes
+
+-   b4061aa: Introduce `findAndSpliceArr` method
+
 ## 1.53.0
 
 ### Minor Changes
