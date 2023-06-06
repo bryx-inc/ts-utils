@@ -8,6 +8,7 @@ import {
     dedupArr,
     deepFlattenArr,
     dropIdx,
+    findAndSpliceArr,
     findFirstAndReplace,
     flatMapIntoDeepKey,
     interleave,
@@ -383,5 +384,49 @@ describe("merge arrs", () => {
 
         expect(mergedArray).toEqual(expect.arrayContaining([1, 2, 3, 4, 5]));
         expect(mergedArray.length).toEqual(5);
+    });
+});
+
+describe("findAndSpliceArr", () => {
+    it("should splice and return the first matching element", () => {
+        const arr = [1, 2, 3, 4, 5];
+        const splicedElements = findAndSpliceArr(arr, (el) => el % 2 === 0);
+        expect(arr).toEqual([1, 3, 4, 5]);
+        expect(splicedElements).toEqual([2]);
+    });
+
+    it("should return an empty array if no elements match the predicate", () => {
+        const arr = [1, 2, 3, 4, 5];
+        const splicedElements = findAndSpliceArr(arr, (el) => el > 5);
+        expect(arr).toEqual([1, 2, 3, 4, 5]);
+        expect(splicedElements).toEqual([]);
+    });
+
+    it("should not change the array if the count is 0", () => {
+        const arr = [1, 2, 3, 4, 5];
+        const splicedElements = findAndSpliceArr(arr, (el) => el < 3, 0);
+        expect(splicedElements).toEqual([]);
+        expect(arr).toEqual([1, 2, 3, 4, 5]);
+    });
+
+    it("should not be able to splice elements with a negative count", () => {
+        const arr = [1, 2, 3, 4, 5];
+        const splicedElements = findAndSpliceArr(arr, (el) => el < 3, -1);
+        expect(splicedElements).toEqual([]);
+        expect(arr).toEqual([1, 2, 3, 4, 5]);
+    });
+
+    it("should be able to splice elements with a positive count", () => {
+        const arr = [1, 2, 3, 4, 5];
+        const splicedElements = findAndSpliceArr(arr, (el) => el < 3, 2);
+        expect(splicedElements).toEqual([1, 2]);
+        expect(arr).toEqual([3, 4, 5]);
+    });
+
+    it("should work with an empty array", () => {
+        const arr: number[] = [];
+        const splicedElements = findAndSpliceArr(arr, (el) => el == 1);
+        expect(arr).toEqual([]);
+        expect(splicedElements).toEqual([]);
     });
 });

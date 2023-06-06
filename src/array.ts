@@ -652,3 +652,25 @@ export function flatMapIntoDeepKey<T extends object, K extends DeepKeyOf<T>>(arr
 export function mergeArrs<T>(...arrs: T[][]): T[] {
     return arrs.reduce((acc, cur) => dedupArr(acc.concat(cur)));
 }
+
+/**
+ * Finds and splices elements from an array based on a predicate function.
+ *
+ * @typeParam T - The type of elements in the array.
+ * @param arr - The array to search and splice.
+ * @param pred - The predicate function that determines if an element should be spliced.
+ * @param cnt - The number of elements to splice. Defaults to 1.
+ * @returns An array of spliced elements. If no elements match the predicate, an empty array is returned.
+ *
+ * @example
+ * // Find and splice the first occurrence of a number greater than 5 in an array
+ * const arr = [1, 3, 7, 9, 2, 4];
+ * const splicedElements = findAndSpliceArr(arr, (el) => el > 5);
+ * console.log(arr); // Output: [1, 3, 2, 4]
+ * console.log(splicedElements); // Output: [7]
+ */
+export function findAndSpliceArr<T>(arr: T[], pred: (el: T, i?: number) => boolean, cnt = 1): T[] {
+    const idx = arr.findIndex((el, i) => pred(el, i));
+    if (idx < 0) return [];
+    return arr.splice(idx, cnt);
+}
