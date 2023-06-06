@@ -1,5 +1,11 @@
 # @bryx-inc/ts-utils
 
+## 1.54.1
+
+### Patch Changes
+
+-   4359c31: Fix `findAndSpliceArr` documentation
+
 ## 1.54.0
 
 ### Minor Changes
