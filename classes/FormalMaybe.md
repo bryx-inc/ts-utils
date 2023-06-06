@@ -30,7 +30,7 @@ A formal wrapper class for interacting with possibly `null` values.
 
 #### Defined in
 
-[maybe.ts:117](https://github.com/bryx-inc/ts-utils/blob/b4061aa/src/maybe.ts#L117)
+[maybe.ts:117](https://github.com/bryx-inc/ts-utils/blob/4359c31/src/maybe.ts#L117)
 
 ## Properties
 
@@ -40,7 +40,7 @@ A formal wrapper class for interacting with possibly `null` values.
 
 #### Defined in
 
-[maybe.ts:117](https://github.com/bryx-inc/ts-utils/blob/b4061aa/src/maybe.ts#L117)
+[maybe.ts:117](https://github.com/bryx-inc/ts-utils/blob/4359c31/src/maybe.ts#L117)
 
 ## Methods
 
@@ -72,7 +72,7 @@ The non-null inner value
 
 #### Defined in
 
-[maybe.ts:276](https://github.com/bryx-inc/ts-utils/blob/b4061aa/src/maybe.ts#L276)
+[maybe.ts:276](https://github.com/bryx-inc/ts-utils/blob/4359c31/src/maybe.ts#L276)
 
 ___
 
@@ -99,7 +99,7 @@ doSomething(val.inner());
 
 #### Defined in
 
-[maybe.ts:199](https://github.com/bryx-inc/ts-utils/blob/b4061aa/src/maybe.ts#L199)
+[maybe.ts:199](https://github.com/bryx-inc/ts-utils/blob/4359c31/src/maybe.ts#L199)
 
 ___
 
@@ -128,7 +128,7 @@ if (v.isNone()) {
 
 #### Defined in
 
-[maybe.ts:237](https://github.com/bryx-inc/ts-utils/blob/b4061aa/src/maybe.ts#L237)
+[maybe.ts:237](https://github.com/bryx-inc/ts-utils/blob/4359c31/src/maybe.ts#L237)
 
 ___
 
@@ -157,7 +157,7 @@ if (v.isSome()) {
 
 #### Defined in
 
-[maybe.ts:218](https://github.com/bryx-inc/ts-utils/blob/b4061aa/src/maybe.ts#L218)
+[maybe.ts:218](https://github.com/bryx-inc/ts-utils/blob/4359c31/src/maybe.ts#L218)
 
 ___
 
@@ -197,7 +197,7 @@ console.log(v2.isSomeAnd(toLen)); // null
 
 #### Defined in
 
-[maybe.ts:258](https://github.com/bryx-inc/ts-utils/blob/b4061aa/src/maybe.ts#L258)
+[maybe.ts:258](https://github.com/bryx-inc/ts-utils/blob/4359c31/src/maybe.ts#L258)
 
 ___
 
@@ -226,7 +226,7 @@ The wrapped value if it exists, otherwise `null`.
 
 #### Defined in
 
-[maybe.ts:362](https://github.com/bryx-inc/ts-utils/blob/b4061aa/src/maybe.ts#L362)
+[maybe.ts:362](https://github.com/bryx-inc/ts-utils/blob/4359c31/src/maybe.ts#L362)
 
 ___
 
@@ -254,7 +254,7 @@ The inner, non-null value.
 
 #### Defined in
 
-[maybe.ts:295](https://github.com/bryx-inc/ts-utils/blob/b4061aa/src/maybe.ts#L295)
+[maybe.ts:295](https://github.com/bryx-inc/ts-utils/blob/4359c31/src/maybe.ts#L295)
 
 ___
 
@@ -283,7 +283,7 @@ console.log(FormalMaybe.None().unwrapOr("bar")); // "bar"
 
 #### Defined in
 
-[maybe.ts:310](https://github.com/bryx-inc/ts-utils/blob/b4061aa/src/maybe.ts#L310)
+[maybe.ts:310](https://github.com/bryx-inc/ts-utils/blob/4359c31/src/maybe.ts#L310)
 
 ___
 
@@ -313,7 +313,7 @@ console.log(FormalResult.None().unwrapOrelse(() => 2 * k)); // 20
 
 #### Defined in
 
-[maybe.ts:326](https://github.com/bryx-inc/ts-utils/blob/b4061aa/src/maybe.ts#L326)
+[maybe.ts:326](https://github.com/bryx-inc/ts-utils/blob/4359c31/src/maybe.ts#L326)
 
 ___
 
@@ -340,7 +340,7 @@ doSomething(maybeStr.unwrapOrUndef());
 
 #### Defined in
 
-[maybe.ts:343](https://github.com/bryx-inc/ts-utils/blob/b4061aa/src/maybe.ts#L343)
+[maybe.ts:343](https://github.com/bryx-inc/ts-utils/blob/4359c31/src/maybe.ts#L343)
 
 ___
 
@@ -371,7 +371,7 @@ Conditionally execute a block of code based on the `null` state of the inner val
 
 #### Defined in
 
-[maybe.ts:376](https://github.com/bryx-inc/ts-utils/blob/b4061aa/src/maybe.ts#L376)
+[maybe.ts:376](https://github.com/bryx-inc/ts-utils/blob/4359c31/src/maybe.ts#L376)
 
 **when**<`E`\>(`cond`, `fn`): [`FormalMaybe`](FormalMaybe.md)<`T`\>
 
@@ -398,7 +398,7 @@ Conditionally execute a block of code based on the `null` state of the inner val
 
 #### Defined in
 
-[maybe.ts:385](https://github.com/bryx-inc/ts-utils/blob/b4061aa/src/maybe.ts#L385)
+[maybe.ts:385](https://github.com/bryx-inc/ts-utils/blob/4359c31/src/maybe.ts#L385)
 
 ___
 
@@ -439,7 +439,7 @@ The empty [FormalMaybe](FormalMaybe.md)
 
 #### Defined in
 
-[maybe.ts:182](https://github.com/bryx-inc/ts-utils/blob/b4061aa/src/maybe.ts#L182)
+[maybe.ts:182](https://github.com/bryx-inc/ts-utils/blob/4359c31/src/maybe.ts#L182)
 
 ___
 
@@ -486,7 +486,7 @@ The newly constructed [FormalMaybe](FormalMaybe.md)
 
 #### Defined in
 
-[maybe.ts:157](https://github.com/bryx-inc/ts-utils/blob/b4061aa/src/maybe.ts#L157)
+[maybe.ts:157](https://github.com/bryx-inc/ts-utils/blob/4359c31/src/maybe.ts#L157)
 
 ___
 
@@ -523,4 +523,4 @@ The newly constructed [FormalMaybe](FormalMaybe.md)
 
 #### Defined in
 
-[maybe.ts:131](https://github.com/bryx-inc/ts-utils/blob/b4061aa/src/maybe.ts#L131)
+[maybe.ts:131](https://github.com/bryx-inc/ts-utils/blob/4359c31/src/maybe.ts#L131)
