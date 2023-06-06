@@ -663,11 +663,14 @@ export function mergeArrs<T>(...arrs: T[][]): T[] {
  * @returns An array of spliced elements. If no elements match the predicate, an empty array is returned.
  *
  * @example
- * // Find and splice the first occurrence of a number greater than 5 in an array
+ * ```ts
  * const arr = [1, 3, 7, 9, 2, 4];
  * const splicedElements = findAndSpliceArr(arr, (el) => el > 5);
- * console.log(arr); // Output: [1, 3, 2, 4]
+ * console.log(arr); // Output: [1, 3, 9, 2, 4]
  * console.log(splicedElements); // Output: [7]
+ * ```
+ *
+ * @category Array
  */
 export function findAndSpliceArr<T>(arr: T[], pred: (el: T, i?: number) => boolean, cnt = 1): T[] {
     const idx = arr.findIndex((el, i) => pred(el, i));
