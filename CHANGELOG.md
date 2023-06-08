@@ -1,5 +1,12 @@
 # @bryx-inc/ts-utils
 
+## 1.55.0
+
+### Minor Changes
+
+-   4fa4145: Adds `MappedTuple` type
+-   eed7a0d: Adds `Result.from`
+
 ## 1.54.1
 
 ### Patch Changes
