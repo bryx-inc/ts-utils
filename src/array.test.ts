@@ -16,6 +16,7 @@ import {
     lastElem,
     mergeArrs,
     moveToIdx,
+    objArrEquals,
     objectifyArr,
     permutationsOf,
     repeat,
@@ -428,5 +429,33 @@ describe("findAndSpliceArr", () => {
         const splicedElements = findAndSpliceArr(arr, (el) => el == 1);
         expect(arr).toEqual([]);
         expect(splicedElements).toEqual([]);
+    });
+});
+
+describe("objArrEquals", () => {
+    it("should return true if the arrays are equal", () => {
+        const arr1 = [
+            { id: 1, name: "joe" },
+            { id: 2, name: "jane" },
+        ];
+        const arr2 = [
+            { id: 2, name: "jane" },
+            { id: 1, name: "joe" },
+        ];
+        const equal = objArrEquals(arr1, arr2, "id");
+        expect(equal).toEqual(true);
+    });
+
+    it("should return false if the arrays are not equal", () => {
+        const arr1 = [
+            { id: 1, name: "joe" },
+            { id: 2, name: "jane" },
+        ];
+        const arr2 = [
+            { id: 2, name: "jane" },
+            { id: 3, name: "joe" },
+        ];
+        const equal = objArrEquals(arr1, arr2, "id");
+        expect(equal).toEqual(false);
     });
 });
