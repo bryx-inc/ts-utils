@@ -19,7 +19,7 @@ $ yarn docs
 $ npx serve public/
 ```
 
-The most up-to-date documentation is hosted at [https://bryxinc.gitlab.io/common/ts-utils](https://bryxinc.gitlab.io/common/ts-utils).
+The most up-to-date documentation is hosted at [https://bryx-inc.github.io/ts-utils](https://bryx-inc.github.io/ts-utils).
 
 ## Contributions
 
