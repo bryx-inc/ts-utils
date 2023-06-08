@@ -29,6 +29,62 @@ export class Result<T, E> {
         return new Result<T, E>([false, v]);
     }
 
+    /**
+     * Constructs a {@link Result} object by invoking a function `fn` and handling any potential errors. If no mapping function is specified, `toString()` is called on the error.
+     *
+     * @typeParam T The type of the value in the `Ok` state of the {@link Result}.
+     * @param {() => T} fn A function that produces a value of type `T`.
+     * @param {(err: Error) => E} [mapErr] An optional mapping function that transforms an error into the desired `Err` value.
+     * @returns {Result<T, string>} A {@link Result} object in the `Ok` state with the produced value if successful, or in the `Err` state with the mapped error value if an error occurs.
+     *
+     * @example
+     * ```ts
+     * const successResult = Result.from(() => 42);
+     * console.log(successResult); // Ok(42)
+     *
+     * const errorResult = Result.from<string>(() => {
+     *   throw new Error('Something went wrong');
+     * });
+     * console.log(errorResult); // Err("Error: Something went wrong")
+     * ```
+     */
+    static from<T>(fn: () => T, mapErr?: (err: Error) => string): Result<T, string>;
+    /**
+     * Constructs a {@link Result} object by invoking a function `fn` and handling any potential errors by mapping them into the given type.
+     *
+     * @template T - The type of the value in the `Ok` state of the {@link Result}.
+     * @template E - The type of the value in the `Err` state of the {@link Result}.
+     * @param {() => T} fn - A function that produces a value of type `T`.
+     * @param {(err: Error) => E} mapErr - The mapping function that transforms an error into the desired `Err` value.
+     * @returns {Result<T, string>} A {@link Result} object in the `Ok` state with the produced value if successful, or in the `Err` state with the mapped error value if an error occurs.
+     *
+     * @example
+     * ```ts
+     * const successResult = Result.from(() => 42);
+     * console.log(successResult); // Ok(42)
+     *
+     * const customErrorResult: Result<string, number> = Result.from(
+     *   () => {
+     *     throw new Error('Another error');
+     *   },
+     *   (err) => err.message.length
+     * );
+     * console.log(customErrorResult); // Err(13)
+     * ```
+     */
+    static from<T, E>(fn: () => T, mapErr: (err: Error) => E): Result<T, E>;
+
+    static from<T, E>(fn: () => T, mapErr?: (err: Error) => E): Result<T, E> {
+        try {
+            return Result.Ok<T, E>(fn());
+        } catch (err: unknown) {
+            if (err instanceof Error) return Result.Err<T, E>(mapErr?.(err) ?? (err.toString() as E));
+            return Result.Err<T, E>(
+                mapErr?.(new Error(err?.toString() ?? "null")) ?? (new Error(err?.toString() ?? "null").toString() as E),
+            );
+        }
+    }
+
     private inner() {
         return this.tuple[1];
     }
