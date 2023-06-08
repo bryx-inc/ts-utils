@@ -30,7 +30,7 @@ An object which can either be in an `Ok` state, or an `Err` state, with an assoc
 
 #### Defined in
 
-[result.ts:7](https://github.com/bryx-inc/ts-utils/blob/4359c31/src/result.ts#L7)
+[result.ts:7](https://github.com/bryx-inc/ts-utils/blob/eed7a0d/src/result.ts#L7)
 
 ## Properties
 
@@ -40,7 +40,7 @@ An object which can either be in an `Ok` state, or an `Err` state, with an assoc
 
 #### Defined in
 
-[result.ts:7](https://github.com/bryx-inc/ts-utils/blob/4359c31/src/result.ts#L7)
+[result.ts:7](https://github.com/bryx-inc/ts-utils/blob/eed7a0d/src/result.ts#L7)
 
 ## Methods
 
@@ -72,7 +72,7 @@ console.log(v.and(v => Result.Ok(v * 2))); // Err('foo')
 
 #### Defined in
 
-[result.ts:131](https://github.com/bryx-inc/ts-utils/blob/4359c31/src/result.ts#L131)
+[result.ts:187](https://github.com/bryx-inc/ts-utils/blob/eed7a0d/src/result.ts#L187)
 
 ___
 
@@ -112,7 +112,7 @@ console.log(div(20, 0).andThen(n => div(n, 2))); // Err('divide by zero');
 
 #### Defined in
 
-[result.ts:169](https://github.com/bryx-inc/ts-utils/blob/4359c31/src/result.ts#L169)
+[result.ts:225](https://github.com/bryx-inc/ts-utils/blob/eed7a0d/src/result.ts#L225)
 
 ___
 
@@ -142,7 +142,7 @@ console.log(Result.Err('foo').contains('foo')) // false
 
 #### Defined in
 
-[result.ts:253](https://github.com/bryx-inc/ts-utils/blob/4359c31/src/result.ts#L253)
+[result.ts:309](https://github.com/bryx-inc/ts-utils/blob/eed7a0d/src/result.ts#L309)
 
 ___
 
@@ -172,7 +172,7 @@ console.log(Result.Err('foo').contains('foo')) // false
 
 #### Defined in
 
-[result.ts:268](https://github.com/bryx-inc/ts-utils/blob/4359c31/src/result.ts#L268)
+[result.ts:324](https://github.com/bryx-inc/ts-utils/blob/eed7a0d/src/result.ts#L324)
 
 ___
 
@@ -192,7 +192,7 @@ ___
 
 #### Defined in
 
-[result.ts:273](https://github.com/bryx-inc/ts-utils/blob/4359c31/src/result.ts#L273)
+[result.ts:329](https://github.com/bryx-inc/ts-utils/blob/eed7a0d/src/result.ts#L329)
 
 ___
 
@@ -215,7 +215,7 @@ if (res.isErr()) console.log(`result failed with: ${res.err()}`);
 
 #### Defined in
 
-[result.ts:100](https://github.com/bryx-inc/ts-utils/blob/4359c31/src/result.ts#L100)
+[result.ts:156](https://github.com/bryx-inc/ts-utils/blob/eed7a0d/src/result.ts#L156)
 
 ___
 
@@ -229,7 +229,7 @@ ___
 
 #### Defined in
 
-[result.ts:32](https://github.com/bryx-inc/ts-utils/blob/4359c31/src/result.ts#L32)
+[result.ts:88](https://github.com/bryx-inc/ts-utils/blob/eed7a0d/src/result.ts#L88)
 
 ___
 
@@ -252,7 +252,7 @@ if (res.isErr()) console.log('an error occured!');
 
 #### Defined in
 
-[result.ts:73](https://github.com/bryx-inc/ts-utils/blob/4359c31/src/result.ts#L73)
+[result.ts:129](https://github.com/bryx-inc/ts-utils/blob/eed7a0d/src/result.ts#L129)
 
 ___
 
@@ -275,7 +275,7 @@ if (res.isOk()) console.log('passed!');
 
 #### Defined in
 
-[result.ts:60](https://github.com/bryx-inc/ts-utils/blob/4359c31/src/result.ts#L60)
+[result.ts:116](https://github.com/bryx-inc/ts-utils/blob/eed7a0d/src/result.ts#L116)
 
 ___
 
@@ -313,7 +313,7 @@ const mapped: Result<string, string> = res.map((v: number) => v.toString(), JSON
 
 #### Defined in
 
-[result.ts:46](https://github.com/bryx-inc/ts-utils/blob/4359c31/src/result.ts#L46)
+[result.ts:102](https://github.com/bryx-inc/ts-utils/blob/eed7a0d/src/result.ts#L102)
 
 ___
 
@@ -336,7 +336,7 @@ if (res.isOk()) console.log(`result: ${res.ok()}`);
 
 #### Defined in
 
-[result.ts:86](https://github.com/bryx-inc/ts-utils/blob/4359c31/src/result.ts#L86)
+[result.ts:142](https://github.com/bryx-inc/ts-utils/blob/eed7a0d/src/result.ts#L142)
 
 ___
 
@@ -370,7 +370,7 @@ console.log(div(10, 0).or(Result.Ok(0))) // Ok(0)
 
 #### Defined in
 
-[result.ts:150](https://github.com/bryx-inc/ts-utils/blob/4359c31/src/result.ts#L150)
+[result.ts:206](https://github.com/bryx-inc/ts-utils/blob/eed7a0d/src/result.ts#L206)
 
 ___
 
@@ -409,7 +409,7 @@ console.log(Result.Ok(3).orElse(square).orElse(err)) // Ok(9)
 
 #### Defined in
 
-[result.ts:187](https://github.com/bryx-inc/ts-utils/blob/4359c31/src/result.ts#L187)
+[result.ts:243](https://github.com/bryx-inc/ts-utils/blob/eed7a0d/src/result.ts#L243)
 
 ___
 
@@ -423,7 +423,7 @@ ___
 
 #### Defined in
 
-[result.ts:277](https://github.com/bryx-inc/ts-utils/blob/4359c31/src/result.ts#L277)
+[result.ts:333](https://github.com/bryx-inc/ts-utils/blob/eed7a0d/src/result.ts#L333)
 
 ___
 
@@ -446,7 +446,7 @@ const m: Maybe<Result<string, string>> = res.transpose();
 
 #### Defined in
 
-[result.ts:114](https://github.com/bryx-inc/ts-utils/blob/4359c31/src/result.ts#L114)
+[result.ts:170](https://github.com/bryx-inc/ts-utils/blob/eed7a0d/src/result.ts#L170)
 
 ___
 
@@ -470,7 +470,7 @@ console.log(Result.Err('bar').unwrap()); // ERROR!
 
 #### Defined in
 
-[result.ts:202](https://github.com/bryx-inc/ts-utils/blob/4359c31/src/result.ts#L202)
+[result.ts:258](https://github.com/bryx-inc/ts-utils/blob/eed7a0d/src/result.ts#L258)
 
 ___
 
@@ -503,7 +503,7 @@ console.log(b.unwrapOr('bar')); // 'fizz'
 
 #### Defined in
 
-[result.ts:220](https://github.com/bryx-inc/ts-utils/blob/4359c31/src/result.ts#L220)
+[result.ts:276](https://github.com/bryx-inc/ts-utils/blob/eed7a0d/src/result.ts#L276)
 
 ___
 
@@ -536,7 +536,7 @@ console.log(b.unwrapOrElse(err => err.toString())); // '15'
 
 #### Defined in
 
-[result.ts:238](https://github.com/bryx-inc/ts-utils/blob/4359c31/src/result.ts#L238)
+[result.ts:294](https://github.com/bryx-inc/ts-utils/blob/eed7a0d/src/result.ts#L294)
 
 ___
 
@@ -570,7 +570,7 @@ console.log(Result.Err('yikes! something went wrong').isOk()); // false
 
 #### Defined in
 
-[result.ts:28](https://github.com/bryx-inc/ts-utils/blob/4359c31/src/result.ts#L28)
+[result.ts:28](https://github.com/bryx-inc/ts-utils/blob/eed7a0d/src/result.ts#L28)
 
 ___
 
@@ -605,4 +605,90 @@ console.log(Result.Ok('foo').isOk()); // true
 
 #### Defined in
 
-[result.ts:17](https://github.com/bryx-inc/ts-utils/blob/4359c31/src/result.ts#L17)
+[result.ts:17](https://github.com/bryx-inc/ts-utils/blob/eed7a0d/src/result.ts#L17)
+
+___
+
+### from
+
+`Static` **from**<`T`\>(`fn`, `mapErr?`): [`Result`](Result.md)<`T`, `string`\>
+
+Constructs a [Result](Result.md) object by invoking a function `fn` and handling any potential errors. If no mapping function is specified, `toString()` is called on the error.
+
+**`Example`**
+
+```ts
+const successResult = Result.from(() => 42);
+console.log(successResult); // Ok(42)
+
+const errorResult = Result.from<string>(() => {
+  throw new Error('Something went wrong');
+});
+console.log(errorResult); // Err("Error: Something went wrong")
+```
+
+#### Type parameters
+
+| Name | Description |
+| :------ | :------ |
+| `T` | The type of the value in the `Ok` state of the [Result](Result.md). |
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `fn` | () => `T` | A function that produces a value of type `T`. |
+| `mapErr?` | (`err`: `Error`) => `string` | An optional mapping function that transforms an error into the desired `Err` value. |
+
+#### Returns
+
+[`Result`](Result.md)<`T`, `string`\>
+
+A [Result](Result.md) object in the `Ok` state with the produced value if successful, or in the `Err` state with the mapped error value if an error occurs.
+
+#### Defined in
+
+[result.ts:51](https://github.com/bryx-inc/ts-utils/blob/eed7a0d/src/result.ts#L51)
+
+`Static` **from**<`T`, `E`\>(`fn`, `mapErr`): [`Result`](Result.md)<`T`, `E`\>
+
+Constructs a [Result](Result.md) object by invoking a function `fn` and handling any potential errors by mapping them into the given type.
+
+**`Example`**
+
+```ts
+const successResult = Result.from(() => 42);
+console.log(successResult); // Ok(42)
+
+const customErrorResult: Result<string, number> = Result.from(
+  () => {
+    throw new Error('Another error');
+  },
+  (err) => err.message.length
+);
+console.log(customErrorResult); // Err(13)
+```
+
+#### Type parameters
+
+| Name | Description |
+| :------ | :------ |
+| `T` | The type of the value in the `Ok` state of the [Result](Result.md). |
+| `E` | The type of the value in the `Err` state of the [Result](Result.md). |
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `fn` | () => `T` | A function that produces a value of type `T`. |
+| `mapErr` | (`err`: `Error`) => `E` | The mapping function that transforms an error into the desired `Err` value. |
+
+#### Returns
+
+[`Result`](Result.md)<`T`, `E`\>
+
+A [Result](Result.md) object in the `Ok` state with the produced value if successful, or in the `Err` state with the mapped error value if an error occurs.
+
+#### Defined in
+
+[result.ts:75](https://github.com/bryx-inc/ts-utils/blob/eed7a0d/src/result.ts#L75)
