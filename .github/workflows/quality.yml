@@ -2,7 +2,10 @@ name: Quality
 
 on: 
   push:
-  pull_request_target:
+  pull_request:
+
+permissions:
+  pull-requests: write
 
 jobs:
   build:
@@ -25,12 +28,5 @@ jobs:
           hide_branch_rate: false
           hide_complexity: true
           indicators: true
-          output: both
+          output: console
           thresholds: '100 100'
-
-      - name: Add Coverage PR Comment
-        uses: marocchino/sticky-pull-request-comment@v2
-        if: github.event_name == 'pull_request'
-        with:
-          recreate: true
-          path: code-coverage-results.md
