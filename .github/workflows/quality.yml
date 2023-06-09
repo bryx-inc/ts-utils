@@ -1,0 +1,17 @@
+name: Quality
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Dependencies
+      run: yarn --frozen-lockfile
+    - name: Typecheck
+      run: yarn typecheck
+    - name: Lint
+      run: yarn lint
+    - name: Format
+      run: yarn format
