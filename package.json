@@ -5,6 +5,7 @@
   "author": "Tyler Holewinski <tyler.holewinski@bryx.com>",
   "license": "MIT",
   "scripts": {
+    "typecheck": "tsc --noEmit",
     "release": "yarn build:lib && yarn changeset publish",
     "build:lib": "gulp build:lib",
     "build:docs": "gulp build:docs",
