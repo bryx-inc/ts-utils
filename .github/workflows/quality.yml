@@ -1,17 +1,32 @@
 name: Quality
 
-on: push
+on: 
+  push:
+  pull_request:
+
+permissions:
+  pull-requests: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Install Dependencies
-      run: yarn --frozen-lockfile
-    - name: Typecheck
-      run: yarn typecheck
-    - name: Lint
-      run: yarn lint
-    - name: Format
-      run: yarn format
+      - uses: actions/checkout@v2
+      - run: yarn --frozen-lockfile
+      - run: yarn typecheck
+      - run: yarn lint
+      - run: yarn format
+      - run: yarn test:cov
+      
+      - name: Code Coverage Report
+        uses: irongut/CodeCoverageSummary@v1.3.0
+        with:
+          filename: coverage/cobertura-coverage.xml
+          badge: true
+          fail_below_min: true
+          format: markdown
+          hide_branch_rate: false
+          hide_complexity: true
+          indicators: true
+          output: console
+          thresholds: '100 100'
