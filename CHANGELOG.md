@@ -1,5 +1,11 @@
 # @bryx-inc/ts-utils
 
+## 1.56.0
+
+### Minor Changes
+
+-   5746819: Add objArrayEquals
+
 ## 1.55.0
 
 ### Minor Changes
