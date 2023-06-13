@@ -679,20 +679,22 @@ export function findAndSpliceArr<T>(arr: T[], pred: (el: T, i?: number) => boole
 }
 
 /**
- * Returns a boolean value indicating whether or not two arrays of objects are equal regardless or order.
- * 
+ * Determine the equality of two object arrays by checking if each value at the given key of the
+ * first array is present in the second array at the same key.
+ * If the given arrays are of different length, return false.
+ *
  * @param arr1 - The first array to compare.
  * @param arr2 - The second array to compare.
  * @param key - The key to compare the objects by.
  * @returns A boolean value indicating whether or not the two arrays are equal.
- * 
+ *
  * @example
  * ```ts
  * const arr1 = [{ id: 1, name: "joe" }, { id: 2, name: "jane" }];
  * const arr2 = [{ id: 2, name: "jane" }, { id: 1, name: "joe" }];
  * const equal = objArrEquals(arr1, arr2, "id");
  * console.log(equal); // Output: true
- * 
+ *
  * @category Array
  */
 export function objArrEquals<T extends object, K extends keyof T>(arr1: T[], arr2: T[], key: K): boolean {

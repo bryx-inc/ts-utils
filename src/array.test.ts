@@ -458,4 +458,14 @@ describe("objArrEquals", () => {
         const equal = objArrEquals(arr1, arr2, "id");
         expect(equal).toEqual(false);
     });
+
+    it("should return false if the arrays are different lengths", () => {
+        const arr1 = [
+            { id: 1, name: "joe" },
+            { id: 2, name: "jane" },
+        ];
+        const arr2 = [{ id: 2, name: "jane" }];
+        const equal = objArrEquals(arr1, arr2, "id");
+        expect(equal).toEqual(false);
+    });
 });
