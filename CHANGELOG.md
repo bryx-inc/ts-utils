@@ -1,5 +1,11 @@
 # @bryx-inc/ts-utils
 
+## 1.57.0
+
+### Minor Changes
+
+-   aaf6032: Adds `Explode<T>` type
+
 ## 1.56.0
 
 ### Minor Changes
