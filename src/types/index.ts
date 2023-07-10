@@ -14,3 +14,4 @@ export * from "./concatTuple";
 export * from "./deepRemoveReadonly";
 export * from "./mappedTupleWithAffixes";
 export * from "./mappedTuple";
+export * from "./explode";
