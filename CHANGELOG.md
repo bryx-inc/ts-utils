@@ -1,5 +1,12 @@
 # @bryx-inc/ts-utils
 
+## 1.58.0
+
+### Minor Changes
+
+-   588ccce: Adds `Explode<T>` type
+-   588ccce: Adds `rangeIter` generator
+
 ## 1.57.0
 
 ### Minor Changes
