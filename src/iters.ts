@@ -1,5 +1,6 @@
 import { throwError } from "./errors";
 import { intoMaybe, isNone, isSome, Maybe } from "./maybe";
+import { Unique } from "./types/unique";
 
 /**
  * Represents a chainable iterator that allows performing various operations on an underlying generator.
@@ -589,6 +590,19 @@ export class ChainableIterator<T> implements Generator<T> {
         }
 
         return true;
+    }
+
+    dedup(): ChainableIterator<Unique<T>> {
+        const generator = this.generator;
+
+        return ChainableIterator.fromGeneratorFn(function* () {
+            let lastElem: Maybe<Unique<T>> = null;
+
+            for (const val of generator) {
+                if (lastElem != val) yield val as Unique<T>;
+                lastElem = val as Unique<T>;
+            }
+        });
     }
 }
 

@@ -287,4 +287,11 @@ describe("Chainable Iterator", () => {
         expect(rangeIter(0, 10).every(elementIsEven)).toEqual(false);
         expect(rangeIter(0, 10).filter(elementIsEven).every(elementIsEven)).toEqual(true);
     });
+
+    it("should properly apply the 'dedup' function", () => {
+        let it = iter(['one', 'two', 'two'] as const);
+        let it2 = it.dedup();
+           
+        expect(rangeIter(0, 10).chain(rangeIter(0, 10)).dedup().collect()).toEqual(rangeIter(0, 10).collect());
+    });
 });
