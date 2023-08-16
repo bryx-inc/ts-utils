@@ -289,9 +289,9 @@ describe("Chainable Iterator", () => {
     });
 
     it("should properly apply the 'dedup' function", () => {
-        let it = iter(['one', 'two', 'two'] as const);
+        let it = iter(["one", "two", "two"] as const);
         let it2 = it.dedup();
-           
+
         expect(rangeIter(0, 10).chain(rangeIter(0, 10)).dedup().collect()).toEqual(rangeIter(0, 10).collect());
     });
 });
