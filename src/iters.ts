@@ -1,5 +1,6 @@
 import { throwError } from "./errors";
 import { intoMaybe, isNone, isSome, Maybe } from "./maybe";
+import { Unique } from "./types/unique";
 
 /**
  * Represents a chainable iterator that allows performing various operations on an underlying generator.
@@ -590,6 +591,33 @@ export class ChainableIterator<T> implements Generator<T> {
 
         return true;
     }
+
+    /**
+     * Removes duplicate elements from the iterator.
+     *
+     * This method returns a new {@link ChainableIterator} with duplicate elements removed.
+     *
+     * @returns A new ChainableIterator with duplicate elements removed.
+     *
+     * @example
+     * ```typescript
+     * const result = iter([1, 2, 3, 4, 5, 1, 2, 3, 4, 5]).dedup().collect();
+     * console.log(result); // [1, 2, 3, 4, 5]
+     * ```
+     */
+    dedup(): ChainableIterator<Unique<T>> {
+        const generator = this.generator;
+        const vals: Unique<T>[] = [];
+
+        return ChainableIterator.fromGeneratorFn(function* () {
+            for (const val of generator as Generator<Unique<T>, void, unknown>) {
+                if (vals.includes(val)) continue;
+
+                yield val;
+                vals.push(val);
+            }
+        });
+    }
 }
 
 /**
@@ -670,6 +698,21 @@ export function iter<T>(val: Generator<T, void, unknown>): ChainableIterator<T>;
  * @returns A new {@link ChainableIterator} instance based on the provided input.
  */
 export function iter<T>(val: T[]): ChainableIterator<T>;
+/**
+ * Creates a {@link ChainableIterator} from an array.
+ *
+ * ?> This method does *not* preemptively call the array's inernal iterator at construction time, it just constructs a new iterator based on the array's iterator
+ *
+ * @example
+ * ```ts
+ * console.log(iter([1, 2, 3]).fold("", (acc, cur) => acc + cur)); // output: "123"
+ * ```
+ *
+ * @typeParam T - The type of elements produced by the iterator.
+ * @param val - The array to construct the iterator with
+ * @returns A new {@link ChainableIterator} instance based on the provided input.
+ */
+export function iter<T>(val: ReadonlyArray<T>): ChainableIterator<T>;
 /**
  * Creates a {@link ChainableIterator} from an existing, raw {@link Iterator}
  *
