@@ -592,6 +592,19 @@ export class ChainableIterator<T> implements Generator<T> {
         return true;
     }
 
+    /**
+     * Removes duplicate elements from the iterator.
+     *
+     * This method returns a new {@link ChainableIterator} with duplicate elements removed.
+     *
+     * @returns A new ChainableIterator with duplicate elements removed.
+     *
+     * @example
+     * ```typescript
+     * const result = iter([1, 2, 3, 4, 5, 1, 2, 3, 4, 5]).dedup().collect();
+     * console.log(result); // [1, 2, 3, 4, 5]
+     * ```
+     */
     dedup(): ChainableIterator<Unique<T>> {
         const generator = this.generator;
         const vals: Unique<T>[] = [];
