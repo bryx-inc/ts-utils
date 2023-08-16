@@ -594,13 +594,14 @@ export class ChainableIterator<T> implements Generator<T> {
 
     dedup(): ChainableIterator<Unique<T>> {
         const generator = this.generator;
+        const vals: Unique<T>[] = [];
 
         return ChainableIterator.fromGeneratorFn(function* () {
-            let lastElem: Maybe<Unique<T>> = null;
+            for (const val of generator as Generator<Unique<T>, void, unknown>) {
+                if (vals.includes(val)) continue;
 
-            for (const val of generator) {
-                if (lastElem != val) yield val as Unique<T>;
-                lastElem = val as Unique<T>;
+                yield val;
+                vals.push(val);
             }
         });
     }
