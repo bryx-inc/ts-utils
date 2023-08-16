@@ -32,7 +32,7 @@ Represents a chainable iterator that allows performing various operations on an 
 
 #### Defined in
 
-[iters.ts:12](https://github.com/bryx-inc/ts-utils/blob/37c1f99/src/iters.ts#L12)
+[iters.ts:13](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L13)
 
 ## Properties
 
@@ -42,7 +42,7 @@ Represents a chainable iterator that allows performing various operations on an 
 
 #### Defined in
 
-[iters.ts:10](https://github.com/bryx-inc/ts-utils/blob/37c1f99/src/iters.ts#L10)
+[iters.ts:11](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L11)
 
 ## Methods
 
@@ -60,7 +60,7 @@ Generator.\_\_@iterator@87
 
 #### Defined in
 
-[iters.ts:54](https://github.com/bryx-inc/ts-utils/blob/37c1f99/src/iters.ts#L54)
+[iters.ts:55](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L55)
 
 ___
 
@@ -97,7 +97,7 @@ A new [ChainableIterator](ChainableIterator.md) containing elements from both it
 
 #### Defined in
 
-[iters.ts:260](https://github.com/bryx-inc/ts-utils/blob/37c1f99/src/iters.ts#L260)
+[iters.ts:261](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L261)
 
 ___
 
@@ -124,7 +124,7 @@ An array containing all elements of the iterator in the order they were produced
 
 #### Defined in
 
-[iters.ts:207](https://github.com/bryx-inc/ts-utils/blob/37c1f99/src/iters.ts#L207)
+[iters.ts:208](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L208)
 
 ___
 
@@ -138,7 +138,34 @@ ___
 
 #### Defined in
 
-[iters.ts:211](https://github.com/bryx-inc/ts-utils/blob/37c1f99/src/iters.ts#L211)
+[iters.ts:212](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L212)
+
+___
+
+### dedup
+
+**dedup**(): [`ChainableIterator`](ChainableIterator.md)<`Unique`<`T`\>\>
+
+Removes duplicate elements from the iterator.
+
+This method returns a new [ChainableIterator](ChainableIterator.md) with duplicate elements removed.
+
+**`Example`**
+
+```typescript
+const result = iter([1, 2, 3, 4, 5, 1, 2, 3, 4, 5]).dedup().collect();
+console.log(result); // [1, 2, 3, 4, 5]
+```
+
+#### Returns
+
+[`ChainableIterator`](ChainableIterator.md)<`Unique`<`T`\>\>
+
+A new ChainableIterator with duplicate elements removed.
+
+#### Defined in
+
+[iters.ts:608](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L608)
 
 ___
 
@@ -163,7 +190,7 @@ A new `ChainableIterator` containing pairs of index-value for each element.
 
 #### Defined in
 
-[iters.ts:340](https://github.com/bryx-inc/ts-utils/blob/37c1f99/src/iters.ts#L340)
+[iters.ts:341](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L341)
 
 ___
 
@@ -198,7 +225,7 @@ console.log(result); // Output: true
 
 #### Defined in
 
-[iters.ts:586](https://github.com/bryx-inc/ts-utils/blob/37c1f99/src/iters.ts#L586)
+[iters.ts:587](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L587)
 
 ___
 
@@ -234,7 +261,7 @@ A new `ChainableIterator` containing only the elements that satisfy the predicat
 
 #### Defined in
 
-[iters.ts:114](https://github.com/bryx-inc/ts-utils/blob/37c1f99/src/iters.ts#L114)
+[iters.ts:115](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L115)
 
 ___
 
@@ -276,7 +303,7 @@ A new `ChainableIterator` containing the mapped and filtered elements.
 
 #### Defined in
 
-[iters.ts:325](https://github.com/bryx-inc/ts-utils/blob/37c1f99/src/iters.ts#L325)
+[iters.ts:326](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L326)
 
 ___
 
@@ -313,7 +340,7 @@ A new [ChainableIterator](ChainableIterator.md) containing the mapped and flatte
 
 #### Defined in
 
-[iters.ts:518](https://github.com/bryx-inc/ts-utils/blob/37c1f99/src/iters.ts#L518)
+[iters.ts:519](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L519)
 
 ___
 
@@ -338,7 +365,7 @@ A new [ChainableIterator](ChainableIterator.md) with elements at the deepest lev
 
 #### Defined in
 
-[iters.ts:494](https://github.com/bryx-inc/ts-utils/blob/37c1f99/src/iters.ts#L494)
+[iters.ts:495](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L495)
 
 ___
 
@@ -377,7 +404,7 @@ The final folded value.
 
 #### Defined in
 
-[iters.ts:159](https://github.com/bryx-inc/ts-utils/blob/37c1f99/src/iters.ts#L159)
+[iters.ts:160](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L160)
 
 ___
 
@@ -405,7 +432,7 @@ iter([1, 2, 3, 4, 5]).forEach((val) => console.log(val)); // Output: 1, 2, 3, 4,
 
 #### Defined in
 
-[iters.ts:303](https://github.com/bryx-inc/ts-utils/blob/37c1f99/src/iters.ts#L303)
+[iters.ts:304](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L304)
 
 ___
 
@@ -438,7 +465,7 @@ A new `ChainableIterator` containing the original elements.
 
 #### Defined in
 
-[iters.ts:536](https://github.com/bryx-inc/ts-utils/blob/37c1f99/src/iters.ts#L536)
+[iters.ts:537](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L537)
 
 ___
 
@@ -463,7 +490,7 @@ The last element produced by the iterator.
 
 #### Defined in
 
-[iters.ts:226](https://github.com/bryx-inc/ts-utils/blob/37c1f99/src/iters.ts#L226)
+[iters.ts:227](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L227)
 
 ___
 
@@ -502,7 +529,7 @@ A new `ChainableIterator` with elements of type U.
 
 #### Defined in
 
-[iters.ts:90](https://github.com/bryx-inc/ts-utils/blob/37c1f99/src/iters.ts#L90)
+[iters.ts:91](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L91)
 
 ___
 
@@ -545,7 +572,7 @@ A new [ChainableIterator](ChainableIterator.md) containing the mapped elements u
 
 #### Defined in
 
-[iters.ts:423](https://github.com/bryx-inc/ts-utils/blob/37c1f99/src/iters.ts#L423)
+[iters.ts:424](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L424)
 
 ___
 
@@ -581,7 +608,7 @@ Generator.next
 
 #### Defined in
 
-[iters.ts:71](https://github.com/bryx-inc/ts-utils/blob/37c1f99/src/iters.ts#L71)
+[iters.ts:72](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L72)
 
 ___
 
@@ -612,7 +639,7 @@ The nth element as a {@link}. If the index is out of range, it returns `null`.
 
 #### Defined in
 
-[iters.ts:242](https://github.com/bryx-inc/ts-utils/blob/37c1f99/src/iters.ts#L242)
+[iters.ts:243](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L243)
 
 ___
 
@@ -649,7 +676,7 @@ A tuple of two [ChainableIterator](ChainableIterator.md) instances: one containi
 
 #### Defined in
 
-[iters.ts:561](https://github.com/bryx-inc/ts-utils/blob/37c1f99/src/iters.ts#L561)
+[iters.ts:562](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L562)
 
 ___
 
@@ -681,7 +708,7 @@ The final reduced value.
 
 #### Defined in
 
-[iters.ts:134](https://github.com/bryx-inc/ts-utils/blob/37c1f99/src/iters.ts#L134)
+[iters.ts:135](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L135)
 
 ___
 
@@ -699,7 +726,7 @@ Generator.return
 
 #### Defined in
 
-[iters.ts:45](https://github.com/bryx-inc/ts-utils/blob/37c1f99/src/iters.ts#L45)
+[iters.ts:46](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L46)
 
 ___
 
@@ -740,7 +767,7 @@ A new [ChainableIterator](ChainableIterator.md) containing intermediate scan val
 
 #### Defined in
 
-[iters.ts:470](https://github.com/bryx-inc/ts-utils/blob/37c1f99/src/iters.ts#L470)
+[iters.ts:471](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L471)
 
 ___
 
@@ -769,7 +796,7 @@ console.log(result); // Output: [3, 4, 5]
 
 #### Defined in
 
-[iters.ts:447](https://github.com/bryx-inc/ts-utils/blob/37c1f99/src/iters.ts#L447)
+[iters.ts:448](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L448)
 
 ___
 
@@ -804,7 +831,7 @@ A new [ChainableIterator](ChainableIterator.md) containing the remaining element
 
 #### Defined in
 
-[iters.ts:360](https://github.com/bryx-inc/ts-utils/blob/37c1f99/src/iters.ts#L360)
+[iters.ts:361](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L361)
 
 ___
 
@@ -836,7 +863,7 @@ A new `ChainableIterator` containing the taken elements.
 
 #### Defined in
 
-[iters.ts:183](https://github.com/bryx-inc/ts-utils/blob/37c1f99/src/iters.ts#L183)
+[iters.ts:184](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L184)
 
 ___
 
@@ -872,7 +899,7 @@ A new [ChainableIterator](ChainableIterator.md) containing elements taken until 
 
 #### Defined in
 
-[iters.ts:393](https://github.com/bryx-inc/ts-utils/blob/37c1f99/src/iters.ts#L393)
+[iters.ts:394](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L394)
 
 ___
 
@@ -896,7 +923,7 @@ Generator.throw
 
 #### Defined in
 
-[iters.ts:49](https://github.com/bryx-inc/ts-utils/blob/37c1f99/src/iters.ts#L49)
+[iters.ts:50](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L50)
 
 ___
 
@@ -935,7 +962,7 @@ A new `ChainableIterator` containing pairs of elements from both iterators until
 
 #### Defined in
 
-[iters.ts:283](https://github.com/bryx-inc/ts-utils/blob/37c1f99/src/iters.ts#L283)
+[iters.ts:284](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L284)
 
 ___
 
@@ -965,7 +992,7 @@ Creates a new [ChainableIterator](ChainableIterator.md) from an array's internal
 
 #### Defined in
 
-[iters.ts:41](https://github.com/bryx-inc/ts-utils/blob/37c1f99/src/iters.ts#L41)
+[iters.ts:42](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L42)
 
 ___
 
@@ -995,7 +1022,7 @@ Creates a new [ChainableIterator](ChainableIterator.md) from a generator factory
 
 #### Defined in
 
-[iters.ts:21](https://github.com/bryx-inc/ts-utils/blob/37c1f99/src/iters.ts#L21)
+[iters.ts:22](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L22)
 
 ___
 
@@ -1025,4 +1052,4 @@ Creates a new [ChainableIterator](ChainableIterator.md) from an existing iterato
 
 #### Defined in
 
-[iters.ts:30](https://github.com/bryx-inc/ts-utils/blob/37c1f99/src/iters.ts#L30)
+[iters.ts:31](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L31)
