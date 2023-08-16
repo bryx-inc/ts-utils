@@ -1,5 +1,11 @@
 # @bryx-inc/ts-utils
 
+## 1.59.0
+
+### Minor Changes
+
+-   2f3bdd5: Introduces `ChainableIterator` class and `iter(...)` constructor
+
 ## 1.58.0
 
 ### Minor Changes
