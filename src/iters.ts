@@ -685,6 +685,21 @@ export function iter<T>(val: Generator<T, void, unknown>): ChainableIterator<T>;
  */
 export function iter<T>(val: T[]): ChainableIterator<T>;
 /**
+ * Creates a {@link ChainableIterator} from an array.
+ *
+ * ?> This method does *not* preemptively call the array's inernal iterator at construction time, it just constructs a new iterator based on the array's iterator
+ *
+ * @example
+ * ```ts
+ * console.log(iter([1, 2, 3]).fold("", (acc, cur) => acc + cur)); // output: "123"
+ * ```
+ *
+ * @typeParam T - The type of elements produced by the iterator.
+ * @param val - The array to construct the iterator with
+ * @returns A new {@link ChainableIterator} instance based on the provided input.
+ */
+export function iter<T>(val: ReadonlyArray<T>): ChainableIterator<T>;
+/**
  * Creates a {@link ChainableIterator} from an existing, raw {@link Iterator}
  *
  * @example
