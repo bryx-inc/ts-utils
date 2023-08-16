@@ -1,5 +1,14 @@
 # @bryx-inc/ts-utils
 
+## 1.60.0
+
+### Minor Changes
+
+-   9e3721b: Adds support for the `iter` constructor to accept a `ReadonlyArray<T>` argument
+-   9e3721b: Introduces `ChainableIterator` class and `iter(...)` constructor
+-   9e3721b: Adds `ChainableIterator::dedup` method for dropping duplicate elements from iterators
+-   9e3721b: Adds `Unique<U>` type for narrowing union types with duplicates
+
 ## 1.59.0
 
 ### Minor Changes
