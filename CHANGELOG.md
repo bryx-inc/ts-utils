@@ -1,5 +1,11 @@
 # @bryx-inc/ts-utils
 
+## 1.61.0
+
+### Minor Changes
+
+-   4ea8c16: Adds `getObjEntries`
+
 ## 1.60.0
 
 ### Minor Changes
