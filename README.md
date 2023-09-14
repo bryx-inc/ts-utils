@@ -76,6 +76,7 @@
 - [flatMapIntoDeepKey](modules.md#flatmapintodeepkey)
 - [getDeepObjKeys](modules.md#getdeepobjkeys)
 - [getDeepValue](modules.md#getdeepvalue)
+- [getObjEntries](modules.md#getobjentries)
 - [initialism](modules.md#initialism)
 - [inject](modules.md#inject)
 - [intoMaybe](modules.md#intomaybe)
@@ -134,7 +135,7 @@ type Result = ConcatReadonlyTuple<readonly ["Hello", "World"], "-">;
 
 #### Defined in
 
-[types/concatTuple.ts:36](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/types/concatTuple.ts#L36)
+[types/concatTuple.ts:36](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/types/concatTuple.ts#L36)
 
 ___
 
@@ -161,7 +162,7 @@ type Result = ConcatTuple<["Hello", "World"], "-">;
 
 #### Defined in
 
-[types/concatTuple.ts:15](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/types/concatTuple.ts#L15)
+[types/concatTuple.ts:15](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/types/concatTuple.ts#L15)
 
 ___
 
@@ -198,7 +199,7 @@ DeepKeyOf<Person>;
 
 #### Defined in
 
-[types/deepKeyOf.ts:22](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/types/deepKeyOf.ts#L22)
+[types/deepKeyOf.ts:22](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/types/deepKeyOf.ts#L22)
 
 ___
 
@@ -244,7 +245,7 @@ const Joe: HobbySubType = {
 
 #### Defined in
 
-[types/deepPick.ts:33](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/types/deepPick.ts#L33)
+[types/deepPick.ts:33](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/types/deepPick.ts#L33)
 
 ___
 
@@ -292,7 +293,7 @@ type Keys = DeepRemoveReadonly<readonly ["one", "two", "three"]>
 
 #### Defined in
 
-[types/deepRemoveReadonly.ts:34](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/types/deepRemoveReadonly.ts#L34)
+[types/deepRemoveReadonly.ts:34](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/types/deepRemoveReadonly.ts#L34)
 
 ___
 
@@ -324,7 +325,7 @@ type Example2 = DeepUnwrap<number[]>;
 
 #### Defined in
 
-[types/deepUnwrap.ts:18](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/types/deepUnwrap.ts#L18)
+[types/deepUnwrap.ts:18](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/types/deepUnwrap.ts#L18)
 
 ___
 
@@ -372,7 +373,7 @@ DeepValue<User, "orders.items">; // { id: number, name: string, price: number, q
 
 #### Defined in
 
-[types/deepValue.ts:38](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/types/deepValue.ts#L38)
+[types/deepValue.ts:38](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/types/deepValue.ts#L38)
 
 ___
 
@@ -401,7 +402,7 @@ type Result2 = Explode<'12345'>;
 
 #### Defined in
 
-[types/explode.ts:16](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/types/explode.ts#L16)
+[types/explode.ts:16](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/types/explode.ts#L16)
 
 ___
 
@@ -417,7 +418,7 @@ ___
 
 #### Defined in
 
-[types/tuple.ts:6](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/types/tuple.ts#L6)
+[types/tuple.ts:6](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/types/tuple.ts#L6)
 
 ___
 
@@ -445,7 +446,7 @@ type _ = IntersectUnion<Things>;
 
 #### Defined in
 
-[types/intersectUnion.ts:15](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/types/intersectUnion.ts#L15)
+[types/intersectUnion.ts:15](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/types/intersectUnion.ts#L15)
 
 ___
 
@@ -474,7 +475,7 @@ type ResultTuple = MappedTuple<InputTuple, 'id'>;
 
 #### Defined in
 
-[types/mappedTuple.ts:16](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/types/mappedTuple.ts#L16)
+[types/mappedTuple.ts:16](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/types/mappedTuple.ts#L16)
 
 ___
 
@@ -512,7 +513,7 @@ type Mapped = MappedTupleWithAffixes<MyTuple, { prefix: "Fruit:", suffix: "!" }>
 
 #### Defined in
 
-[types/mappedTupleWithAffixes.ts:21](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/types/mappedTupleWithAffixes.ts#L21)
+[types/mappedTupleWithAffixes.ts:21](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/types/mappedTupleWithAffixes.ts#L21)
 
 ___
 
@@ -530,7 +531,7 @@ A shorthand type for `T | null`.
 
 #### Defined in
 
-[maybe.ts:4](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/maybe.ts#L4)
+[maybe.ts:4](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/maybe.ts#L4)
 
 ___
 
@@ -547,7 +548,7 @@ ___
 
 #### Defined in
 
-[types/narrow.ts:1](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/types/narrow.ts#L1)
+[types/narrow.ts:1](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/types/narrow.ts#L1)
 
 ___
 
@@ -584,7 +585,7 @@ type ApiResponse = OverrideKeys<Personnel, { rank: string }>;
 
 #### Defined in
 
-[types/overrideKeys.ts:25](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/types/overrideKeys.ts#L25)
+[types/overrideKeys.ts:25](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/types/overrideKeys.ts#L25)
 
 ___
 
@@ -609,7 +610,7 @@ type Example = Range<5, 10>; // 5 | 6 | 7 | 8 | 9 | 10
 
 #### Defined in
 
-[types/range.ts:10](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/types/range.ts#L10)
+[types/range.ts:10](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/types/range.ts#L10)
 
 ___
 
@@ -636,7 +637,7 @@ type FormattingBlockPatch RecursivePartial<FormattingBlock>;
 
 #### Defined in
 
-[types/recursivePartial.ts:12](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/types/recursivePartial.ts#L12)
+[types/recursivePartial.ts:12](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/types/recursivePartial.ts#L12)
 
 ___
 
@@ -652,7 +653,7 @@ ___
 
 #### Defined in
 
-[types/recursiveWritable.ts:1](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/types/recursiveWritable.ts#L1)
+[types/recursiveWritable.ts:1](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/types/recursiveWritable.ts#L1)
 
 ___
 
@@ -670,7 +671,7 @@ ___
 
 #### Defined in
 
-[types/tuple.ts:1](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/types/tuple.ts#L1)
+[types/tuple.ts:1](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/types/tuple.ts#L1)
 
 ___
 
@@ -686,7 +687,7 @@ ___
 
 #### Defined in
 
-[string.ts:8](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/string.ts#L8)
+[string.ts:8](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/string.ts#L8)
 
 ___
 
@@ -702,7 +703,7 @@ ___
 
 #### Defined in
 
-[types/tuple.ts:5](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/types/tuple.ts#L5)
+[types/tuple.ts:5](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/types/tuple.ts#L5)
 
 ___
 
@@ -720,7 +721,7 @@ Extract the inner type of some given array type, `T`
 
 #### Defined in
 
-[array.ts:10](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/array.ts#L10)
+[array.ts:10](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/array.ts#L10)
 
 ___
 
@@ -738,7 +739,7 @@ ___
 
 #### Defined in
 
-[hooks/useBool.ts:7](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/hooks/useBool.ts#L7)
+[hooks/useBool.ts:7](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/hooks/useBool.ts#L7)
 
 ___
 
@@ -756,7 +757,7 @@ ___
 
 #### Defined in
 
-[hooks/useIndex.ts:7](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/hooks/useIndex.ts#L7)
+[hooks/useIndex.ts:7](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/hooks/useIndex.ts#L7)
 
 ___
 
@@ -773,7 +774,7 @@ ___
 
 #### Defined in
 
-[types/withRequiredKeys.ts:1](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/types/withRequiredKeys.ts#L1)
+[types/withRequiredKeys.ts:1](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/types/withRequiredKeys.ts#L1)
 
 ## Array Functions
 
@@ -809,7 +810,7 @@ arrFromFactory(5, (idx) => idx % 2 == 0 ? 'even' : 'odd');
 
 #### Defined in
 
-[array.ts:291](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/array.ts#L291)
+[array.ts:291](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/array.ts#L291)
 
 ___
 
@@ -838,7 +839,7 @@ arrayIsEmpty([1, 2, 3]); // false
 
 #### Defined in
 
-[array.ts:75](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/array.ts#L75)
+[array.ts:75](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/array.ts#L75)
 
 ___
 
@@ -869,7 +870,7 @@ This operation yields the same result as `const newArr = [...arr];`
 
 #### Defined in
 
-[array.ts:207](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/array.ts#L207)
+[array.ts:207](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/array.ts#L207)
 
 ___
 
@@ -906,7 +907,7 @@ console.log(fruits); // ['apple', 'banana', 'orange']
 
 #### Defined in
 
-[array.ts:343](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/array.ts#L343)
+[array.ts:343](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/array.ts#L343)
 
 ___
 
@@ -947,7 +948,7 @@ An array of spliced elements. If no elements match the predicate, an empty array
 
 #### Defined in
 
-[array.ts:675](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/array.ts#L675)
+[array.ts:675](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/array.ts#L675)
 
 ___
 
@@ -989,7 +990,7 @@ console.log(arr); // [1, 2, null, 3, null, 4];
 
 #### Defined in
 
-[array.ts:141](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/array.ts#L141)
+[array.ts:141](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/array.ts#L141)
 
 ___
 
@@ -1028,7 +1029,7 @@ console.log(arr); // ['apple', 'banana', 'orange']
 
 #### Defined in
 
-[array.ts:160](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/array.ts#L160)
+[array.ts:160](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/array.ts#L160)
 
 ___
 
@@ -1071,7 +1072,7 @@ lastElem(arr2) // null
 
 #### Defined in
 
-[array.ts:121](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/array.ts#L121)
+[array.ts:121](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/array.ts#L121)
 
 ___
 
@@ -1112,7 +1113,7 @@ A new array with unique elements from all input arrays.
 
 #### Defined in
 
-[array.ts:652](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/array.ts#L652)
+[array.ts:652](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/array.ts#L652)
 
 ___
 
@@ -1144,7 +1145,7 @@ This operation is pure and leaves no gaps in the resulting array
 
 #### Defined in
 
-[array.ts:56](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/array.ts#L56)
+[array.ts:56](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/array.ts#L56)
 
 ___
 
@@ -1189,7 +1190,7 @@ console.log(objectifyArr(people));
 
 #### Defined in
 
-[array.ts:319](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/array.ts#L319)
+[array.ts:319](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/array.ts#L319)
 
 ___
 
@@ -1219,7 +1220,7 @@ Creates a copy of some array, with some value at the given index replaced with t
 
 #### Defined in
 
-[array.ts:193](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/array.ts#L193)
+[array.ts:193](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/array.ts#L193)
 
 ___
 
@@ -1272,7 +1273,7 @@ The updated array
 
 #### Defined in
 
-[array.ts:40](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/array.ts#L40)
+[array.ts:40](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/array.ts#L40)
 
 ___
 
@@ -1310,7 +1311,7 @@ console.log(arr); // ['one', 'two', 'three']
 
 #### Defined in
 
-[array.ts:184](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/array.ts#L184)
+[array.ts:184](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/array.ts#L184)
 
 ___
 
@@ -1351,7 +1352,7 @@ console.log(arr); // ['apple', 'banana', 'pear']
 
 #### Defined in
 
-[array.ts:93](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/array.ts#L93)
+[array.ts:93](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/array.ts#L93)
 
 ___
 
@@ -1431,7 +1432,7 @@ A new, flattened array
 
 #### Defined in
 
-[array.ts:398](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/array.ts#L398)
+[array.ts:398](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/array.ts#L398)
 
 ___
 
@@ -1477,7 +1478,7 @@ console.log(tryToFold(nums2, fn, 100).err()); // "divide by zero"
 
 #### Defined in
 
-[array.ts:254](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/array.ts#L254)
+[array.ts:254](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/array.ts#L254)
 
 ___
 
@@ -1528,7 +1529,7 @@ alert({ msg: 'the world is on fire', type: 'err' }) // Oh No!: the world is on f
 
 #### Defined in
 
-[condition.ts:110](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/condition.ts#L110)
+[condition.ts:110](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/condition.ts#L110)
 
 ___
 
@@ -1580,7 +1581,7 @@ The `then` value, given a passing assertation.
 
 #### Defined in
 
-[condition.ts:57](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/condition.ts#L57)
+[condition.ts:57](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/condition.ts#L57)
 
 ___
 
@@ -1623,7 +1624,7 @@ v if `cond` is true, otherwise `undefined`
 
 #### Defined in
 
-[condition.ts:23](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/condition.ts#L23)
+[condition.ts:23](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/condition.ts#L23)
 
 ___
 
@@ -1662,7 +1663,7 @@ console.log(orThrow(fruits.find(v => v == "pear"), "could not find 'pear'").toUp
 
 #### Defined in
 
-[condition.ts:80](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/condition.ts#L80)
+[condition.ts:80](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/condition.ts#L80)
 
 ___
 
@@ -1708,7 +1709,7 @@ typeof res; // 'string'
 
 #### Defined in
 
-[errors.ts:22](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/errors.ts#L22)
+[errors.ts:22](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/errors.ts#L22)
 
 ___
 
@@ -1724,7 +1725,7 @@ readonly [[`Maybe`](modules.md#maybe)<`HTMLDivElement`\>, (`e`: `MouseEvent`<`HT
 
 #### Defined in
 
-[hooks/useAnchorEl.ts:7](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/hooks/useAnchorEl.ts#L7)
+[hooks/useAnchorEl.ts:7](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/hooks/useAnchorEl.ts#L7)
 
 ___
 
@@ -1744,7 +1745,7 @@ ___
 
 #### Defined in
 
-[hooks/useBool.ts:16](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/hooks/useBool.ts#L16)
+[hooks/useBool.ts:16](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/hooks/useBool.ts#L16)
 
 ___
 
@@ -1770,7 +1771,7 @@ ___
 
 #### Defined in
 
-[hooks/useConst.ts:6](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/hooks/useConst.ts#L6)
+[hooks/useConst.ts:6](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/hooks/useConst.ts#L6)
 
 ___
 
@@ -1813,7 +1814,7 @@ Mary Strodl
 
 #### Defined in
 
-[hooks/useConstCallback.ts:19](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/hooks/useConstCallback.ts#L19)
+[hooks/useConstCallback.ts:19](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/hooks/useConstCallback.ts#L19)
 
 ___
 
@@ -1871,7 +1872,7 @@ const MyButton = <button onClick={() => {
 
 #### Defined in
 
-[hooks/useDefer.ts:25](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/hooks/useDefer.ts#L25)
+[hooks/useDefer.ts:25](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/hooks/useDefer.ts#L25)
 
 ___
 
@@ -1891,7 +1892,7 @@ ___
 
 #### Defined in
 
-[hooks/useIndex.ts:16](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/hooks/useIndex.ts#L16)
+[hooks/useIndex.ts:16](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/hooks/useIndex.ts#L16)
 
 ___
 
@@ -1930,7 +1931,7 @@ A generator yielding the numbers in the specified range.
 
 #### Defined in
 
-[iters.ts:644](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L644)
+[iters.ts:644](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/iters.ts#L644)
 
 ___
 
@@ -1993,7 +1994,7 @@ derecordify(people, { k: 'name', v: '...' });
 
 #### Defined in
 
-[object.ts:312](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/object.ts#L312)
+[object.ts:312](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/object.ts#L312)
 
 ___
 
@@ -2038,7 +2039,7 @@ console.log(person); // { "first": "John", "last": "Smith", "age": 23, "state": 
 
 #### Defined in
 
-[object.ts:90](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/object.ts#L90)
+[object.ts:90](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/object.ts#L90)
 
 ___
 
@@ -2081,7 +2082,7 @@ The base object with all nullish values dropped
 
 #### Defined in
 
-[object.ts:28](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/object.ts#L28)
+[object.ts:28](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/object.ts#L28)
 
 ___
 
@@ -2126,7 +2127,7 @@ The array of keys
 
 #### Defined in
 
-[object.ts:388](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/object.ts#L388)
+[object.ts:388](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/object.ts#L388)
 
 ___
 
@@ -2161,7 +2162,7 @@ in favor of [unsafe](modules.md#unsafe).
 
 #### Defined in
 
-[object.ts:450](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/object.ts#L450)
+[object.ts:475](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/object.ts#L475)
 
 ___
 
@@ -2209,7 +2210,7 @@ An array of the resulting values
 
 #### Defined in
 
-[object.ts:507](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/object.ts#L507)
+[object.ts:532](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/object.ts#L532)
 
 ___
 
@@ -2254,7 +2255,7 @@ console.log(person); // { "first": "John", "last": "Smith", "age": 23, "state": 
 
 #### Defined in
 
-[object.ts:115](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/object.ts#L115)
+[object.ts:115](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/object.ts#L115)
 
 ___
 
@@ -2307,7 +2308,7 @@ console.log(peopleByState);
 
 #### Defined in
 
-[object.ts:359](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/object.ts#L359)
+[object.ts:359](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/object.ts#L359)
 
 ___
 
@@ -2338,7 +2339,7 @@ ___
 
 #### Defined in
 
-[array.ts:211](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/array.ts#L211)
+[array.ts:211](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/array.ts#L211)
 
 ___
 
@@ -2392,7 +2393,7 @@ The calculated equivalent number of milliseconds.
 
 #### Defined in
 
-[calcMs.ts:53](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/calcMs.ts#L53)
+[calcMs.ts:53](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/calcMs.ts#L53)
 
 ___
 
@@ -2452,7 +2453,7 @@ in favor of [unsafe](modules.md#unsafe).
 
 #### Defined in
 
-[object.ts:485](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/object.ts#L485)
+[object.ts:510](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/object.ts#L510)
 
 ___
 
@@ -2492,7 +2493,7 @@ An array of chunks, where each chunk is an array of `T`.
 
 #### Defined in
 
-[array.ts:521](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/array.ts#L521)
+[array.ts:521](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/array.ts#L521)
 
 ___
 
@@ -2528,7 +2529,7 @@ console.log(arr); // []
 
 #### Defined in
 
-[array.ts:501](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/array.ts#L501)
+[array.ts:501](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/array.ts#L501)
 
 ___
 
@@ -2610,7 +2611,7 @@ v is E
 
 #### Defined in
 
-[function.ts:35](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/function.ts#L35)
+[function.ts:35](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/function.ts#L35)
 
 ___
 
@@ -2647,7 +2648,7 @@ dedupArr(arr);
 
 #### Defined in
 
-[array.ts:548](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/array.ts#L548)
+[array.ts:548](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/array.ts#L548)
 
 ___
 
@@ -2699,7 +2700,7 @@ A new array with all elements flattened.
 
 #### Defined in
 
-[array.ts:582](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/array.ts#L582)
+[array.ts:582](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/array.ts#L582)
 
 ___
 
@@ -2730,7 +2731,7 @@ new RegExp(escapeRegex("$50")).test("$50"); // true
 
 #### Defined in
 
-[string.ts:64](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/string.ts#L64)
+[string.ts:64](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/string.ts#L64)
 
 ___
 
@@ -2768,7 +2769,7 @@ const res: string = expectMaybe(findSomethingOrDont(), 'could not find the value
 
 #### Defined in
 
-[maybe.ts:67](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/maybe.ts#L67)
+[maybe.ts:67](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/maybe.ts#L67)
 
 ___
 
@@ -2837,7 +2838,7 @@ flatMapIntoDeepKey(gizmos, "parts.partName");
 
 #### Defined in
 
-[array.ts:629](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/array.ts#L629)
+[array.ts:629](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/array.ts#L629)
 
 ___
 
@@ -2885,7 +2886,7 @@ DeepKeyOf<Person>;
 
 #### Defined in
 
-[object.ts:414](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/object.ts#L414)
+[object.ts:439](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/object.ts#L439)
 
 ___
 
@@ -2959,7 +2960,53 @@ The value at the specified deep key of the object.
 
 #### Defined in
 
-[object.ts:557](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/object.ts#L557)
+[object.ts:582](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/object.ts#L582)
+
+___
+
+### getObjEntries
+
+**getObjEntries**<`T`\>(`v`): { [k in string \| number \| symbol]: [k, T[k]] }[keyof `T`][]
+
+Returns the entries for a given object
+
+?> This is identical to `Object.entries()`, except this method types the resulting value more narrowly than `[string, any][]`
+
+**`Example`**
+
+```ts
+const person = {
+  firstName: 'Jane' as const,
+  lastName: 'Doe' as const,
+  favoriteColor: 'Green',
+  age: 21
+}
+
+const entries = getObjEntries(person);
+//    ^? (["firstName", readonly "Jane"] | ["lastName", readonly "Doe"] | ["favoriteColor", string] | ["age", number])[]
+```
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `object` |
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `v` | `T` | The given object |
+
+#### Returns
+
+{ [k in string \| number \| symbol]: [k, T[k]] }[keyof `T`][]
+
+The array of entries
+
+#### Defined in
+
+[object.ts:413](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/object.ts#L413)
 
 ___
 
@@ -2997,7 +3044,7 @@ The initialism of `s`
 
 #### Defined in
 
-[string.ts:85](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/string.ts#L85)
+[string.ts:85](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/string.ts#L85)
 
 ___
 
@@ -3061,7 +3108,7 @@ A new function that calls `fn` with its argument and returns the same argument.
 
 #### Defined in
 
-[function.ts:144](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/function.ts#L144)
+[function.ts:144](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/function.ts#L144)
 
 ___
 
@@ -3096,7 +3143,7 @@ const res: Maybe<string> = intoMaybe(arr.find(v => v = 'apple'));
 
 #### Defined in
 
-[maybe.ts:23](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/maybe.ts#L23)
+[maybe.ts:23](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/maybe.ts#L23)
 
 ___
 
@@ -3120,7 +3167,7 @@ Equivilant to `i >= 0 && i < arr.length`
 
 #### Defined in
 
-[array.ts:168](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/array.ts#L168)
+[array.ts:168](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/array.ts#L168)
 
 ___
 
@@ -3146,7 +3193,7 @@ m is null
 
 #### Defined in
 
-[maybe.ts:6](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/maybe.ts#L6)
+[maybe.ts:6](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/maybe.ts#L6)
 
 ___
 
@@ -3172,7 +3219,7 @@ m is NonNullable<T\>
 
 #### Defined in
 
-[maybe.ts:10](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/maybe.ts#L10)
+[maybe.ts:10](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/maybe.ts#L10)
 
 ___
 
@@ -3210,7 +3257,7 @@ A new [ChainableIterator](classes/ChainableIterator.md) instance based on the pr
 
 #### Defined in
 
-[iters.ts:665](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L665)
+[iters.ts:665](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/iters.ts#L665)
 
 **iter**<`T`\>(`val`): [`ChainableIterator`](classes/ChainableIterator.md)<`T`\>
 
@@ -3249,7 +3296,7 @@ A new [ChainableIterator](classes/ChainableIterator.md) instance based on the pr
 
 #### Defined in
 
-[iters.ts:685](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L685)
+[iters.ts:685](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/iters.ts#L685)
 
 **iter**<`T`\>(`val`): [`ChainableIterator`](classes/ChainableIterator.md)<`T`\>
 
@@ -3283,7 +3330,7 @@ A new [ChainableIterator](classes/ChainableIterator.md) instance based on the pr
 
 #### Defined in
 
-[iters.ts:700](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L700)
+[iters.ts:700](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/iters.ts#L700)
 
 **iter**<`T`\>(`val`): [`ChainableIterator`](classes/ChainableIterator.md)<`T`\>
 
@@ -3317,7 +3364,7 @@ A new [ChainableIterator](classes/ChainableIterator.md) instance based on the pr
 
 #### Defined in
 
-[iters.ts:715](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L715)
+[iters.ts:715](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/iters.ts#L715)
 
 **iter**<`T`\>(`val`): [`ChainableIterator`](classes/ChainableIterator.md)<`T`\>
 
@@ -3351,7 +3398,7 @@ A new Iterator instance based on the provided input.
 
 #### Defined in
 
-[iters.ts:730](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L730)
+[iters.ts:730](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/iters.ts#L730)
 
 ___
 
@@ -3381,7 +3428,7 @@ The bases, interleaved with `-`
 
 #### Defined in
 
-[string.ts:49](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/string.ts#L49)
+[string.ts:49](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/string.ts#L49)
 
 ___
 
@@ -3428,7 +3475,7 @@ The result of the evaluated code arm.
 
 #### Defined in
 
-[maybe.ts:45](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/maybe.ts#L45)
+[maybe.ts:45](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/maybe.ts#L45)
 
 ___
 
@@ -3466,7 +3513,7 @@ The parsed number, or null if parsing fails.
 
 #### Defined in
 
-[string.ts:153](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/string.ts#L153)
+[string.ts:153](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/string.ts#L153)
 
 ___
 
@@ -3505,7 +3552,7 @@ The parsed integer, or null if parsing fails.
 
 #### Defined in
 
-[string.ts:130](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/string.ts#L130)
+[string.ts:130](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/string.ts#L130)
 
 ___
 
@@ -3550,7 +3597,7 @@ A boolean value indicating whether or not the two arrays are equal.
 
 #### Defined in
 
-[array.ts:700](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/array.ts#L700)
+[array.ts:700](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/array.ts#L700)
 
 ___
 
@@ -3576,7 +3623,7 @@ ___
 
 #### Defined in
 
-[object.ts:276](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/object.ts#L276)
+[object.ts:276](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/object.ts#L276)
 
 ___
 
@@ -3597,7 +3644,7 @@ ___
 
 #### Defined in
 
-[condition.ts:62](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/condition.ts#L62)
+[condition.ts:62](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/condition.ts#L62)
 
 ___
 
@@ -3639,7 +3686,7 @@ console.log(permurationsOf([2, 3, 2]));
 
 #### Defined in
 
-[array.ts:464](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/array.ts#L464)
+[array.ts:464](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/array.ts#L464)
 
 ___
 
@@ -3683,7 +3730,7 @@ assert.strictEqual(pipe('aaa', len, double), 6)
 
 #### Defined in
 
-[function.ts:57](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/function.ts#L57)
+[function.ts:57](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/function.ts#L57)
 
 **pipe**<`A`, `B`\>(`a`, `ab`): `B`
 
@@ -3707,7 +3754,7 @@ assert.strictEqual(pipe('aaa', len, double), 6)
 
 #### Defined in
 
-[function.ts:58](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/function.ts#L58)
+[function.ts:58](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/function.ts#L58)
 
 **pipe**<`A`, `B`, `C`\>(`a`, `ab`, `bc`): `C`
 
@@ -3733,7 +3780,7 @@ assert.strictEqual(pipe('aaa', len, double), 6)
 
 #### Defined in
 
-[function.ts:59](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/function.ts#L59)
+[function.ts:59](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/function.ts#L59)
 
 **pipe**<`A`, `B`, `C`, `D`\>(`a`, `ab`, `bc`, `cd`): `D`
 
@@ -3761,7 +3808,7 @@ assert.strictEqual(pipe('aaa', len, double), 6)
 
 #### Defined in
 
-[function.ts:60](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/function.ts#L60)
+[function.ts:60](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/function.ts#L60)
 
 **pipe**<`A`, `B`, `C`, `D`, `E`\>(`a`, `ab`, `bc`, `cd`, `de`): `E`
 
@@ -3791,7 +3838,7 @@ assert.strictEqual(pipe('aaa', len, double), 6)
 
 #### Defined in
 
-[function.ts:61](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/function.ts#L61)
+[function.ts:61](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/function.ts#L61)
 
 **pipe**<`A`, `B`, `C`, `D`, `E`, `F`\>(`a`, `ab`, `bc`, `cd`, `de`, `ef`): `F`
 
@@ -3823,7 +3870,7 @@ assert.strictEqual(pipe('aaa', len, double), 6)
 
 #### Defined in
 
-[function.ts:62](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/function.ts#L62)
+[function.ts:62](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/function.ts#L62)
 
 **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`\>(`a`, `ab`, `bc`, `cd`, `de`, `ef`, `fg`): `G`
 
@@ -3857,7 +3904,7 @@ assert.strictEqual(pipe('aaa', len, double), 6)
 
 #### Defined in
 
-[function.ts:63](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/function.ts#L63)
+[function.ts:63](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/function.ts#L63)
 
 ___
 
@@ -3907,7 +3954,7 @@ The deep clone
 
 #### Defined in
 
-[object.ts:67](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/object.ts#L67)
+[object.ts:67](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/object.ts#L67)
 
 ___
 
@@ -3954,7 +4001,7 @@ console.log(arr);
 
 #### Defined in
 
-[array.ts:437](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/array.ts#L437)
+[array.ts:437](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/array.ts#L437)
 
 ___
 
@@ -3982,7 +4029,7 @@ ___
 
 #### Defined in
 
-[object.ts:269](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/object.ts#L269)
+[object.ts:269](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/object.ts#L269)
 
 ___
 
@@ -4147,7 +4194,7 @@ The new object
 
 #### Defined in
 
-[object.ts:253](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/object.ts#L253)
+[object.ts:253](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/object.ts#L253)
 
 ___
 
@@ -4179,7 +4226,7 @@ sliceStrTo(str, '.', 2); // 'apple.banana.orange.'
 
 #### Defined in
 
-[string.ts:102](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/string.ts#L102)
+[string.ts:102](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/string.ts#L102)
 
 ___
 
@@ -4208,7 +4255,7 @@ console.log(strAdd('5', '8')); // '13'
 
 #### Defined in
 
-[string.ts:20](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/string.ts#L20)
+[string.ts:20](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/string.ts#L20)
 
 ___
 
@@ -4241,7 +4288,7 @@ The result of the function call or the fallback value.
 
 #### Defined in
 
-[function.ts:108](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/function.ts#L108)
+[function.ts:108](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/function.ts#L108)
 
 ___
 
@@ -4271,7 +4318,7 @@ Converts a value from `Maybe<T>` to `T`, throwing a generic "unable to unwrap" e
 
 #### Defined in
 
-[maybe.ts:83](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/maybe.ts#L83)
+[maybe.ts:83](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/maybe.ts#L83)
 
 ___
 
@@ -4310,7 +4357,7 @@ doSomething(unwrapOrUndef(maybeStr));
 
 #### Defined in
 
-[maybe.ts:100](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/maybe.ts#L100)
+[maybe.ts:100](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/maybe.ts#L100)
 
 ___
 
@@ -4341,7 +4388,7 @@ Adam Green
 
 #### Defined in
 
-[hooks/useDebounce.ts:6](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/hooks/useDebounce.ts#L6)
+[hooks/useDebounce.ts:6](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/hooks/useDebounce.ts#L6)
 
 ___
 
@@ -4388,7 +4435,7 @@ const Page = () => {
 
 #### Defined in
 
-[hooks/useWaitFor.ts:23](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/hooks/useWaitFor.ts#L23)
+[hooks/useWaitFor.ts:23](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/hooks/useWaitFor.ts#L23)
 
 ___
 
@@ -4416,7 +4463,7 @@ ___
 
 #### Defined in
 
-[maybe.ts:104](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/maybe.ts#L104)
+[maybe.ts:104](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/maybe.ts#L104)
 
 ___
 
@@ -4488,7 +4535,7 @@ The result of executing the callback function.
 
 #### Defined in
 
-[unsafe.ts:95](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/unsafe.ts#L95)
+[unsafe.ts:95](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/unsafe.ts#L95)
 # Class: ChainableIterator<T\>
 
 Represents a chainable iterator that allows performing various operations on an underlying generator.
@@ -4523,7 +4570,7 @@ Represents a chainable iterator that allows performing various operations on an 
 
 #### Defined in
 
-[iters.ts:13](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L13)
+[iters.ts:13](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/iters.ts#L13)
 
 ## Properties
 
@@ -4533,7 +4580,7 @@ Represents a chainable iterator that allows performing various operations on an 
 
 #### Defined in
 
-[iters.ts:11](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L11)
+[iters.ts:11](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/iters.ts#L11)
 
 ## Methods
 
@@ -4551,7 +4598,7 @@ Generator.\_\_@iterator@87
 
 #### Defined in
 
-[iters.ts:55](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L55)
+[iters.ts:55](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/iters.ts#L55)
 
 ___
 
@@ -4588,7 +4635,7 @@ A new [ChainableIterator](ChainableIterator.md) containing elements from both it
 
 #### Defined in
 
-[iters.ts:261](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L261)
+[iters.ts:261](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/iters.ts#L261)
 
 ___
 
@@ -4615,7 +4662,7 @@ An array containing all elements of the iterator in the order they were produced
 
 #### Defined in
 
-[iters.ts:208](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L208)
+[iters.ts:208](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/iters.ts#L208)
 
 ___
 
@@ -4629,7 +4676,7 @@ ___
 
 #### Defined in
 
-[iters.ts:212](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L212)
+[iters.ts:212](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/iters.ts#L212)
 
 ___
 
@@ -4656,7 +4703,7 @@ A new ChainableIterator with duplicate elements removed.
 
 #### Defined in
 
-[iters.ts:608](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L608)
+[iters.ts:608](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/iters.ts#L608)
 
 ___
 
@@ -4681,7 +4728,7 @@ A new `ChainableIterator` containing pairs of index-value for each element.
 
 #### Defined in
 
-[iters.ts:341](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L341)
+[iters.ts:341](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/iters.ts#L341)
 
 ___
 
@@ -4716,7 +4763,7 @@ console.log(result); // Output: true
 
 #### Defined in
 
-[iters.ts:587](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L587)
+[iters.ts:587](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/iters.ts#L587)
 
 ___
 
@@ -4752,7 +4799,7 @@ A new `ChainableIterator` containing only the elements that satisfy the predicat
 
 #### Defined in
 
-[iters.ts:115](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L115)
+[iters.ts:115](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/iters.ts#L115)
 
 ___
 
@@ -4794,7 +4841,7 @@ A new `ChainableIterator` containing the mapped and filtered elements.
 
 #### Defined in
 
-[iters.ts:326](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L326)
+[iters.ts:326](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/iters.ts#L326)
 
 ___
 
@@ -4831,7 +4878,7 @@ A new [ChainableIterator](ChainableIterator.md) containing the mapped and flatte
 
 #### Defined in
 
-[iters.ts:519](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L519)
+[iters.ts:519](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/iters.ts#L519)
 
 ___
 
@@ -4856,7 +4903,7 @@ A new [ChainableIterator](ChainableIterator.md) with elements at the deepest lev
 
 #### Defined in
 
-[iters.ts:495](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L495)
+[iters.ts:495](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/iters.ts#L495)
 
 ___
 
@@ -4895,7 +4942,7 @@ The final folded value.
 
 #### Defined in
 
-[iters.ts:160](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L160)
+[iters.ts:160](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/iters.ts#L160)
 
 ___
 
@@ -4923,7 +4970,7 @@ iter([1, 2, 3, 4, 5]).forEach((val) => console.log(val)); // Output: 1, 2, 3, 4,
 
 #### Defined in
 
-[iters.ts:304](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L304)
+[iters.ts:304](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/iters.ts#L304)
 
 ___
 
@@ -4956,7 +5003,7 @@ A new `ChainableIterator` containing the original elements.
 
 #### Defined in
 
-[iters.ts:537](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L537)
+[iters.ts:537](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/iters.ts#L537)
 
 ___
 
@@ -4981,7 +5028,7 @@ The last element produced by the iterator.
 
 #### Defined in
 
-[iters.ts:227](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L227)
+[iters.ts:227](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/iters.ts#L227)
 
 ___
 
@@ -5020,7 +5067,7 @@ A new `ChainableIterator` with elements of type U.
 
 #### Defined in
 
-[iters.ts:91](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L91)
+[iters.ts:91](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/iters.ts#L91)
 
 ___
 
@@ -5063,7 +5110,7 @@ A new [ChainableIterator](ChainableIterator.md) containing the mapped elements u
 
 #### Defined in
 
-[iters.ts:424](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L424)
+[iters.ts:424](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/iters.ts#L424)
 
 ___
 
@@ -5099,7 +5146,7 @@ Generator.next
 
 #### Defined in
 
-[iters.ts:72](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L72)
+[iters.ts:72](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/iters.ts#L72)
 
 ___
 
@@ -5130,7 +5177,7 @@ The nth element as a {@link}. If the index is out of range, it returns `null`.
 
 #### Defined in
 
-[iters.ts:243](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L243)
+[iters.ts:243](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/iters.ts#L243)
 
 ___
 
@@ -5167,7 +5214,7 @@ A tuple of two [ChainableIterator](ChainableIterator.md) instances: one containi
 
 #### Defined in
 
-[iters.ts:562](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L562)
+[iters.ts:562](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/iters.ts#L562)
 
 ___
 
@@ -5199,7 +5246,7 @@ The final reduced value.
 
 #### Defined in
 
-[iters.ts:135](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L135)
+[iters.ts:135](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/iters.ts#L135)
 
 ___
 
@@ -5217,7 +5264,7 @@ Generator.return
 
 #### Defined in
 
-[iters.ts:46](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L46)
+[iters.ts:46](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/iters.ts#L46)
 
 ___
 
@@ -5258,7 +5305,7 @@ A new [ChainableIterator](ChainableIterator.md) containing intermediate scan val
 
 #### Defined in
 
-[iters.ts:471](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L471)
+[iters.ts:471](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/iters.ts#L471)
 
 ___
 
@@ -5287,7 +5334,7 @@ console.log(result); // Output: [3, 4, 5]
 
 #### Defined in
 
-[iters.ts:448](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L448)
+[iters.ts:448](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/iters.ts#L448)
 
 ___
 
@@ -5322,7 +5369,7 @@ A new [ChainableIterator](ChainableIterator.md) containing the remaining element
 
 #### Defined in
 
-[iters.ts:361](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L361)
+[iters.ts:361](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/iters.ts#L361)
 
 ___
 
@@ -5354,7 +5401,7 @@ A new `ChainableIterator` containing the taken elements.
 
 #### Defined in
 
-[iters.ts:184](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L184)
+[iters.ts:184](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/iters.ts#L184)
 
 ___
 
@@ -5390,7 +5437,7 @@ A new [ChainableIterator](ChainableIterator.md) containing elements taken until 
 
 #### Defined in
 
-[iters.ts:394](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L394)
+[iters.ts:394](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/iters.ts#L394)
 
 ___
 
@@ -5414,7 +5461,7 @@ Generator.throw
 
 #### Defined in
 
-[iters.ts:50](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L50)
+[iters.ts:50](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/iters.ts#L50)
 
 ___
 
@@ -5453,7 +5500,7 @@ A new `ChainableIterator` containing pairs of elements from both iterators until
 
 #### Defined in
 
-[iters.ts:284](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L284)
+[iters.ts:284](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/iters.ts#L284)
 
 ___
 
@@ -5483,7 +5530,7 @@ Creates a new [ChainableIterator](ChainableIterator.md) from an array's internal
 
 #### Defined in
 
-[iters.ts:42](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L42)
+[iters.ts:42](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/iters.ts#L42)
 
 ___
 
@@ -5513,7 +5560,7 @@ Creates a new [ChainableIterator](ChainableIterator.md) from a generator factory
 
 #### Defined in
 
-[iters.ts:22](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L22)
+[iters.ts:22](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/iters.ts#L22)
 
 ___
 
@@ -5543,7 +5590,7 @@ Creates a new [ChainableIterator](ChainableIterator.md) from an existing iterato
 
 #### Defined in
 
-[iters.ts:31](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/iters.ts#L31)
+[iters.ts:31](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/iters.ts#L31)
 # Class: FormalMaybe<T\>
 
 A formal wrapper class for interacting with possibly `null` values.
@@ -5576,7 +5623,7 @@ A formal wrapper class for interacting with possibly `null` values.
 
 #### Defined in
 
-[maybe.ts:117](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/maybe.ts#L117)
+[maybe.ts:117](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/maybe.ts#L117)
 
 ## Properties
 
@@ -5586,7 +5633,7 @@ A formal wrapper class for interacting with possibly `null` values.
 
 #### Defined in
 
-[maybe.ts:117](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/maybe.ts#L117)
+[maybe.ts:117](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/maybe.ts#L117)
 
 ## Methods
 
@@ -5618,7 +5665,7 @@ The non-null inner value
 
 #### Defined in
 
-[maybe.ts:276](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/maybe.ts#L276)
+[maybe.ts:276](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/maybe.ts#L276)
 
 ___
 
@@ -5645,7 +5692,7 @@ doSomething(val.inner());
 
 #### Defined in
 
-[maybe.ts:199](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/maybe.ts#L199)
+[maybe.ts:199](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/maybe.ts#L199)
 
 ___
 
@@ -5674,7 +5721,7 @@ if (v.isNone()) {
 
 #### Defined in
 
-[maybe.ts:237](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/maybe.ts#L237)
+[maybe.ts:237](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/maybe.ts#L237)
 
 ___
 
@@ -5703,7 +5750,7 @@ if (v.isSome()) {
 
 #### Defined in
 
-[maybe.ts:218](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/maybe.ts#L218)
+[maybe.ts:218](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/maybe.ts#L218)
 
 ___
 
@@ -5743,7 +5790,7 @@ console.log(v2.isSomeAnd(toLen)); // null
 
 #### Defined in
 
-[maybe.ts:258](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/maybe.ts#L258)
+[maybe.ts:258](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/maybe.ts#L258)
 
 ___
 
@@ -5772,7 +5819,7 @@ The wrapped value if it exists, otherwise `null`.
 
 #### Defined in
 
-[maybe.ts:362](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/maybe.ts#L362)
+[maybe.ts:362](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/maybe.ts#L362)
 
 ___
 
@@ -5800,7 +5847,7 @@ The inner, non-null value.
 
 #### Defined in
 
-[maybe.ts:295](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/maybe.ts#L295)
+[maybe.ts:295](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/maybe.ts#L295)
 
 ___
 
@@ -5829,7 +5876,7 @@ console.log(FormalMaybe.None().unwrapOr("bar")); // "bar"
 
 #### Defined in
 
-[maybe.ts:310](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/maybe.ts#L310)
+[maybe.ts:310](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/maybe.ts#L310)
 
 ___
 
@@ -5859,7 +5906,7 @@ console.log(FormalResult.None().unwrapOrelse(() => 2 * k)); // 20
 
 #### Defined in
 
-[maybe.ts:326](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/maybe.ts#L326)
+[maybe.ts:326](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/maybe.ts#L326)
 
 ___
 
@@ -5886,7 +5933,7 @@ doSomething(maybeStr.unwrapOrUndef());
 
 #### Defined in
 
-[maybe.ts:343](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/maybe.ts#L343)
+[maybe.ts:343](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/maybe.ts#L343)
 
 ___
 
@@ -5917,7 +5964,7 @@ Conditionally execute a block of code based on the `null` state of the inner val
 
 #### Defined in
 
-[maybe.ts:376](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/maybe.ts#L376)
+[maybe.ts:376](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/maybe.ts#L376)
 
 **when**<`E`\>(`cond`, `fn`): [`FormalMaybe`](FormalMaybe.md)<`T`\>
 
@@ -5944,7 +5991,7 @@ Conditionally execute a block of code based on the `null` state of the inner val
 
 #### Defined in
 
-[maybe.ts:385](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/maybe.ts#L385)
+[maybe.ts:385](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/maybe.ts#L385)
 
 ___
 
@@ -5985,7 +6032,7 @@ The empty [FormalMaybe](FormalMaybe.md)
 
 #### Defined in
 
-[maybe.ts:182](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/maybe.ts#L182)
+[maybe.ts:182](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/maybe.ts#L182)
 
 ___
 
@@ -6032,7 +6079,7 @@ The newly constructed [FormalMaybe](FormalMaybe.md)
 
 #### Defined in
 
-[maybe.ts:157](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/maybe.ts#L157)
+[maybe.ts:157](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/maybe.ts#L157)
 
 ___
 
@@ -6069,7 +6116,7 @@ The newly constructed [FormalMaybe](FormalMaybe.md)
 
 #### Defined in
 
-[maybe.ts:131](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/maybe.ts#L131)
+[maybe.ts:131](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/maybe.ts#L131)
 # Class: Result<T, E\>
 
 An object which can either be in an `Ok` state, or an `Err` state, with an associated value, `T`
@@ -6102,7 +6149,7 @@ An object which can either be in an `Ok` state, or an `Err` state, with an assoc
 
 #### Defined in
 
-[result.ts:7](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/result.ts#L7)
+[result.ts:7](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/result.ts#L7)
 
 ## Properties
 
@@ -6112,7 +6159,7 @@ An object which can either be in an `Ok` state, or an `Err` state, with an assoc
 
 #### Defined in
 
-[result.ts:7](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/result.ts#L7)
+[result.ts:7](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/result.ts#L7)
 
 ## Methods
 
@@ -6144,7 +6191,7 @@ console.log(v.and(v => Result.Ok(v * 2))); // Err('foo')
 
 #### Defined in
 
-[result.ts:187](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/result.ts#L187)
+[result.ts:187](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/result.ts#L187)
 
 ___
 
@@ -6184,7 +6231,7 @@ console.log(div(20, 0).andThen(n => div(n, 2))); // Err('divide by zero');
 
 #### Defined in
 
-[result.ts:225](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/result.ts#L225)
+[result.ts:225](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/result.ts#L225)
 
 ___
 
@@ -6214,7 +6261,7 @@ console.log(Result.Err('foo').contains('foo')) // false
 
 #### Defined in
 
-[result.ts:309](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/result.ts#L309)
+[result.ts:309](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/result.ts#L309)
 
 ___
 
@@ -6244,7 +6291,7 @@ console.log(Result.Err('foo').contains('foo')) // false
 
 #### Defined in
 
-[result.ts:324](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/result.ts#L324)
+[result.ts:324](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/result.ts#L324)
 
 ___
 
@@ -6264,7 +6311,7 @@ ___
 
 #### Defined in
 
-[result.ts:329](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/result.ts#L329)
+[result.ts:329](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/result.ts#L329)
 
 ___
 
@@ -6287,7 +6334,7 @@ if (res.isErr()) console.log(`result failed with: ${res.err()}`);
 
 #### Defined in
 
-[result.ts:156](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/result.ts#L156)
+[result.ts:156](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/result.ts#L156)
 
 ___
 
@@ -6301,7 +6348,7 @@ ___
 
 #### Defined in
 
-[result.ts:88](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/result.ts#L88)
+[result.ts:88](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/result.ts#L88)
 
 ___
 
@@ -6324,7 +6371,7 @@ if (res.isErr()) console.log('an error occured!');
 
 #### Defined in
 
-[result.ts:129](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/result.ts#L129)
+[result.ts:129](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/result.ts#L129)
 
 ___
 
@@ -6347,7 +6394,7 @@ if (res.isOk()) console.log('passed!');
 
 #### Defined in
 
-[result.ts:116](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/result.ts#L116)
+[result.ts:116](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/result.ts#L116)
 
 ___
 
@@ -6385,7 +6432,7 @@ const mapped: Result<string, string> = res.map((v: number) => v.toString(), JSON
 
 #### Defined in
 
-[result.ts:102](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/result.ts#L102)
+[result.ts:102](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/result.ts#L102)
 
 ___
 
@@ -6408,7 +6455,7 @@ if (res.isOk()) console.log(`result: ${res.ok()}`);
 
 #### Defined in
 
-[result.ts:142](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/result.ts#L142)
+[result.ts:142](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/result.ts#L142)
 
 ___
 
@@ -6442,7 +6489,7 @@ console.log(div(10, 0).or(Result.Ok(0))) // Ok(0)
 
 #### Defined in
 
-[result.ts:206](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/result.ts#L206)
+[result.ts:206](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/result.ts#L206)
 
 ___
 
@@ -6481,7 +6528,7 @@ console.log(Result.Ok(3).orElse(square).orElse(err)) // Ok(9)
 
 #### Defined in
 
-[result.ts:243](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/result.ts#L243)
+[result.ts:243](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/result.ts#L243)
 
 ___
 
@@ -6495,7 +6542,7 @@ ___
 
 #### Defined in
 
-[result.ts:333](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/result.ts#L333)
+[result.ts:333](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/result.ts#L333)
 
 ___
 
@@ -6518,7 +6565,7 @@ const m: Maybe<Result<string, string>> = res.transpose();
 
 #### Defined in
 
-[result.ts:170](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/result.ts#L170)
+[result.ts:170](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/result.ts#L170)
 
 ___
 
@@ -6542,7 +6589,7 @@ console.log(Result.Err('bar').unwrap()); // ERROR!
 
 #### Defined in
 
-[result.ts:258](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/result.ts#L258)
+[result.ts:258](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/result.ts#L258)
 
 ___
 
@@ -6575,7 +6622,7 @@ console.log(b.unwrapOr('bar')); // 'fizz'
 
 #### Defined in
 
-[result.ts:276](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/result.ts#L276)
+[result.ts:276](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/result.ts#L276)
 
 ___
 
@@ -6608,7 +6655,7 @@ console.log(b.unwrapOrElse(err => err.toString())); // '15'
 
 #### Defined in
 
-[result.ts:294](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/result.ts#L294)
+[result.ts:294](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/result.ts#L294)
 
 ___
 
@@ -6642,7 +6689,7 @@ console.log(Result.Err('yikes! something went wrong').isOk()); // false
 
 #### Defined in
 
-[result.ts:28](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/result.ts#L28)
+[result.ts:28](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/result.ts#L28)
 
 ___
 
@@ -6677,7 +6724,7 @@ console.log(Result.Ok('foo').isOk()); // true
 
 #### Defined in
 
-[result.ts:17](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/result.ts#L17)
+[result.ts:17](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/result.ts#L17)
 
 ___
 
@@ -6720,7 +6767,7 @@ A [Result](Result.md) object in the `Ok` state with the produced value if succes
 
 #### Defined in
 
-[result.ts:51](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/result.ts#L51)
+[result.ts:51](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/result.ts#L51)
 
 `Static` **from**<`T`, `E`\>(`fn`, `mapErr`): [`Result`](Result.md)<`T`, `E`\>
 
@@ -6763,4 +6810,4 @@ A [Result](Result.md) object in the `Ok` state with the produced value if succes
 
 #### Defined in
 
-[result.ts:75](https://github.com/bryx-inc/ts-utils/blob/78c7a25/src/result.ts#L75)
+[result.ts:75](https://github.com/bryx-inc/ts-utils/blob/eeba920/src/result.ts#L75)
