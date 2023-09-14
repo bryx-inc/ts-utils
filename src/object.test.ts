@@ -15,6 +15,7 @@ import {
     slicePropertyAtDeepKey,
     quickDeepClone,
     getDeepValue,
+    getObjEntries,
 } from "./object";
 import { DeepKeyOf, DeepValue } from "./types";
 
@@ -183,6 +184,20 @@ test("get obj keys", () => {
 
     expect(keys).toEqual(["first", "last", "age", "state"]);
     assertNoSideEffects(obj, keys);
+});
+
+test("get obj entries", () => {
+    const obj = {
+        first: "John",
+        last: "Smith",
+        age: 23,
+        state: "NY",
+    };
+
+    const entries = getObjEntries(obj);
+
+    expect(entries).toEqual(Object.entries(obj));
+    assertNoSideEffects(obj, entries);
 });
 
 test("get deep obj keys", () => {

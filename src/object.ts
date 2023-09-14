@@ -390,6 +390,31 @@ export function getObjKeys<T extends object>(v: T) {
 }
 
 /**
+ * Returns the entries for a given object
+ *
+ * ?> This is identical to `Object.entries()`, except this method types the resulting value more narrowly than `[string, any][]`
+ *
+ * @example
+ * ```ts
+ * const person = {
+ *   firstName: 'Jane' as const,
+ *   lastName: 'Doe' as const,
+ *   favoriteColor: 'Green',
+ *   age: 21
+ * }
+ *
+ * const entries = getObjEntries(person);
+ * //    ^? (["firstName", readonly "Jane"] | ["lastName", readonly "Doe"] | ["favoriteColor", string] | ["age", number])[]
+ * ```
+ *
+ * @param v The given object
+ * @returns The array of entries
+ */
+export function getObjEntries<T extends object>(v: T) {
+    return Object.entries(v) as { [k in keyof T]: [k, T[k]] }[keyof T][];
+}
+
+/**
  * Returns the keys of the given object in {@link DeepKeyOf} format.
  *
  * @example
