@@ -16,6 +16,7 @@ import {
     quickDeepClone,
     getDeepValue,
     getObjEntries,
+    getObjByDeepKey,
 } from "./object";
 import { DeepKeyOf, DeepValue } from "./types";
 
@@ -361,7 +362,7 @@ test("map keys", () => {
     expect(result).toEqual(["A", "B", "C"]);
 });
 
-test("get deep object", () => {
+test("get deep value", () => {
     const obj = {
         firstname: "john",
         subobj1: {
@@ -402,4 +403,30 @@ test("get deep object", () => {
     expect(getDeepValue(obj, "subobj1.subobj2.deepValue")).toEqual(5);
     expect(getDeepValue(obj, "orders.day")).toEqual(["monday", "wednesday"]);
     expect(getDeepValue(obj, "orders.items.name")).toEqual([["gizmo", "thing"], ["guitar"]]);
+});
+
+test("get deep object", () => {
+    const obj = {
+        name: {
+            first: "joe",
+            last: "bean",
+        },
+        attrs: {
+            age: 20,
+            hobbies: [
+                {
+                    name: "coffee",
+                    startDate: "today",
+                },
+                {
+                    name: "other stuff",
+                    startDate: "yesterday:",
+                },
+            ],
+        },
+    };
+
+    expect(getObjByDeepKey(obj, "name.first")).toEqual({ name: { first: "joe" } });
+    expect(getObjByDeepKey(obj, "name")).toEqual({ name: { first: "joe", last: "bean" } });
+    expect(getObjByDeepKey(obj, "attrs.hobbies.name")).toEqual({ attrs: { hobbies: [{ name: "coffee" }, { name: "other stuff" }] } });
 });

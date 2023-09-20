@@ -1,6 +1,7 @@
 import { cond } from "./condition";
-import { Maybe } from "./maybe";
-import { DeepKeyOf, DeepValue } from "./types";
+import { throwError } from "./errors";
+import { isNone, Maybe } from "./maybe";
+import { DeepKeyOf, DeepPick, DeepValue } from "./types";
 
 /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
 import { unsafe } from "./unsafe"; // imported for `{@link}` resolution in doc generation
@@ -587,4 +588,55 @@ export function getDeepValue<TObj extends object, TKey extends DeepKeyOf<TObj>>(
     if (kRest.length == 0) return cur as DeepValue<TObj, TKey>;
     else if (Array.isArray(cur)) return cur.map((el) => getDeepValue(el, kRest.join(".") as DeepKeyOf<typeof el>)) as DeepValue<TObj, TKey>;
     else return getDeepValue(cur as object, kRest.join(".") as DeepKeyOf<object>);
+}
+
+/**
+ * Narrows a deeply nested object by returning a copy of the given base object, but with all keys except for those in the specific {@link DeepKeyOf<TBase>} path
+ *
+ * ?> This method differs from {@link getDeepValue} by returning an object with the same path to the specified value as the base object, whereas {@link getDeepValue} only returns the leaf-node value.
+ *
+ * @param {TBase} base The base object from which to retrieve the nested object
+ * @param {TDeepKey} deepKey A deep key string specifying the path to the nested object
+ *
+ * @returns {DeepPick<TBase, TDeepKey>} The nested object specified by the deep key
+ *
+ * @example
+ * ```ts
+ * const obj = {
+ *   name: {
+ *     first: "joe",
+ *     last: "bean",
+ *   },
+ *   attrs: {
+ *     age: 20,
+ *     hobbies: [
+ *       {
+ *         name: "coffee",
+ *         startDate: "today",
+ *       },
+ *       {
+ *         name: "other stuff",
+ *         startDate: "yesterday",
+ *       },
+ *     ],
+ *   },
+ * };
+ *
+ * const nestedObj = getObjByDeepKey(obj, "name.first");
+ * // returns { name: { first: "joe" } }
+ *
+ * const anotherNestedObj = getObjByDeepKey(obj, "attrs.hobbies.name");
+ * // returns { attrs: { hobbies: [ { name: "coffee" }, { name: "other stuff" } ] } }
+ * ```
+ */
+export function getObjByDeepKey<TBase extends object, TDeepKey extends DeepKeyOf<TBase>>(
+    base: TBase,
+    deepKey: TDeepKey,
+): DeepPick<TBase, TDeepKey> {
+    if (Array.isArray(base)) return base.map((child) => getObjByDeepKey(child, deepKey)) as DeepPick<TBase, TDeepKey>;
+    if (!deepKey.includes(".")) return { [deepKey]: getDeepValue(base, deepKey) } as DeepPick<TBase, TDeepKey>;
+
+    const [curKey, ...restKeys] = deepKey.split(".");
+    /* eslint-disable-next-line @typescript-eslint/no-explicit-any  */
+    return { [curKey]: getObjByDeepKey(base[curKey as keyof typeof base] as any, restKeys.join(".")) } as DeepPick<TBase, TDeepKey>;
 }
