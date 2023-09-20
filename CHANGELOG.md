@@ -1,5 +1,11 @@
 # @bryx-inc/ts-utils
 
+## 1.62.0
+
+### Minor Changes
+
+-   857bbd0: Auto-wrap string arguments passed to `throwError` with `new Error(...)`
+
 ## 1.61.0
 
 ### Minor Changes
