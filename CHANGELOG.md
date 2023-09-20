@@ -1,5 +1,12 @@
 # @bryx-inc/ts-utils
 
+## 1.63.0
+
+### Minor Changes
+
+-   12f6249: Auto-wrap string arguments passed to `throwError` with `new Error(...)`
+-   12f6249: Adds `getObjByDeepKey` method
+
 ## 1.62.0
 
 ### Minor Changes
