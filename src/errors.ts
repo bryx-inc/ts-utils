@@ -5,7 +5,7 @@
  *
  * @example
  * ```ts
- * const key:string = ...;
+ * const key: string = ...;
  *
  * const res = match(key)
  *  .with("value1", () => "apple")
@@ -20,5 +20,5 @@
  * @category Error
  */
 export function throwError<T extends Error | string, R = void>(err: T): R {
-    throw err;
+    throw typeof err == "string" ? new Error(err) : err;
 }
