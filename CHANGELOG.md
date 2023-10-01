@@ -1,5 +1,11 @@
 # @bryx-inc/ts-utils
 
+## 1.64.0
+
+### Minor Changes
+
+-   1559ab5: Deprecate `DeepUnwrap` in favor of the more semantically correct `DeepUnwind`
+
 ## 1.63.0
 
 ### Minor Changes
