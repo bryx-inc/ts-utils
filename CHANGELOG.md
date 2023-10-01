@@ -1,5 +1,11 @@
 # @bryx-inc/ts-utils
 
+## 1.64.1
+
+### Patch Changes
+
+-   c73bba3: Fix missing export for `DeepUnwind`
+
 ## 1.64.0
 
 ### Minor Changes
