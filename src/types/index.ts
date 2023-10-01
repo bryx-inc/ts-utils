@@ -9,6 +9,7 @@ export * from "./deepKeyOf";
 export * from "./deepPick";
 export * from "./deepValue";
 export * from "./deepUnwrap";
+export * from "./deepUnwind";
 export * from "./overrideKeys";
 export * from "./concatTuple";
 export * from "./deepRemoveReadonly";
