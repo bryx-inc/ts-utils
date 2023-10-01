@@ -6,7 +6,7 @@
 This library serves as a shared collection of common typescript utility methods.
 
 ## Installation
-```
+```sh
 $ npm i @bryx-inc/ts-utils
 ```
 
@@ -14,19 +14,19 @@ $ npm i @bryx-inc/ts-utils
 
 Library documentation is generated with [TypeDoc](https://github.com/TypeStrong/TypeDoc), and can be built locally.
 
-```
+```sh
 $ yarn docs
 $ npx serve public/
 ```
 
-The most up-to-date documentation is hosted at [https://bryx-inc.github.io/ts-utils](https://bryx-inc.github.io/ts-utils).
+The most up-to-date documentation is hosted at [https://tsutils.bryxinc.dev](https://tsutils.bryxinc.dev).
 
 ## Contributions
 
 This project utilizes [changesets](https://github.com/changesets/changesets) to manage contributions. To get started, fork the repository and add your changes. When you are ready to pubmit a pull request, run `yarn changeset` to create a changeset and add it to the commit, then create a PR.
 
-```
-$ gh pr create --repo bryx-inc --base main
+```sh
+$ gh pr create -R bryx-inc/ts-utils --base main
 ```
 
 Please refer to our [contribution guidelines](/CONTRIBUTING.md) for more information.
