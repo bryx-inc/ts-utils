@@ -1,6 +1,5 @@
 import { cond } from "./condition";
-import { throwError } from "./errors";
-import { isNone, Maybe } from "./maybe";
+import { Maybe } from "./maybe";
 import { DeepKeyOf, DeepPick, DeepValue } from "./types";
 
 /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
