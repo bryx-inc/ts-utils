@@ -1,4 +1,4 @@
-import { createCurriedGuardPredicate, pipe, tryOr, inject } from "./function";
+import { createCurriedGuardPredicate, pipe, tryOr, inject, withLet } from "./function";
 import { castUnsafe } from "./object";
 
 test("create curried guard predicate", () => {
@@ -49,4 +49,8 @@ test("inject", () => {
 
     expect(fn1).toHaveBeenCalledTimes(arr.length);
     expect(fn2).toHaveBeenCalledTimes(arr.length);
+});
+
+test("withLet", () => {
+    expect(withLet(1 + 2 + 3, (it) => it + 4)).toEqual(1 + 2 + 3 + 4);
 });

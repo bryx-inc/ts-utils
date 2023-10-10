@@ -147,3 +147,27 @@ export function inject<T>(fn: (arg: T) => unknown): (arg: T) => T {
         return arg;
     };
 }
+
+/**
+ * Apply a callback function to a value and return the result.
+ *
+ * @param {T} val - The value to be passed to the callback function.
+ * @param {(it: T) => E} fn - The callback function that processes the value.
+ * @returns {E} The result of applying the callback function to the value.
+ *
+ * @example
+ * ```ts
+ * type Data =
+ *   | { type: "gizmo" }
+ *   | { type: "shape", sides: number };
+ *
+ * function getData(): Data {
+ *   // ...
+ * }
+ *
+ * const sides = withLet(getData(), it => it.type == "shape" ? it.sides : 0);
+ * ```
+ */
+export function withLet<T, E = T>(val: T, fn: (it: T) => E): E {
+    return fn(val);
+}
