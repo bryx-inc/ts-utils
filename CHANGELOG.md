@@ -1,5 +1,11 @@
 # @bryx-inc/ts-utils
 
+## 1.65.0
+
+### Minor Changes
+
+-   ec8b982: Introduce `withLet` function
+
 ## 1.64.1
 
 ### Patch Changes
