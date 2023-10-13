@@ -1,5 +1,11 @@
 # @bryx-inc/ts-utils
 
+## 1.66.0
+
+### Minor Changes
+
+-   0bfe98f: Introduces `maybe(...)` method to provide kotlin-style scope methods
+
 ## 1.65.0
 
 ### Minor Changes
