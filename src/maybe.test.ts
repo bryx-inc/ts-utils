@@ -1,4 +1,16 @@
-import { expectMaybe, FormalMaybe, intoMaybe, isNone, isSome, matchMaybe, Maybe, unwrapMaybe, unwrapOrUndef, withSome } from "./maybe";
+import {
+    expectMaybe,
+    FormalMaybe,
+    intoMaybe,
+    isNone,
+    isSome,
+    matchMaybe,
+    maybe,
+    Maybe,
+    unwrapMaybe,
+    unwrapOrUndef,
+    withSome,
+} from "./maybe";
 
 const emptyMaybe: Maybe<string> = null;
 const filledMaybe: Maybe<string> = "foo";
@@ -167,5 +179,59 @@ describe("take()", () => {
 
         expect(takenValue).toBeNull();
         expect(nullableValue.inner()).toBeNull();
+    });
+});
+
+describe("maybe()", () => {
+    it("should allow chaining methods and return the wrapped value", () => {
+        const wrappedValue = maybe(42);
+        const result = wrappedValue.let((it) => it * 2);
+
+        expect(result).toBe(84);
+    });
+
+    it("should handle null or undefined values correctly", () => {
+        expect(maybe(null as string | null)?.let((it) => it.length)).toEqual(undefined);
+    });
+
+    it('should handle "takeUnless" method correctly', () => {
+        expect(maybe([1, 2, 3] as number[] | null)?.takeUnless((it) => it.length == 0)).toEqual([1, 2, 3]);
+        expect(maybe([] as number[] | null)?.takeUnless((it) => it.length == 0)).toEqual(null);
+    });
+
+    it('should handle "takeIf" method correctly', () => {
+        expect(maybe([1, 2, 3] as number[] | null)?.takeIf((it) => it.length > 0)).toEqual([1, 2, 3]);
+        expect(maybe([] as number[] | null)?.takeIf((it) => it.length > 0)).toEqual(null);
+    });
+
+    it("should properly eject the wrapped value", () => {
+        const thing = "foo" as Maybe<string>;
+        const thing2 = null as Maybe<string>;
+
+        expect(maybe(thing)?.value()).toEqual("foo");
+        expect(maybe(thing2)?.value).toEqual(undefined);
+    });
+
+    it('should handle "also" method correctly', () => {
+        const thing = "foo" as Maybe<string>;
+        const thing2 = null as Maybe<string>;
+
+        const fn = jest.fn();
+
+        expect(
+            maybe(thing)?.also((it) => {
+                fn(it);
+                return "bar";
+            }),
+        ).toEqual("foo");
+
+        expect(
+            maybe(thing2)?.also((it) => {
+                fn(it);
+                return "bar";
+            }),
+        ).toEqual(undefined);
+
+        expect(fn).toBeCalledTimes(1);
     });
 });

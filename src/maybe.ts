@@ -391,3 +391,44 @@ export class FormalMaybe<T> {
         return this;
     }
 }
+
+type NullOrUndefined = null | undefined;
+
+type WrappedMaybe<T> = T extends NullOrUndefined
+    ? WrappedMaybe<Exclude<T, NullOrUndefined>> | Extract<T, NullOrUndefined>
+    : {
+          /** Calls the specified function with the wrapped value as its argument and returns the result */
+          let: <E>(fn: (it: T) => E) => E;
+          /** Calls the specified function with the wrapped value as its argument and returns the wrapped value */
+          also: (fn: (it: T) => void) => T;
+          /** Returns the value if it satisfies the given predicate, otherwise returns null */
+          takeIf: (predicate: (it: T) => boolean) => NonNullable<T> | null;
+          /** Returns the value unless it satisfies the given predicate, in which case it returns null */
+          takeUnless: (predicate: (it: T) => boolean) => T | null;
+          /** Returns the `this` value it was called with */
+          value: () => NonNullable<T>;
+      } & NonNullable<T>;
+
+/**
+ * Creates a scoped value for chaining operations on a copy of the given wrapped value.
+ *
+ * @typeParam T The type of the wrapped value.
+ * @param wrapped The value to wrap
+ */
+export function maybe<T>(wrapped: T): WrappedMaybe<T> {
+    if (wrapped !== null && wrapped !== undefined)
+        return {
+            ...wrapped,
+            let: <E>(fn: (it: T) => E) => fn(wrapped),
+            takeIf: (predicate: (it: T) => boolean) => (predicate(wrapped) ? wrapped : null),
+            takeUnless: (predicate: (it: T) => boolean) => (predicate(wrapped) ? null : wrapped),
+            value: () => wrapped,
+            also: (fn: (it: T) => void) => {
+                fn(wrapped);
+                return wrapped;
+            },
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } as any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    else return wrapped as any;
+}
