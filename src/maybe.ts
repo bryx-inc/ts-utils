@@ -398,15 +398,19 @@ type WrappedMaybe<T> = T extends NullOrUndefined
     ? WrappedMaybe<Exclude<T, NullOrUndefined>> | Extract<T, NullOrUndefined>
     : {
           /** Calls the specified function with the wrapped value as its argument and returns the result */
-          let: <E>(fn: (it: T) => E) => E;
+          let: <E>(fn: (it: T) => E) => WrappedMaybe<E>;
           /** Calls the specified function with the wrapped value as its argument and returns the wrapped value */
-          also: (fn: (it: T) => void) => T;
-          /** Returns the value if it satisfies the given predicate, otherwise returns null */
+          also: (fn: (it: T) => void) => WrappedMaybe<T>;
+          /** Returns the taken value if it satisfies the given predicate, otherwise returns null */
           takeIf: (predicate: (it: T) => boolean) => NonNullable<T> | null;
-          /** Returns the value unless it satisfies the given predicate, in which case it returns null */
+          /** Returns the taken value unless it satisfies the given predicate, in which case it returns null */
           takeUnless: (predicate: (it: T) => boolean) => T | null;
-          /** Returns the `this` value it was called with */
-          value: () => NonNullable<T>;
+          /** Returns the wrapped value unless it satisfies the given predicate, in which case it returns null */
+          if: (predicate: (it: T) => boolean) => WrappedMaybe<NonNullable<T>> | null;
+          /** Returns the wrapped value unless it satisfies the given predicate, in which case it returns null */
+          unless: (predicate: (it: T) => boolean) => WrappedMaybe<NonNullable<T>> | null;
+          /** Returns the wrapped value it was called with */
+          take: () => NonNullable<T>;
       } & NonNullable<T>;
 
 /**
@@ -419,13 +423,15 @@ export function maybe<T>(wrapped: T): WrappedMaybe<T> {
     if (wrapped !== null && wrapped !== undefined)
         return {
             ...wrapped,
-            let: <E>(fn: (it: T) => E) => fn(wrapped),
+            let: <E>(fn: (it: T) => E) => maybe(fn(wrapped)),
             takeIf: (predicate: (it: T) => boolean) => (predicate(wrapped) ? wrapped : null),
             takeUnless: (predicate: (it: T) => boolean) => (predicate(wrapped) ? null : wrapped),
-            value: () => wrapped,
+            if: (predicate: (it: T) => boolean) => maybe(predicate(wrapped) ? wrapped : null),
+            unless: (predicate: (it: T) => boolean) => maybe(predicate(wrapped) ? null : wrapped),
+            take: () => wrapped,
             also: (fn: (it: T) => void) => {
                 fn(wrapped);
-                return wrapped;
+                return maybe(wrapped);
             },
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } as any;
