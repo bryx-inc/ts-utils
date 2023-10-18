@@ -1,0 +1,15 @@
+node_modules/
+dist/
+coverage/
+public/
+.idea/
+
+docs/*
+!docs/index.html
+!docs/tsutils_logo.png
+!docs/_footer.md
+!docs/prism.css
+!docs/bui4.css
+!docs/brand.png
+
+*.iml

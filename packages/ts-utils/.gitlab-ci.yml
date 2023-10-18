@@ -1,0 +1,76 @@
+cache: &node_modules
+  policy: pull
+  paths: [node_modules/]
+  key:
+    files: [yarn.lock]
+
+default:
+  image: node:16.18.0
+
+stages:
+  - setup
+  - code quality
+  - test
+  - deploy
+
+##
+
+setup:
+  stage: setup
+  needs: []
+
+  # allow writing to cache
+  cache:
+    <<: *node_modules
+    policy: pull-push
+
+  script: [yarn --frozen-lockfile]
+
+##
+
+eslint:
+  stage: code quality
+  except: [tags]
+
+  script: [yarn lint]
+
+prettier:
+  stage: code quality
+  except: [tags]
+
+  script: [yarn format]
+
+##
+
+jest:
+  stage: test
+  except: [tags]
+
+  script: [yarn test:cov]
+  coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
+
+  artifacts:
+    expire_in: 30 days
+    paths: [coverage]
+    when: always
+    reports:
+      junit: [junit.xml]
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage/cobertura-coverage.xml
+
+
+##
+
+pages:
+  stage: deploy
+  needs: [setup]
+  only: [tags]
+
+  script:
+    - yarn build:docs
+    - mv docs/ public/
+  
+  artifacts:
+    expire_in: 30 days
+    paths: [public]
