@@ -1,5 +1,12 @@
 # @bryx-inc/ts-utils
 
+## 1.68.0
+
+### Minor Changes
+
+-   4285f58: - Make `WrappedMaybe<T>` methods chainable - `value()` renamed to `take()` - `takeIf` and `takeUnless` do not chain - chainable `if` and `unless` methods introduced
+-   4285f58: WrappedMaybe: allow optional mapping to be passed to `take`
+
 ## 1.67.0
 
 ### Minor Changes
