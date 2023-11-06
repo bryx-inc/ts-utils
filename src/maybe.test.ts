@@ -234,6 +234,14 @@ describe("maybe()", () => {
         expect(maybe(thing2)?.take()).toEqual(undefined);
     });
 
+    it("should properly call the mapping and eject the wrapped value", () => {
+        const thing = "foo" as Maybe<string>;
+        const thing2 = null as Maybe<string>;
+
+        expect(maybe(thing)?.take((it) => it.length)).toEqual(3);
+        expect(maybe(thing2)?.take((it) => it.length)).toEqual(undefined);
+    });
+
     it('should handle "also" method correctly', () => {
         const thing = "foo" as Maybe<string>;
         const thing2 = null as Maybe<string>;
