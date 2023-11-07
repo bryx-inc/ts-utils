@@ -1,3 +1,5 @@
+import { tryOr } from "./function";
+
 /**
  * A shorthand type for `T | null`.
  */
@@ -392,49 +394,55 @@ export class FormalMaybe<T> {
     }
 }
 
-type NullOrUndefined = null | undefined;
+export function maybe<T>(inner: T): T extends T ? (T extends null | undefined ? T : WrappedMaybe<NonNullable<T>>) : never {
+    if (inner == null) return null as T extends T ? (T extends null | undefined ? T : WrappedMaybe<NonNullable<T>>) : never;
+    else return new WrappedMaybe(inner) as T extends T ? (T extends null | undefined ? T : WrappedMaybe<NonNullable<T>>) : never;
+}
 
-type WrappedMaybe<T> = T extends NullOrUndefined
-    ? WrappedMaybe<Exclude<T, NullOrUndefined>> | Extract<T, NullOrUndefined>
-    : {
-          /** Calls the specified mapping with the wrapped value as its argument and returns the result */
-          let: <E>(fn: (it: T) => E) => WrappedMaybe<E>;
-          /** Calls the specified function with the wrapped value as its argument and returns the wrapped value */
-          also: (fn: (it: T) => void) => WrappedMaybe<T>;
-          /** Returns the taken value if it satisfies the given predicate, otherwise returns null */
-          takeIf: (predicate: (it: T) => boolean) => T | null;
-          /** Returns the taken value unless it satisfies the given predicate, in which case it returns null */
-          takeUnless: (predicate: (it: T) => boolean) => T | null;
-          /** Returns the wrapped value unless it satisfies the given predicate, in which case it returns null */
-          if: (predicate: (it: T) => boolean) => WrappedMaybe<T> | null;
-          /** Returns the wrapped value unless it satisfies the given predicate, in which case it returns null */
-          unless: (predicate: (it: T) => boolean) => WrappedMaybe<T> | null;
-          /** Returns the wrapped value it was called with. A mapping may also be passed to mimic the behavor of `.let(fn).take()` */
-          take: <E = T>(fn?: (it: T) => E) => E;
-      } & NonNullable<T>;
+export class WrappedMaybe<T> {
+    constructor(private inner: T) {}
 
-/**
- * Creates a scoped value for chaining operations on a copy of the given wrapped value.
- *
- * @typeParam T The type of the wrapped value.
- * @param wrapped The value to wrap
- */
-export function maybe<T>(wrapped: T): WrappedMaybe<T> {
-    if (wrapped !== null && wrapped !== undefined)
-        return {
-            ...wrapped,
-            let: <E>(fn: (it: T) => E) => maybe(fn(wrapped)),
-            takeIf: (predicate: (it: T) => boolean) => (predicate(wrapped) ? wrapped : null),
-            takeUnless: (predicate: (it: T) => boolean) => (predicate(wrapped) ? null : wrapped),
-            if: (predicate: (it: T) => boolean) => maybe(predicate(wrapped) ? wrapped : null),
-            unless: (predicate: (it: T) => boolean) => maybe(predicate(wrapped) ? null : wrapped),
-            take: <E = T>(fn?: (it: T) => E) => (typeof fn == "function" ? fn(wrapped) : wrapped),
-            also: (fn: (it: T) => void) => {
-                fn(wrapped);
-                return maybe(wrapped);
-            },
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        } as any;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    else return wrapped as any;
+    let<E>(mapping: (it: T) => E): WrappedMaybe<E> {
+        return new WrappedMaybe(mapping(this.inner));
+    }
+
+    takeIf(predicate: (it: T) => boolean): T | null {
+        if (predicate(this.inner)) return this.inner;
+        else return null;
+    }
+
+    takeUnless(predicate: (it: T) => boolean): T | null {
+        if (predicate(this.inner)) return null;
+        else return this.inner;
+    }
+
+    if(predicate: (it: T) => boolean): WrappedMaybe<T> | null {
+        if (predicate(this.inner)) return this;
+        else return null;
+    }
+
+    unless(predicate: (it: T) => boolean): WrappedMaybe<T> | null {
+        if (predicate(this.inner)) return null;
+        else return this;
+    }
+
+    try<E>(mapping: (it: T) => E): WrappedMaybe<E> | null {
+        return tryOr(() => this.let(mapping), null);
+    }
+
+    tryTake<E>(mapping: (it: T) => E): E | null {
+        return this.try(mapping)?.take() ?? null;
+    }
+
+    also(fn: (it: T) => unknown): WrappedMaybe<T> {
+        fn(this.inner);
+        return this;
+    }
+
+    take(): T;
+    take<E>(mapping?: (it: T) => E): E;
+
+    take<E = T>(mapping?: (it: T) => E): T | E {
+        return typeof mapping == "function" ? mapping(this.inner) : this.inner;
+    }
 }
