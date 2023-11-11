@@ -30,7 +30,7 @@ An object which can either be in an `Ok` state, or an `Err` state, with an assoc
 
 #### Defined in
 
-[result.ts:7](https://github.com/bryx-inc/ts-utils/blob/af33aca/src/result.ts#L7)
+[result.ts:7](https://github.com/bryx-inc/ts-utils/blob/f75df9e/src/result.ts#L7)
 
 ## Properties
 
@@ -40,7 +40,7 @@ An object which can either be in an `Ok` state, or an `Err` state, with an assoc
 
 #### Defined in
 
-[result.ts:7](https://github.com/bryx-inc/ts-utils/blob/af33aca/src/result.ts#L7)
+[result.ts:7](https://github.com/bryx-inc/ts-utils/blob/f75df9e/src/result.ts#L7)
 
 ## Methods
 
@@ -72,7 +72,7 @@ console.log(v.and(v => Result.Ok(v * 2))); // Err('foo')
 
 #### Defined in
 
-[result.ts:187](https://github.com/bryx-inc/ts-utils/blob/af33aca/src/result.ts#L187)
+[result.ts:187](https://github.com/bryx-inc/ts-utils/blob/f75df9e/src/result.ts#L187)
 
 ___
 
@@ -112,7 +112,7 @@ console.log(div(20, 0).andThen(n => div(n, 2))); // Err('divide by zero');
 
 #### Defined in
 
-[result.ts:225](https://github.com/bryx-inc/ts-utils/blob/af33aca/src/result.ts#L225)
+[result.ts:225](https://github.com/bryx-inc/ts-utils/blob/f75df9e/src/result.ts#L225)
 
 ___
 
@@ -142,7 +142,7 @@ console.log(Result.Err('foo').contains('foo')) // false
 
 #### Defined in
 
-[result.ts:309](https://github.com/bryx-inc/ts-utils/blob/af33aca/src/result.ts#L309)
+[result.ts:309](https://github.com/bryx-inc/ts-utils/blob/f75df9e/src/result.ts#L309)
 
 ___
 
@@ -172,7 +172,7 @@ console.log(Result.Err('foo').contains('foo')) // false
 
 #### Defined in
 
-[result.ts:324](https://github.com/bryx-inc/ts-utils/blob/af33aca/src/result.ts#L324)
+[result.ts:324](https://github.com/bryx-inc/ts-utils/blob/f75df9e/src/result.ts#L324)
 
 ___
 
@@ -192,7 +192,7 @@ ___
 
 #### Defined in
 
-[result.ts:329](https://github.com/bryx-inc/ts-utils/blob/af33aca/src/result.ts#L329)
+[result.ts:329](https://github.com/bryx-inc/ts-utils/blob/f75df9e/src/result.ts#L329)
 
 ___
 
@@ -215,7 +215,7 @@ if (res.isErr()) console.log(`result failed with: ${res.err()}`);
 
 #### Defined in
 
-[result.ts:156](https://github.com/bryx-inc/ts-utils/blob/af33aca/src/result.ts#L156)
+[result.ts:156](https://github.com/bryx-inc/ts-utils/blob/f75df9e/src/result.ts#L156)
 
 ___
 
@@ -229,7 +229,7 @@ ___
 
 #### Defined in
 
-[result.ts:88](https://github.com/bryx-inc/ts-utils/blob/af33aca/src/result.ts#L88)
+[result.ts:88](https://github.com/bryx-inc/ts-utils/blob/f75df9e/src/result.ts#L88)
 
 ___
 
@@ -252,7 +252,7 @@ if (res.isErr()) console.log('an error occured!');
 
 #### Defined in
 
-[result.ts:129](https://github.com/bryx-inc/ts-utils/blob/af33aca/src/result.ts#L129)
+[result.ts:129](https://github.com/bryx-inc/ts-utils/blob/f75df9e/src/result.ts#L129)
 
 ___
 
@@ -275,7 +275,7 @@ if (res.isOk()) console.log('passed!');
 
 #### Defined in
 
-[result.ts:116](https://github.com/bryx-inc/ts-utils/blob/af33aca/src/result.ts#L116)
+[result.ts:116](https://github.com/bryx-inc/ts-utils/blob/f75df9e/src/result.ts#L116)
 
 ___
 
@@ -313,7 +313,7 @@ const mapped: Result<string, string> = res.map((v: number) => v.toString(), JSON
 
 #### Defined in
 
-[result.ts:102](https://github.com/bryx-inc/ts-utils/blob/af33aca/src/result.ts#L102)
+[result.ts:102](https://github.com/bryx-inc/ts-utils/blob/f75df9e/src/result.ts#L102)
 
 ___
 
@@ -336,7 +336,7 @@ if (res.isOk()) console.log(`result: ${res.ok()}`);
 
 #### Defined in
 
-[result.ts:142](https://github.com/bryx-inc/ts-utils/blob/af33aca/src/result.ts#L142)
+[result.ts:142](https://github.com/bryx-inc/ts-utils/blob/f75df9e/src/result.ts#L142)
 
 ___
 
@@ -370,7 +370,7 @@ console.log(div(10, 0).or(Result.Ok(0))) // Ok(0)
 
 #### Defined in
 
-[result.ts:206](https://github.com/bryx-inc/ts-utils/blob/af33aca/src/result.ts#L206)
+[result.ts:206](https://github.com/bryx-inc/ts-utils/blob/f75df9e/src/result.ts#L206)
 
 ___
 
@@ -409,7 +409,7 @@ console.log(Result.Ok(3).orElse(square).orElse(err)) // Ok(9)
 
 #### Defined in
 
-[result.ts:243](https://github.com/bryx-inc/ts-utils/blob/af33aca/src/result.ts#L243)
+[result.ts:243](https://github.com/bryx-inc/ts-utils/blob/f75df9e/src/result.ts#L243)
 
 ___
 
@@ -423,7 +423,7 @@ ___
 
 #### Defined in
 
-[result.ts:333](https://github.com/bryx-inc/ts-utils/blob/af33aca/src/result.ts#L333)
+[result.ts:333](https://github.com/bryx-inc/ts-utils/blob/f75df9e/src/result.ts#L333)
 
 ___
 
@@ -446,7 +446,7 @@ const m: Maybe<Result<string, string>> = res.transpose();
 
 #### Defined in
 
-[result.ts:170](https://github.com/bryx-inc/ts-utils/blob/af33aca/src/result.ts#L170)
+[result.ts:170](https://github.com/bryx-inc/ts-utils/blob/f75df9e/src/result.ts#L170)
 
 ___
 
@@ -470,7 +470,7 @@ console.log(Result.Err('bar').unwrap()); // ERROR!
 
 #### Defined in
 
-[result.ts:258](https://github.com/bryx-inc/ts-utils/blob/af33aca/src/result.ts#L258)
+[result.ts:258](https://github.com/bryx-inc/ts-utils/blob/f75df9e/src/result.ts#L258)
 
 ___
 
@@ -503,7 +503,7 @@ console.log(b.unwrapOr('bar')); // 'fizz'
 
 #### Defined in
 
-[result.ts:276](https://github.com/bryx-inc/ts-utils/blob/af33aca/src/result.ts#L276)
+[result.ts:276](https://github.com/bryx-inc/ts-utils/blob/f75df9e/src/result.ts#L276)
 
 ___
 
@@ -536,7 +536,7 @@ console.log(b.unwrapOrElse(err => err.toString())); // '15'
 
 #### Defined in
 
-[result.ts:294](https://github.com/bryx-inc/ts-utils/blob/af33aca/src/result.ts#L294)
+[result.ts:294](https://github.com/bryx-inc/ts-utils/blob/f75df9e/src/result.ts#L294)
 
 ___
 
@@ -570,7 +570,7 @@ console.log(Result.Err('yikes! something went wrong').isOk()); // false
 
 #### Defined in
 
-[result.ts:28](https://github.com/bryx-inc/ts-utils/blob/af33aca/src/result.ts#L28)
+[result.ts:28](https://github.com/bryx-inc/ts-utils/blob/f75df9e/src/result.ts#L28)
 
 ___
 
@@ -605,7 +605,7 @@ console.log(Result.Ok('foo').isOk()); // true
 
 #### Defined in
 
-[result.ts:17](https://github.com/bryx-inc/ts-utils/blob/af33aca/src/result.ts#L17)
+[result.ts:17](https://github.com/bryx-inc/ts-utils/blob/f75df9e/src/result.ts#L17)
 
 ___
 
@@ -648,7 +648,7 @@ A [Result](Result.md) object in the `Ok` state with the produced value if succes
 
 #### Defined in
 
-[result.ts:51](https://github.com/bryx-inc/ts-utils/blob/af33aca/src/result.ts#L51)
+[result.ts:51](https://github.com/bryx-inc/ts-utils/blob/f75df9e/src/result.ts#L51)
 
 `Static` **from**<`T`, `E`\>(`fn`, `mapErr`): [`Result`](Result.md)<`T`, `E`\>
 
@@ -691,4 +691,4 @@ A [Result](Result.md) object in the `Ok` state with the produced value if succes
 
 #### Defined in
 
-[result.ts:75](https://github.com/bryx-inc/ts-utils/blob/af33aca/src/result.ts#L75)
+[result.ts:75](https://github.com/bryx-inc/ts-utils/blob/f75df9e/src/result.ts#L75)
