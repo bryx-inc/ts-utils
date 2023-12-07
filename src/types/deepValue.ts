@@ -51,7 +51,7 @@ type TraversePicked<TPicked extends object, Path extends DeepKeyOf<TPicked>> = P
                 : "e1"
             : "e2"
         : KCur extends keyof TPicked // 5
-        ? TPicked[KCur] extends (infer Next extends object) | undefined /* prettier-ignore */ // 4
+        ? TPicked[KCur] extends (infer Next extends object) | null | undefined /* prettier-ignore */ // 4
             ? KRest extends DeepKeyOf<Next> // 3
                 ? TraversePicked<Next, KRest>
                 : "e3"

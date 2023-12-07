@@ -1,5 +1,11 @@
 # @bryx-inc/ts-utils
 
+## 1.68.2
+
+### Patch Changes
+
+-   Rollback 1.68.1 and handle `null` in DeepValue
+
 ## 1.68.1
 
 ### Patch Changes

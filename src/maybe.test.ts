@@ -1,4 +1,3 @@
-import { pipe } from "./function";
 import {
     expectMaybe,
     FormalMaybe,
@@ -12,7 +11,6 @@ import {
     unwrapOrUndef,
     withSome,
 } from "./maybe";
-import { throwError } from "./errors";
 
 const emptyMaybe: Maybe<string> = null;
 const filledMaybe: Maybe<string> = "foo";
@@ -242,38 +240,6 @@ describe("maybe()", () => {
 
         expect(maybe(thing)?.take((it) => it.length)).toEqual(3);
         expect(maybe(thing2)?.take((it) => it.length)).toEqual(undefined);
-    });
-
-    it('should handle the "try" method correctly', () => {
-        const thing = "1234" as Maybe<string>;
-        const thing2 = "foo" as Maybe<string>;
-
-        function parse(str: string) {
-            return pipe(Number.parseInt(str), (it) => (!Number.isNaN(it) ? it : throwError("Failed to parse")));
-        }
-
-        expect(
-            maybe(thing)
-                ?.try((it) => parse(it))
-                ?.take() ?? null,
-        ).toEqual(1234);
-        expect(
-            maybe(thing2)
-                ?.try((it) => parse(it))
-                ?.take() ?? null,
-        ).toEqual(null);
-    });
-
-    it('should handle the "tryTake" method correctly', () => {
-        const thing = "1234" as Maybe<string>;
-        const thing2 = "foo" as Maybe<string>;
-
-        function parse(str: string) {
-            return pipe(Number.parseInt(str), (it) => (!Number.isNaN(it) ? it : throwError("Failed to parse")));
-        }
-
-        expect(maybe(thing)?.tryTake((it) => parse(it)) ?? null).toEqual(1234);
-        expect(maybe(thing2)?.tryTake((it) => parse(it)) ?? null).toEqual(null);
     });
 
     it('should handle "also" method correctly', () => {
