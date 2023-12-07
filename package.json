@@ -1,6 +1,6 @@
 {
   "name": "@bryx-inc/ts-utils",
-  "version": "1.68.0",
+  "version": "1.68.2",
   "repository": "git@github.com:bryx-inc/ts-utils.git",
   "author": "Tyler Holewinski <tyler.holewinski@bryx.com>",
   "license": "MIT",
@@ -19,7 +19,7 @@
   "main": "dist/index.js",
   "sideEffects": false,
   "devDependencies": {
-    "@changesets/cli": "^2.26.1",
+    "@changesets/cli": "^2.27.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
